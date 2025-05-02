@@ -1,0 +1,245 @@
+<div class="sistem-main">
+  <ui-snackbar
+    icon="../../assets/images/icons/snack.svg"
+    msg="Demo data"
+    text="Some Action performe"
+    action="Ye Buddy"
+    time="100000"
+  />
+
+  <div class="ui-xl-ontainer ui-grid">
+    <div class="dashboard">
+      <div class="left-dash">
+        <ui-navigation [menuItems]="menuItems" variant="primary" />
+      </div>
+      <div class="right-dash">
+        <div class="list-header pl-20">
+          <div class="left">
+            <h2 class="heading pb-2">All Sessions</h2>
+            <div class="breadcrum">
+              <ui-breadcrumbs [breadcrumbs]="topTag" />
+            </div>
+          </div>
+
+          <div class="right">
+            <ui-notification
+              size="md"
+              shape="circle"
+              class="mr-10"
+              icon="information-circle"
+            />
+
+            <ui-button
+              variant="primary"
+              size="large"
+              shape="round"
+              class="mr-10"
+              iconLeft="../../../../assets/images/icons/plus.svg"
+            />
+          </div>
+        </div>
+
+        <div class="filter-list pl-20">
+          <div class="left">
+            <div class="small-heading mr-5">Filters</div>
+            <ui-search size="small" class="mr-5" style="max-width: 150px" />
+
+            <ui-dropdown
+              class="mr-5"
+              isDropdown="isDropdown"
+              size="medium"
+              [dropdownList]="sessionTypes"
+              (selectionChange)="onTypeSelectionChange($event)"
+            />
+
+            <ui-dropdown
+              class="mr-5"
+              isDropdown="isDropdown"
+              size="medium"
+              [dropdownList]="operatorList"
+              (selectionChange)="onOperatorSelectionChange($event)"
+            />
+
+            <ui-dropdown
+              class="mr-5"
+              isDropdown="isDropdown"
+              size="medium"
+              [dropdownList]="statusList"
+              (selectionChange)="onStatusSelectionChange($event)"
+            />
+
+            <ui-range-calendar
+              class="mr-5"
+              (dateRangeSelected)="onDateRangeSelected($event)"
+            ></ui-range-calendar>
+
+            <ui-button
+              variant="primary"
+              size="small"
+              label="Apply"
+              (click)="applyFilter()"
+            />
+
+            <div class="small-heading filter ml-10" (click)="clearFilters()">
+              Clear
+            </div>
+          </div>
+
+          <div class="right pr-12">
+            <div class="paggination">
+              <ui-button
+                variant="secondary"
+                size="small"
+                shape="round"
+                iconRight="../../../../assets/images/icons/arrow-left.svg"
+                (click)="goToPreviousPage()"
+                [disabled]="currentPage === 1"
+              />
+              <input
+                type="text"
+                [(ngModel)]="tempPage"
+                value="{{ currentPage }}"
+                (keypress)="onEnterPress($event)"
+                class="current ml-10 mr-10"
+                min="1"
+                [max]="totalPages"
+              />
+
+              <div class="no-of mr-10">of {{ totalPages }}</div>
+              <ui-button
+                variant="secondary"
+                size="small"
+                shape="round"
+                iconRight="../../../../assets/images/icons/arrow-right.svg"
+                (click)="goToNextPage()"
+                [disabled]="currentPage === totalPages"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th width="1px"></th>
+                <th width="5.3%">
+                  <div class="selectAll">
+                    <ui-checkbox
+                      (change)="selectAll($event)"
+                      [checked]="areAllRowsChecked()"
+                    ></ui-checkbox>
+                    <span> TYPE </span>
+                  </div>
+                </th>
+                <th (click)="sortSessions('vehicleNo')">
+                  VEHICLE NO.
+                  <!-- <ui-icon *ngIf="getSortIcon('vehicleType')" [icon]="getSortIcon('vehicleNo')" /> -->
+                </th>
+                <th (click)="sortSessions('booking')">
+                  BOOKING {{ getSortIcon("booking") }}
+                </th>
+                <th (click)="sortSessions('timeIn')">
+                  IN TIME {{ getSortIcon("timeIn") }}
+                </th>
+                <th (click)="sortSessions('timeOut')">
+                  TIME OUT {{ getSortIcon("timeOut") }}
+                </th>
+                <th (click)="sortSessions('advance')">
+                  ADVANCE {{ getSortIcon("advance") }}
+                </th>
+                <th (click)="sortSessions('totalTime')">
+                  TOTAL TIME {{ getSortIcon("totalTime") }}
+                </th>
+                <th (click)="sortSessions('collection')">
+                  COLLECTION {{ getSortIcon("collection") }}
+                </th>
+                <th (click)="sortSessions('refund')">
+                  REFUND {{ getSortIcon("refund") }}
+                </th>
+                <th (click)="sortSessions('total')">
+                  TOTAL {{ getSortIcon("total") }}
+                </th>
+                <th (click)="sortSessions('mode')">
+                  MODE {{ getSortIcon("mode") }}
+                </th>
+                <th (click)="sortSessions('reference')">
+                  REFERENCE {{ getSortIcon("reference") }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let session of paginatedSessions; let i = index"
+                [ngClass]="{ highlight: isRowChecked(i) }"
+              >
+                <td>{{ (currentPage - 1) * rowsPerPage + i + 1 }}</td>
+                <td class="selectAll">
+                  <ui-checkbox
+                    [checked]="isRowChecked(i)"
+                    (change)="onCheckboxChange($event, i)"
+                  >
+                  </ui-checkbox>
+                  <ui-vehicle
+                    [vehicle]="session.vehicleType"
+                    [vehicleIcon]="session.vehicleIcon"
+                  ></ui-vehicle>
+                </td>
+                <td>{{ session.vehicleNo }}</td>
+                <td>{{ session.booking }}</td>
+                <td>{{ session.timeIn }}</td>
+                <td>{{ session.timeOut }}</td>
+                <td>₹{{ session.advance }}</td>
+                <td>{{ session.totalTime }}</td>
+                <td>₹{{ session.collection }}</td>
+                <td>₹{{ session.refund }}</td>
+                <td>{{ session.total }}</td>
+                <td>{{ session.mode }}</td>
+                <td>{{ session.reference }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="filter-list pl-20">
+          <div class="left">
+            <div class="breadcrum">
+              <ui-breadcrumbs [breadcrumbs]="bottomtag" />
+            </div>
+          </div>
+          <div class="right pr-12">
+            <div class="paggination">
+              <ui-button
+                variant="secondary"
+                size="small"
+                shape="round"
+                iconRight="../../../../assets/images/icons/arrow-left.svg"
+                (click)="goToPreviousPage()"
+                [disabled]="currentPage === 1"
+              />
+              <input
+                type="text"
+                [(ngModel)]="tempPage"
+                value="{{ currentPage }}"
+                (keypress)="onEnterPress($event)"
+                class="current ml-10 mr-10"
+                min="1"
+                [max]="totalPages"
+              />
+
+              <div class="no-of mr-10">of {{ totalPages }}</div>
+              <ui-button
+                variant="secondary"
+                size="small"
+                shape="round"
+                iconRight="../../../../assets/images/icons/arrow-right.svg"
+                (click)="goToNextPage()"
+                [disabled]="currentPage === totalPages"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

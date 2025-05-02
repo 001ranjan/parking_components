@@ -1,0 +1,14 @@
+<div class="toast-container" *ngIf="isShown && !isClose" [ngClass]="toast">
+  <div class="toast-content">
+    <div class="toast-icon">
+      <img [src]="iconPath" alt="{{ toast }} icon">
+      <div class="toast-msg">
+        <div class="toast-heading">{{ heading }}</div>
+        <div class="msg">{{ message }}</div>
+      </div>
+    </div>
+    <div class="toast-icon" (click)="closeToast()">
+      <img [src]="closeIconPath" alt="Close {{ toast }} icon">
+    </div>
+  </div>
+</div>

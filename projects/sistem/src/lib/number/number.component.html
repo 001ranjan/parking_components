@@ -1,0 +1,41 @@
+     
+<div class="number-text-area">
+  <label for="name" class="label-name">
+    <div class="ui-flex">
+      <div>
+        <span class="content-name">Title 
+          <span class="required">
+            <img src="assets/images/icons/required.svg" alt="required">
+          </span>
+        </span>
+      </div>
+      <div class="counter">
+      <div class="word">
+       {{wordCount}} /10
+      </div>
+      </div>
+    </div>
+  </label>
+
+  <div class="input-group" [ngClass]="{'focused': isFocused}">
+    <div class="country-code-selector">
+      <input 
+        type="text" 
+        class="country_code" 
+        autocomplete="off" 
+        [placeholder]="countryCode" 
+        required 
+        (focus)="onFocus()" 
+        (blur)="onBlur()" value="+91">
+    </div>
+  
+    <input type="text" class="number_field"
+           autocomplete="off" placeholder="input Text" 
+           required [(ngModel)]="number" (focus)="onFocus()" (blur)="onBlur()"  (input)="filterInput($event)" maxlength="10">
+    <img src="assets/images/icons/dark.svg" alt="icon" class="icon-img">
+  </div>
+  <div class="error-msg mt-1">
+ {{errorMessage}}
+  </div>
+
+</div>

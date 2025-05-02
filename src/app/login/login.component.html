@@ -1,0 +1,80 @@
+<!-- <form (ngSubmit)="userLogin()">
+  <div>
+    <label for="loginId">Email</label>
+    <input
+      type="email"
+      id="loginId"
+      [(ngModel)]="loginData.loginId"
+      name="loginId"
+      required
+    />
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      [(ngModel)]="loginData.password"
+      name="password"
+      required
+    />
+  </div>
+  <button type="submit">Login</button>
+</form> -->
+
+
+<div class="login-container">
+  <div class="login-box">
+    <div class="login-header">
+      <div class="logo">
+        <img src="assets/logo/sale.svg" alt="Logo" />
+        <img src="assets/logo/logo2.svg" alt="Logo" class="ml-10" />
+      </div>
+      <h2>Welcome Back</h2>
+      <p>Please enter your credentials to login</p>
+    </div>
+
+    <form (ngSubmit)="userLogin()" class="login-form">
+      <div class="form-group">
+        <ui-text-field
+          label="Email"
+          variant="primary"
+          id="loginId"
+          [(ngModel)]="loginData.loginId"
+          name="loginId"
+          placeholder=""
+          type="email"
+          required
+        >
+          <ui-icon icon="mail" slot="prefix"></ui-icon>
+        </ui-text-field>
+      </div>
+
+      <div class="form-group">
+        <ui-text-field
+          label="Password"
+          variant="primary"
+          id="password"
+          [(ngModel)]="loginData.password"
+          name="password"
+          placeholder=""
+          type="password"
+          required
+        >
+          <ui-icon icon="lock-closed" slot="prefix"></ui-icon>
+        </ui-text-field>
+      </div>
+
+      <div class="form-actions">
+        <ui-button label="Login" size="medium" type="submit" />
+      </div>
+    </form>
+  </div>
+
+  <ui-toast
+    [isShown]="showToast"
+    [toast]="toastType"
+    [message]="toastMessage"
+    [heading]="toastType === 'error' ? 'Error' : 'Success'"
+  />
+</div>

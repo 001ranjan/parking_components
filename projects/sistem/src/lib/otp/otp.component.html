@@ -1,0 +1,11 @@
+<div class="otp-container">
+  <input class="otp-input" type="text" maxlength="1" (keyup)="onKeyUp($event, 0)" (input)="onInput($event)">
+  <input class="otp-input" type="text" maxlength="1" (keyup)="onKeyUp($event, 1)" (input)="onInput($event)">
+  <input class="otp-input" type="text" maxlength="1" (keyup)="onKeyUp($event, 2)" (input)="onInput($event)">
+  <input class="otp-input" type="text" maxlength="1" (keyup)="onKeyUp($event, 3)" (input)="onInput($event)">
+  <input class="otp-input" type="text" maxlength="1" (keyup)="onKeyUp($event, 4)" (input)="onInput($event)">
+  <input class="otp-input" type="text" maxlength="1" (keyup)="onKeyUp($event, 5)" (input)="onInput($event)">
+</div>
+<div class="error-msg error-space" *ngIf="showError">
+{{ onlyNumber }}
+</div>

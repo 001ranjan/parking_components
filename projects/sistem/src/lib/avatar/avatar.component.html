@@ -1,0 +1,23 @@
+<div class="avatar-container">
+  <div
+    class="avatar-icon"
+    [class]="size + ' ' + shape"
+    [ngClass]="{ 'with-label': label }"
+  >
+    <!-- Display the image if there is no label; otherwise, display the label -->
+    <ng-container *ngIf="!label; else showlabel">
+      <!-- Check if it's an SVG or a fallback image -->
+      <ng-container *ngIf="isSvgIcon(); else defaultImage">
+        <span class="icon" [innerHTML]="getIconSvg(avatarIcon)"></span>
+      </ng-container>
+      <ng-template #defaultImage>
+        <img [src]="avatarIcon || defaultIcon" alt="avatar icon" />
+      </ng-template>
+    </ng-container>
+
+    <!-- Show label -->
+    <ng-template #showlabel>
+      <div class="avatar-name">{{ label }}</div>
+    </ng-template>
+  </div>
+</div>

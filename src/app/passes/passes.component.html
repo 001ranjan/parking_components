@@ -1,0 +1,310 @@
+<div class="container-main">
+  <!-- sidebar -->
+  <ui-sidebar></ui-sidebar>
+
+  <main>
+    <!-- top Heading -->
+    <div class="list-header">
+      <div class="left">
+        <h2 class="heading">All Passes</h2>
+        <div class="breadcrum">
+          <ui-breadcrumbs [breadcrumbs]="topTag" />
+        </div>
+      </div>
+
+      <div class="right">
+        <!-- share modal -->
+        <ui-modal footerText="" title="Pass Sharing" size="small" submitText="Share" #modal (submit)="onModalShareClick()">
+          <ng-template #modalShare>
+            <div class="sharing-modal">
+              <div class="form-group mb-20">
+                <ui-text-field 
+                  label="Subject" 
+                  variant="primary" 
+                  [(ngModel)]="shareFormModel.subject" 
+                  name="subject" 
+                  placeholder="" 
+                  type="text" 
+                  required 
+                />
+              </div>
+              <div class="form-group mb-20">
+                <ui-text-field 
+                  label="Add ID of People" 
+                  variant="primary" 
+                  [(ngModel)]="shareFormModel.emails" 
+                  name="emails" 
+                  placeholder="" 
+                  type="text" 
+                  required 
+                />
+              </div>
+
+              <div class="form-group">
+                <label>Choose date</label>
+                <div class="ui-grid mt-15">
+                  <div class="ui-col-4">
+                    <ui-radio-button name="dateGroup" label="Yesterday" value="yesterday" (change)="onDateOptionChange('yesterday')" />
+                  </div>
+                  <div class="ui-col-4">
+                    <ui-radio-button name="dateGroup" label="This Month" value="thisMonth" (change)="onDateOptionChange('thisMonth')" />
+                  </div>
+                  <div class="ui-col-4">
+                    <ui-radio-button name="dateGroup" label="Choose Range" value="custom" (change)="onDateOptionChange('custom')" />
+                  </div>
+                </div>
+              </div>
+
+              <div *ngIf="isShareDateRangeVisible" class="date-range-picker mt-15">
+                <ui-double-calendar
+                  #rangeCalendar
+                  (dateRangeSelected)="onShareDateRangeSelected($event)"
+                />
+              </div>
+
+              <div class="sharing-info mt-20">
+                <p class="medium-p">Sharing as <strong>Test Vendor</strong></p>
+                <p class="small-p">
+                  You should be aware of the privacy policy of sharing from Sistem Apps. The client might have restricted
+                  policy around it. Please refer to the
+                  <a href="#" class="text-red">Client Privacy Policy</a> and
+                  <a href="#" class="text-red">Sistem Apps Sharing Policy</a>.
+                </p>
+              </div>
+            </div>
+          </ng-template>
+        </ui-modal>
+
+        <ui-button variant="secondary" shape="round" iconLeft="share" size="small"
+          (click)="modal.openModal(modalShare)" />
+      </div>
+    </div>
+
+    <!-- filter list -->
+    <div class="filter-list pl-20">
+      <div class="left">
+        <div class="small-heading mr-3">Filters</div>
+        <ui-search size="small" class="mr-3" style="max-width: 190px" />
+        <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="sessionTypes"
+          [selectedValue]="tempSelectedType" (selectionChange)="onTypeSelectionChange($event)" />
+
+        <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="operatorList"
+          [selectedValue]="tempSelectedOperator" (selectionChange)="onOperatorSelectionChange($event)" />
+        <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="statusList"
+          [selectedValue]="tempSelectedStatus" (selectionChange)="onStatusSelectionChange($event)" />
+        <ui-range-calendar 
+          #rangeCalendar
+          class="mr-3" 
+          [startDate]="tempSelectedRange.startDate"
+          [endDate]="tempSelectedRange.endDate"
+          [reset]="resetCalendarTrigger"
+          (dateRangeSelected)="onDateRangeSelected($event)"
+        />
+        <ui-button variant="primary" size="small" label="Apply" (click)="applyFilter()" time="1000" />
+        <div class="small-heading filter ml-10" (click)="clearFilters()">
+          Clear
+        </div>
+      </div>
+
+      <div class="right pr-12">
+        <div class="paggination">
+          <ui-button variant="secondary" size="small" shape="round"
+            iconRight="../../../../assets/images/icons/arrow-left.svg" (click)="goToPreviousPage()"
+            [disabled]="currentPage === 1" />
+          <input type="text" [(ngModel)]="tempPage" value="{{ currentPage }}" (keypress)="onEnterPress($event)"
+            class="current ml-10 mr-10" min="1" [max]="totalPages" />
+
+          <div class="no-of mr-10">of {{ totalPages }}</div>
+          <ui-button variant="secondary" size="small" shape="round"
+            iconRight="../../../../assets/images/icons/arrow-right.svg" (click)="goToNextPage()"
+            [disabled]="currentPage === totalPages" />
+        </div>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <!-- Debug info -->
+      <div *ngIf="paginatedPasses.length === 0" style="padding: 20px; color: var(--text);">
+        No data to display. Total passes: {{totalPasses}}
+      </div>
+      
+      <table>
+        <thead>
+          <tr>
+            <th width="3.3%">
+              <div class="number ml-7" [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>#</span>
+              </div>
+            </th>
+            <th width="6.5%">
+              <div class="selectAll check" [ngClass]="{ skeleton: isSkeletonVisible }">
+                <ui-checkbox (change)="selectAll($event)" [checked]="areAllRowsChecked()"
+                  [ngClass]="{ skeleton: isSkeletonVisible }" class="mr-3 mt-7 hide" />
+                <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                  <span>TYPE</span>
+                </div>
+              </div>
+            </th>
+            <th width="10.92%" (click)="sortSessions('vehicleNo')">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>VEHICLE NO.
+                  <span class="sort" [innerHTML]="getSortIcon('vehicleNo')"></span></span>
+              </div>
+            </th>
+            <th width="6.92%" (click)="sortSessions('vehicleNo')">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>PASS TYPE
+                  <span class="sort" [innerHTML]="getSortIcon('psssTyle')"></span></span>
+              </div>
+            </th>
+            <th width="14.92%" (click)="sortSessions('vehicleNo')">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span> CREATED ON
+                  <span class="sort" [innerHTML]="getSortIcon('psssTyle')"></span></span>
+              </div>
+            </th>
+            <th width="13.92%">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>EXPIRES ON</span>
+              </div>
+            </th>
+            <th width="14.92%">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>VALID FOR</span>
+              </div>
+            </th>
+            <th width="7%">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>REMAINING</span>
+              </div>
+            </th>
+            <th width="6%">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>STATUS</span>
+              </div>
+            </th>
+            <th width="8.5%">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>AMOUNT</span>
+              </div>
+            </th>
+            
+           
+            <th width="6.94%">
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                
+              </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pass of paginatedPasses; let i = index">
+            <td>
+              <div class="number ml-7" [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>{{ (currentPage - 1) * rowsPerPage + i + 1 }}</span>
+              </div>
+            </td>
+            <td class="selectAll">
+              <span [ngClass]="{ skeleton: isSkeletonVisible }" class="check">
+                <ui-checkbox [checked]="isRowChecked(i)" (change)="onCheckboxChange($event, i)" class="mr-3 hide" />
+              </span>
+
+              <span class="vehicle" [ngClass]="{ skeleton: isSkeletonVisible }"
+                [style.background-color]="getVehicleBgColor(pass.vehicle.vehicleTypeId)">
+                <ui-vehicle [vehicle]="getVehicleType(pass.vehicle.vehicleTypeId)" [vehicleIcon]="getVehicleIcon(pass.vehicle.vehicleTypeId)" class="hide" />
+              </span>
+            </td>
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>{{ pass.vehicle.regNumber }}</span>
+              </div>
+            </td>
+
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>{{ pass.type }}</span>
+              </div>
+            </td>
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>{{ pass.startDate | date:'EEE dd MMMyy hh:mm a' }}</span>
+              </div>
+            </td>
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>{{ pass.endDate | date:'EEE dd MMMyy hh:mm a' }}</span>
+              </div>
+            </td>
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span appTooltip="{{ pass.parking.name }}" placement="top">{{ pass.parking.name | slice:0:20 }}{{ pass.parking.name.length > 20 ? '...' : '' }}</span>
+              </div>
+            </td>
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>{{ calculateRemainingDays(pass.startDate, pass.endDate) }} days</span>
+              </div>
+            </td>
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>{{ pass.paymentMode }}</span>
+              </div>
+            </td>
+            <td>
+              <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                <span>₹{{ pass.amount }}/-</span>
+              </div>
+            </td>
+            <td>
+              <div class="flex flex-around flex-align-items">
+                <span [ngClass]="{ skeleton: isSkeletonVisible }">
+                  <ui-notification icon="user" size="md" shape="circle" class="hide" appTooltip="{{ pass.createdBy.firstName }} {{ pass.createdBy.lastName   }}"
+                    placement="left" />
+                </span>
+
+                <div [ngClass]="{ skeleton: isSkeletonVisible }">
+                  <!-- <span>...</span> -->
+                </div>
+              </div>
+            </td>
+          
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="filter-list pl-20">
+      <div class="left">
+        <div class="breadcrum">
+          <ui-breadcrumbs [breadcrumbs]="bottomTag" />
+        </div>
+      </div>
+      <div class="right pr-12">
+        <div class="paggination">
+          <ui-button variant="secondary" size="small" shape="round"
+            iconRight="../../../../assets/images/icons/arrow-left.svg" (click)="goToPreviousPage()"
+            [disabled]="currentPage === 1" />
+          <input type="text" [(ngModel)]="tempPage" value="{{ currentPage }}" (keypress)="onEnterPress($event)"
+            class="current ml-10 mr-10" min="1" [max]="totalPages" />
+
+          <div class="no-of mr-10">of {{ totalPages }}</div>
+          <ui-button variant="secondary" size="small" shape="round"
+            iconRight="../../../../assets/images/icons/arrow-right.svg" (click)="goToNextPage()"
+            [disabled]="currentPage === totalPages" />
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<ui-snackbar icon="../../assets/images/icons/avatar-2.svg" msg="Demo data" text="Some Action performe" action="Undo"
+  time="100" />
+
+<ui-toast
+  [toast]="toastType"
+  [message]="toastMessage"
+  [heading]="toastHeading"
+  [isShown]="isToastInfo"
+  [duration]="2000"
+  [position]="'bottom-right'"
+/> 

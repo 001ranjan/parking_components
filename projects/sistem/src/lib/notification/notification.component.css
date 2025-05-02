@@ -1,0 +1,153 @@
+.notification-container {
+  position: relative;
+}
+.icon-container {
+  border-radius: 4px;
+  overflow: hidden;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.icon-container.secondary {
+  background-color: var(--secondary);
+}
+.icon-container.primary {
+  background-color: var(--primary);
+}
+.circle {
+  border-radius: 50%;
+}
+.with-label {
+  background-color: var(--stage-active);
+}
+
+.icon-container.xxl {
+  width: 52px;
+  height: 52px;
+}
+
+.icon-container.xl {
+  width: 44px;
+  height: 44px;
+}
+
+.icon-container.md {
+  width: 36px;
+  height: 36px;
+}
+
+.icon-container.sm {
+  width: 28px;
+  height: 28px;
+}
+
+.icon-container.xsm {
+  width: 24px;
+  height: 24px;
+}
+
+.icon-container img {
+  width: 21.5px;
+  height: 21.5px;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+.avatar-name {
+  font-weight: 600;
+  color: var(--white);
+}
+
+.xxl .avatar-name {
+  font-size: 20px;
+  line-height: 24.2px;
+}
+
+.xl .avatar-name {
+  font-size: 16px;
+  line-height: 19.36px;
+}
+.md .avatar-name {
+  font-size: 14px;
+  line-height: 16.94px;
+}
+
+.sm .avatar-name {
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
+.xsm .avatar-name {
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
+.xl .avatar-name {
+  font-size: 14px;
+  line-height: 16.94px;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+}
+
+.icon-container:hover {
+  background-color: var(--disable);
+}
+
+.notification-container .xsm img {
+  width: 15px;
+  height: 15px;
+}
+
+.icon-container.xxl .icon {
+  width: 30px;
+  height: 30px;
+}
+
+.icon-container.xl .icon {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container.md .icon {
+  width: 21.5px;
+  height: 21.5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container.sm .icon {
+  width: 17px;
+  height: 17px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-container.xsm .icon {
+  width: 15px;
+  height: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.notification-number {
+  background: var(--primary);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  font-size: 11px;
+  color: var(--white);
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  box-shadow: 0 0px 0px 2px var(--secondary);
+}

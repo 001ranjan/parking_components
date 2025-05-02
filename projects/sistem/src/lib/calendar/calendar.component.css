@@ -1,0 +1,254 @@
+.custom-date-picker {
+  position: absolute;
+
+}
+
+.custom-date-picker input {
+  padding: 10px;
+  width: 340px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.custom-date-picker .calendar {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background-color: transparent;
+  min-width: 344px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: transparent;
+  color: var(--heading);
+}
+
+.calendar-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.calendar-body {
+  padding: 10px;
+}
+.day-names{
+  font-size: 12px;
+  line-height: 15px;
+  color: var(--input-text);
+  height: 30px;
+}
+
+.day-names, .days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.days-grid span {
+ width: 48px;
+ height: 48px;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 13.78px;
+  line-height: 19.1px;
+  font-weight: 600;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.days-grid span:hover .date-circle{
+  background-color: var(--secondary);
+  width: 28px;
+  height: 28px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.date-circle{
+  color: var(--heading);
+}
+
+
+.days-grid span.disabled {
+  color: #aaa;
+  pointer-events: none;
+}
+
+
+.arrow-btn .btn-circle{
+  width: 20px;
+  height: 20px;
+  background-color: var(--secondary);
+  border-radius: 50%;
+  margin: 0 2px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.current-date{
+  font-size: 12px;
+  line-height: 15px;
+}
+.today{
+  font-size: 7px;
+  line-height: 8px;
+  margin-left: 6px;
+  cursor: pointer;
+}
+.arrow-btn{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+ 
+.today-date .date-circle{
+  background-color: var(--heading);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: var(--span-circle);
+}
+
+
+.today-date .date-circle:hover{
+  color: var(--heading);
+}
+
+
+span.disabled .date-circle{
+  color: var(--border);
+}
+
+
+.form {
+  width: 344px;
+  height: 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.form input {
+  width: 100%;
+  height: 100%;
+  color: var(--heading);
+  padding-top: 13px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: transparent;
+}
+
+.form label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+  left: 0%;
+  pointer-events: none;
+  border-bottom: 1.3px solid var(--border);
+  color: var(--lable-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form label::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--border);
+  bottom: -1px;
+  left: 0px;
+  transform: translateX(-120%);
+  transition: all 0.3s ease;
+}
+
+.content-name {
+  position: absolute;
+  bottom: 7px;
+  left: 0px;
+  transition: all .3s ease;
+}
+
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+  transform: translateY(-100%);
+  font-size: 12px;
+  line-height: 14.52px;
+  color: var(--input-text);
+}
+
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+  transform: translateX(0%);
+}
+
+.required {
+  margin-top: -2px;
+  position: absolute;
+}
+
+.ui-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  bottom: 0px;
+}
+
+.counter {
+ text-align: right;
+}
+
+.counter img {
+  width: 16px;
+  height: 16px;
+}
+
+.word{
+  font-size: 12px;
+  line-height: 12.1px;
+  color:var(--input-text);
+  margin-bottom:3px;
+  visibility: hidden;
+}
+
+.word.focused{
+  visibility: visible;
+}
+
+
+.error label{
+  color: var(--error);
+}
+
+.form.error .label-name .content-name {
+  color: var(--error);
+}
+
+.selected-date .date-circle{
+  background-color: var(--heading);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  color: var(--span-circle);
+}
+
+.disabled.selected-date .date-circle{
+  background-color: transparent!important;
+}

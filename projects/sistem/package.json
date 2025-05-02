@@ -1,0 +1,14 @@
+{
+  "name": "sistem-ui",
+  "version": "1.0.1",
+  "main": "src/public-api.js", 
+  "types": "src/public-api.d.ts", 
+  "peerDependencies": {
+    "@angular/common": "^18.2.0",
+    "@angular/core": "^18.2.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

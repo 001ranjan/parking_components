@@ -1,0 +1,35 @@
+.breadcrumb{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+ul li{
+  list-style: none;
+  font-size: 12px;
+}
+a{
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  color: var(--text);
+}
+
+.dash-line{
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 0px;
+  color: var(--text);
+  font-size: 12px;
+}
+.active{
+  color: var(--heading);
+  font-weight: 400;
+  line-height: 14.52px;
+  margin-top: 0px
+}
+
+a:hover{
+  color: var(--border);
+}

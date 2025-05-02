@@ -1,0 +1,22 @@
+<div class="search_field" 
+     [class]="isDropdown + ' ' + size" 
+     [ngClass]="{ 'focused': isFocused}">
+  <div class="search" [ngClass]="{ 'highlighted': selectedCategory !== dropdownList[0] }">
+    <!-- Dropdown menu for categories -->
+    <div class="search-category">
+      <div class="category" (click)="toggleDropdown()">
+        <span class="text mr-5">{{ selectedCategory }}</span>
+        <div>
+          <!-- <img src="../../assets/images/icons/angle-down.svg" alt="Dropdown Icon"> -->
+          <div class="icon"> <ui-icon icon="chevron-down"/></div>
+        </div>
+      </div>
+      <ul *ngIf="showDropdown" class="list-item">
+        <li *ngFor="let category of dropdownList" 
+            (mousedown)="selectCategory(category)">
+          {{ category }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

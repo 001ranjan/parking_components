@@ -1,0 +1,87 @@
+.stage-button {
+  display: flex;
+  align-items: center;
+  width: auto;
+  height: 44px;
+  padding-left: 3px;
+  padding-right: 18px;
+  color: var(--white);
+  border: none;
+  border-radius: 40px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+.stage-button.pending .label {
+  color: var(--heading);
+}
+
+.stage-button:hover {
+  background-color: #00c000;
+}
+
+.stage-icon {
+  border-radius: 50%;
+  padding: 4px;
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+}
+
+span div {
+  width: 20px;
+  height: 20px;
+}
+
+.active span div {
+  opacity: 0.5;
+}
+
+.stage-button.complete {
+  background-color: var(--stage-complete);
+}
+
+.stage-button.active {
+  background-color: var(--stage-active);
+}
+
+.stage-button.pending {
+  background-color: var(--stage-pending);
+}
+
+.stage-button.complete .stage-icon {
+  background-color: var(--stage-complete-circle);
+}
+.stage-button.active .stage-icon {
+  background-color: var(--stage-active-circle);
+}
+.stage-button.pending .stage-icon {
+  background-color: var(--stage-pending-circle);
+}
+
+.lead .stage-icon {
+  margin-left: 8px;
+  margin-right: 0;
+}
+
+.stage-button.lead {
+  padding-right: 3px;
+  padding-left: 18px;
+}
+.lead {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.stage-button.lead {
+  background-color: var(--stage-complete);
+}
+
+.stage-button.lead .stage-icon {
+  background-color: var(--stage-complete-circle);
+}

@@ -1,0 +1,4 @@
+<div *ngIf="icon && isSvgPath(icon)" class="icon-left">
+    <img [src]="icon" alt="icon" />
+</div>
+<div *ngIf="icon && !isSvgPath(icon)" class="icon-left" [innerHTML]="getIconSvg(icon)"></div>

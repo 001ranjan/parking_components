@@ -1,0 +1,109 @@
+<div class="range-calendar">
+  <div class="header">
+    <!-- Start Date Input -->
+    <input
+      placeholder="Start date"
+      [value]="startDate ? (startDate | date : 'yyyy-MM-dd') : ''"
+      readonly
+      (click)="toggleCalendar()"
+      class="start-date"
+      id="date-picker"
+    />
+    <div class="icon">
+      <ui-icon icon="arrows-right-left"></ui-icon>
+    </div>
+    <!-- End Date Input -->
+    <input
+      placeholder="End date"
+      [value]="endDate ? (endDate | date : 'yyyy-MM-dd') : ''"
+      readonly
+      (click)="toggleCalendar()"
+      class="end-date"
+    />
+    <div class="icon pr-15">
+      <ui-icon icon="calendar-days" for="date-picker"></ui-icon>
+    </div>
+  </div>
+
+  <!-- Calendar Container -->
+  <div class="calendar-container" *ngIf="showCalendar">
+    <!-- Loop for Double Calendar -->
+    <div class="month" *ngFor="let offset of [0, 1]">
+      <!-- Month Header -->
+      <div class="month-header">
+        <!-- Previous Month/Year Controls -->
+        <div class="left-date" *ngIf="offset === 0">
+          <ui-notification
+            size="xsm"
+            shape="circle"
+            icon="chevron-double-left"
+            (click)="changeYear(-1)"
+            class="mr-5"
+          ></ui-notification>
+          <ui-notification
+            size="xsm"
+            shape="circle"
+            icon="chevron-left"
+            (click)="changeMonth(-1, offset)"
+          ></ui-notification>
+        </div>
+
+        <!-- Month and Year Display -->
+        <span class="year">
+          {{ getMonthName(offset) }} {{ getYear(offset) }}
+        </span>
+
+        <!-- Next Month/Year Controls -->
+        <div class="right-date" *ngIf="offset === 1">
+          <ui-notification
+            size="xsm"
+            shape="circle"
+            icon="chevron-right"
+            (click)="changeMonth(1, offset)"
+            class="mr-5"
+          ></ui-notification>
+          <ui-notification
+            size="xsm"
+            shape="circle"
+            icon="chevron-double-right"
+            (click)="changeYear(1)"
+          ></ui-notification>
+        </div>
+      </div>
+
+      <!-- Weekdays Header -->
+      <div class="weekdays">
+        <span
+          *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']"
+        >
+          {{ day }}
+        </span>
+      </div>
+
+      <!-- Days Grid -->
+      <div class="days">
+        <div
+          *ngFor="
+            let date of getDaysInMonth(
+              getYear(offset),
+              (currentMonth + offset) % 12
+            )
+          "
+          [ngClass]="{
+            selected: date && isSelected(date),
+            'in-range': date && isInRange(date),
+            'hover-range': date && isInHoverRange(date),
+            today: date && isToday(date),
+            disabled: date && isDisabled(date, offset)
+          }"
+          (mouseover)="date && onDateHover(date)"
+          (click)="
+            date && !isDisabled(date, offset) ? onDateSelect(date) : null
+          "
+        >
+          {{ date ? date.getDate() : "" }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

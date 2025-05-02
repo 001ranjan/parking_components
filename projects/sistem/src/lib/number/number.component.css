@@ -1,0 +1,82 @@
+.number-text-area {
+  width: 30%;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.ui-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  bottom: 0px;
+}
+
+.number-text-area input {
+  width: 100%;
+  height: 33px;
+  color: var(--fill-bg);
+  padding-top: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: transparent;
+  padding: 0 0 5px 10px;
+
+}
+
+.number-text-area input.country_code{
+  width: 35px;
+border-right: 2px solid var(--border);
+padding: 0 0 5px 0px;
+}
+
+.number-text-area input.country_code:focus{
+border-right: 2px solid var(--fill-bg);
+}
+
+
+
+.number_field{
+  width: 94.5%;
+}
+.input-group{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom:2px solid var(--border);
+}
+
+.input-group.focused{
+  border-bottom:2px solid var(--fill-bg)
+}
+
+
+.icon-img{
+  position: absolute;
+  right: 0;
+}
+
+.word{
+  font-size: 12px;
+  line-height: 12.1px;
+  color:var(--input-text);
+  margin-bottom:3px;
+}
+
+.word.focused{
+  visibility: visible;
+}
+
+
+::placeholder {
+  color: var(--text);
+  opacity: 1; 
+  font-size: 14px;
+}
+
+::-ms-input-placeholder { 
+  color: var(--text);
+  font-size: 14px;
+}

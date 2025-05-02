@@ -1,0 +1,23 @@
+<div
+  class="snackbar-position"
+  [class]="position"
+  *ngIf="showSnackbar"
+  (click)="hideSnackBar()"
+>
+  <div
+    class="snackbar-container flex flex-align-items flex-between pl-20 pr-20"
+  >
+    <div class="snack-left flex">
+      <div class="icon pr-20" *ngIf="showIcon">
+        <ui-avatar avatarIcon="{{ icon }}" size="md" />
+      </div>
+      <div class="msg">
+        <div class="snack-message">{{ msg }}</div>
+        <div class="snack-desp">{{ text }}</div>
+      </div>
+    </div>
+    <div class="snack-right">
+      <div class="undo">{{ action }}</div>
+    </div>
+  </div>
+</div>

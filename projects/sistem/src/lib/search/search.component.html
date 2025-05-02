@@ -1,0 +1,93 @@
+<div
+  class="search_field"
+  [class]="isCategory + ' ' + size"
+  [ngClass]="{ focused: isFocused }"
+>
+  <div class="search">
+    <!-- Dropdown menu for categories -->
+    <div class="search-category">
+      <div class="category" (click)="toggleDropdown()">
+        <div
+          [ngClass]="{ hidden: selectedCategory !== 'All Categories' }"
+          class="text"
+        ></div>
+        <span class="text">{{ selectedCategory }}</span>
+        <div>
+          <img
+            src="../../assets/images/icons/angle-down.svg"
+            alt="Dropdown Icon"
+          />
+        </div>
+      </div>
+      <ul *ngIf="showDropdown" class="list-item">
+        <!-- <li (mousedown)="selectCategory('All Categories')">All Categories</li> -->
+        <li
+          *ngFor="let category of categories"
+          (mousedown)="selectCategory(category)"
+        >
+          {{ category }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Prefix Icon -->
+    <img
+      *ngIf="icons === 'prefix'"
+      src="../../assets/images/icons/search.svg"
+      alt="Search Icon"
+      class="prefix_search_icon"
+    />
+
+    <!-- Search input field -->
+    <input
+      type="search"
+      placeholder="Search Sistem"
+      [(ngModel)]="searchTerm"
+      (blur)="hideDropdown()"
+      (input)="filterContacts()"
+      [ngClass]="{ typing: typing }"
+      value="{{ searchTerms }}"
+    />
+
+    <!-- Suffix Icon -->
+    <img
+      *ngIf="icons === 'suffix'"
+      src="../../assets/images/icons/search.svg"
+      alt="Search Icon"
+      class="suffix_search_icon"
+    />
+
+    <!-- Display filtered contacts -->
+    <div
+      class="filter_data"
+      *ngIf="
+        (filteredContacts.length > 0 && searchTerm) ||
+        (filteredContacts.length > 0 && searchTerms)
+      "
+    >
+      <ul>
+        <li *ngFor="let contact of filteredContacts">
+          <div class="list-content">
+            <div class="list-info">
+              <img
+                [src]="contact.image"
+                alt="{{ contact.name }}"
+                class="contact-img"
+              />
+            </div>
+            <div class="desp">
+              <strong>{{ contact.name }}</strong> - {{ contact.role }} •
+              {{ contact.company }}
+              <p>{{ contact.description }}</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Show this message if no contacts match the search term -->
+    <div *ngIf="filteredContacts.length === 0 && searchTerm" class="no-results">
+      No matching data found.
+    </div>
+  </div>
+</div>

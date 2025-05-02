@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col">
+    <label class="radio-label">
+      <input 
+        type="radio" 
+        [class]="size" 
+        [name]="name"
+        [value]="value"
+        [checked]="checked"
+        (change)="onChange($event)"
+      >
+      {{ label }}
+    </label>
+  </div>
+</div>

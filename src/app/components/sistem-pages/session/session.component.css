@@ -1,0 +1,164 @@
+.dashboard {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+}
+
+.list-header {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: .5px solid var(--border);
+}
+
+.right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-list{
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: .5px solid var(--border);
+}
+.small-heading{
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16.94px;
+  color: var(--heading);
+}
+.filter-list .left{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.small-heading.filter{
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16.94px;
+  color: var(--primary);
+}
+
+.paggination{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+
+}
+.current{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--secondary);
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  color: var(--heading);
+  font-size: 14px;
+  line-height: 19.64px;
+  font-weight: 400;
+}
+.no-of{
+  color: var(--heading);
+  font-size: 14px;
+  line-height: 19.64px;
+  font-weight: 400;
+}
+
+:host ::ng-deep .active {
+  color: var(--text)!important;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 8px 15px;
+  text-align: left;
+}
+
+
+td {
+  color: var(--fill-bg);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+}
+
+th {
+  color: var(--text);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15.73px;
+}
+
+th {
+  background-color: var(--dark-bg);
+}
+
+
+tr:hover {
+  background-color: var(--stage-gry);
+}
+
+.selectAll{
+  display: flex;
+ justify-content: space-between;
+ align-items: center;
+}
+
+table thead th {
+  position: sticky;
+  top: -0.5px;
+  z-index: 99;
+  padding: 10px 15px;
+
+}
+table thead th:nth-child(1){
+  border-left: .5px solid var(--border)
+}
+
+.table-container{
+  height: calc(100vh - 254px);
+  overflow-y: auto
+}
+
+.table-container::-webkit-scrollbar {
+  display: none;
+}
+
+.table-container {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.filter{
+  cursor: pointer;
+}
+
+.current{
+  border: none;
+  text-align: center;
+  color:var(--disable-text);
+}
+.current:focus{
+  outline: none;
+}
+
+th{
+  /* display: flex;
+  justify-content: space-between;
+  align-items: center; */
+}
+.icon-left{
+  width: 15px;
+}

@@ -1,0 +1,53 @@
+<div class="form">
+  <input type="text" id="name" (click)="toggleCalendar()" [(ngModel)]="selectedDate" readonly>
+  <label for="name" class="label-name">
+    <div class="ui-flex">
+      <div>
+        <span class="content-name">Date 
+          <span class="required">
+            <img src="../../assets/images/icons/required.svg" alt="required">
+          </span>
+        </span>
+      </div>
+
+      <div class="counter">
+        <img src="../../assets/images/icons/dark.svg" alt="icon" class="icon-img">
+      </div>
+    </div>
+  </label>
+</div>
+
+<div class="custom-date-picker" *ngIf="showCalendar">
+  <div class="calendar">
+    <div class="calendar-header">
+      <span class="current-date" style="visibility: hidden;">{{ months[currentMonth] }} {{ currentYear }}</span>
+      <span class="current-date">{{ months[currentMonth] }} {{ currentYear }}</span>
+      <div class="arrow-btn">
+        <button class="btn-circle" (click)="prevMonth()">
+          <img src="../../assets/images/icons/arrow-left.svg" alt="Previous Month">
+        </button>
+        <button class="btn-circle" (click)="nextMonth()">
+          <img src="../../assets/images/icons/arrow-right.svg" alt="Next Month">
+        </button>
+        <span class="today" (click)="setToday()">Today</span>
+      </div>
+    </div>
+
+    <div class="calendar-body">
+      <div class="day-names">
+        <span *ngFor="let day of daysOfWeek">{{ day }}</span>
+      </div>
+      <div class="days-grid">
+        <span *ngFor="let day of daysInMonth"
+              (click)="selectDate(day)"
+              [ngClass]="{
+                'disabled': day.disabled,
+                'today-date': isToday(day.date),
+                'selected-date': day.date === selectedDay
+              }">
+          <div class="date-circle">{{ day.date }}</div>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

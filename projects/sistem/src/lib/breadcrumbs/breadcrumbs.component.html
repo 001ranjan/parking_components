@@ -1,0 +1,12 @@
+<div aria-label="breadcrumbs-container">
+  <ul class="breadcrumb">
+    <li *ngFor="let breadcrumb of breadcrumbs; let last = last" class="breadcrumb-item" [ngClass]="{'active': last}" aria-current="page">
+      <ng-container *ngIf="!last">
+        <a *ngIf="breadcrumb.url; else plainText" [href]="breadcrumb.url">{{ breadcrumb.label }}</a>
+        <ng-template #plainText>{{ breadcrumb.label }}</ng-template>
+      </ng-container>
+      <ng-container *ngIf="last">{{ breadcrumb.label }}</ng-container>
+      <span *ngIf="!last" class="dash-line">•</span>
+    </li>
+  </ul>
+</div>

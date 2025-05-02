@@ -1,0 +1,134 @@
+<nav class="header fixed">
+  <div class="ui-xl-container ui-grid space-between pl-12 pr-12">
+    <div class="ui-col-3">
+      <div class="desktop-logo light">
+        <img src="../../../assets/logo/sale.svg" alt="Logo" />
+        <img src="../../../assets/logo/logo2.svg" alt="Logo" class="ml-10" />
+      </div>
+      <div class="desktop-logo dark">
+        <img src="../../../assets/logo/sale.svg" alt="Logo" />
+        <img
+          src="../../../assets/logo/white-logo.svg"
+          alt="Logo"
+          class="ml-10"
+        />
+      </div>
+    </div>
+
+    <div class="ui-col-6">
+      <ui-search
+        isCategory="isCategory"
+        [contacts]="contactData"
+        [categories]="categories"
+      />
+    </div>
+
+    <div class="ui-col-3 justify-end flex flex-align-items">
+      <!-- avatar icon -->
+      <ui-notification
+        size="md"
+        shape="circle"
+        class="mr-10"
+        icon="bell"
+        [alert]="isAlertActive"
+        (click)="showNotifications()"
+        [ngClass]="{ 'click-active': isNotificationsOpen }"
+      />
+      <div class="position mr-10">
+        <div class="notification-box" *ngIf="isNotificationsOpen">
+          <div class="notification-head">
+            <h6>Notification</h6>
+          </div>
+          <div
+            class="notification-item"
+            *ngFor="let notification of notifications; let i = index"
+            [ngClass]="{
+              'latest-notification': i === 0 && !latestNotificationClicked
+            }"
+            (click)="onNotificationClick(i)"
+          >
+            <div class="notification-icon">
+              <img src="{{ notification.icon }}" alt="Notification" />
+            </div>
+            <div class="notification-content">
+              <div class="notification-title">{{ notification.title }}</div>
+              <div class="notification-description">
+                {{ notification.description }}
+              </div>
+              <div class="notification-date flex flex-align-items">
+                <span>{{ notification.update }}</span>
+                <div></div>
+                <span>{{ notification.time }}</span>
+                <div></div>
+                <span>{{ notification.status }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <ui-notification
+        size="md"
+        shape="circle"
+        class="mr-10"
+        icon="question-mark-circle"
+      /> -->
+
+      <ui-avatar
+        class="mr-10"
+        size="md"
+        shape="round"
+        avatarIcon="../../../assets/images/icons/avatar-2.svg"
+        (click)="toggleUserDropdown()"
+      />
+
+      <div class="user-dropdown" *ngIf="isUserDropdownOpen">
+        <div class="user-info">
+          <div class="user-avatar">
+            <img src="../../../assets/images/icons/avatar-2.svg" alt="User Avatar" />
+          </div>
+          <div class="user-details">
+            <div class="user-name"><h6>{{userName}}</h6></div>
+            <div class="user-email small-p">{{userEmail}}</div>
+          </div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <div class="dropdown-item" (click)="logout()">
+      <ui-button label="Logout" size="xsmall" shape="ovel" variant="text"/>
+        </div>
+      </div>
+
+      <ui-toggle (toggleChange)="toggleTheme($event)" />
+
+      <div class="humberger" (click)="toggleMobileMenu()">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+          />
+        </svg>
+      </div>
+
+      <!-- <div class="mobile-menu" [class.open]="isMobileMenuOpen">
+      <div class="close-menu" (click)="closeMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </div>
+      <ul class="menu-item">
+        <li class="menu-link" *ngFor="let link of menuLinks">
+          <a>{{ link.label }}</a>
+        </li>
+      </ul>
+     </div> -->
+    </div>
+  </div>
+</nav>

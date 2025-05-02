@@ -1,0 +1,45 @@
+:root.dark-theme {
+    --background-color: #171E27;
+    --primary: #FF3B30;
+    --secondary: #18273C;
+    --heading: #FFFFFF;
+    --text: #B9C1CC;
+    --white:#fff;
+    --hover:linear-gradient(0deg, #FF3B30, #FF3B30);
+    --disable:#213550;
+    --disable-text:#566881;
+    --input-hover:#18273C;
+    --border:#566881;
+    --fill-bg:#FFFFFF;
+    --check-icon-url: url('../assets/images/icons/light-check.svg');
+    --toggle-bg:#FFFFFF;
+    --toggle-btn:#171E27;
+    --error:#FF3B30;
+    --lable-color:#566881;
+    --span-circle:#171E27;
+    --list-bg:var(--toggle-btn);
+    --shadow:#FFFFFF29;
+    --bar-line:#007AFF;
+    --selected-menu:#0A84FF33;
+    --tab:#fff;
+    --stage-complete:#30D158;
+    --stage-green:#4CD964;
+    --stage-active:#64D2FF;
+    --stage-blue:#5AC8FA;
+    --stage-pending:#171E27;
+    --stage-gry:#18273C;
+    --info:#E8F3FF;
+    --info-text:#007AFF;
+    --warning:#FFF7D5;
+    --warning-text:#FFCC00;
+    --error-bg:#FCE9E8;
+    --error-text:#DE1135;
+    --success:#EDFFF0;
+    --success-text:#30D158;
+    --switch-bg:#213550
+}
+
+.dark-theme label{
+    color: #fff;
+}
+

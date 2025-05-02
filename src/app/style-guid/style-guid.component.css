@@ -1,0 +1,85 @@
+.tab-icons {
+  width: 24px;
+  height: 24px;
+}
+
+:host ::ng-deep .form input:focus {
+  border: 1px solid var(--heading);
+}
+
+:host ::ng-deep .tab-content {
+  height: 80vh;
+  overflow: scroll;
+}
+:host ::ng-deep .tab-content::-webkit-scrollbar {
+  display: none;
+}
+
+:host ::ng-deep .tab-content {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
+:host ::ng-deep p {
+  color: var(--heading) ;
+}
+
+:host ::ng-deep input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 0 1px var(--border), 0 0 0 0px transparent;
+  cursor: pointer;
+  margin: 0 10px 0 0;
+}
+
+:host ::ng-deep .hover input[type="radio"]{
+  box-shadow: 0 0 0 1px var(--border), 0 0 0 6px var(--secondary);
+}
+
+:host ::ng-deep .select input[type="radio"]::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--fill-bg);
+ }
+
+
+
+:host ::ng-deep input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 0 1px var(--border), 0 0 0 0px transparent;
+  cursor: pointer;
+  margin: 0 10px 0 0;
+}
+
+:host ::ng-deep .hover input[type="checkbox"]{
+  box-shadow: 0 0 0 1px var(--border), 0 0 0 6px var(--secondary);
+}
+
+:host ::ng-deep .select input[type="checkbox"]::before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  background: var(--check-icon-url) no-repeat center center;
+  background-size: contain;
+ }
+
+
+

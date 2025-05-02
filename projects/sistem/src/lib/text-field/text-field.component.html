@@ -1,0 +1,42 @@
+<div class="form" [class]="variant + ' ' + shape" [ngClass]="{'error': error, 'disable': disable}">
+  <input 
+    [type]="inputType"
+    [(ngModel)]="title"
+    (input)="filterInput($event)"
+    (focus)="handleFocus()"
+    (blur)="handleBlur()"
+    autocomplete="off"
+    [disabled]="disable"
+    [placeholder]="placeholder"
+    required>
+  <label for="name" class="label-name">
+    <div class="ui-flex">
+      <div>
+        <span class="content-name">{{ label }} 
+          <span class="required">
+            <img src="assets/images/icons/required.svg" alt="required">
+          </span>
+        </span>
+      </div>
+      <div class="counter"> 
+        <div class="word" [ngClass]="{'focused': isFocused}">
+          {{ wordCount }}/200
+        </div>
+        <ng-container *ngIf="type === 'password'">
+          <img 
+            [src]="showPassword ? '../../../assets/images/icons/eye-off.png' : '../../../assets/images/icons/eye.png'" 
+            alt="toggle password" 
+            class="icon-img password-toggle"
+            (click)="togglePasswordVisibility()"
+          >
+        </ng-container>
+        <img src="assets/images/icons/dark.svg" alt="icon" class="icon-img" *ngIf="type !== 'password'">
+        <img src="assets/images/icons/Subtract.svg" alt="icon" class="error-icon" *ngIf="error">
+      </div>
+    </div>
+  </label>
+</div>
+
+<div class="error-msg" *ngIf="error">
+  {{ errorMessage }}
+</div>

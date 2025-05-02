@@ -1,0 +1,81 @@
+<nav id="sidebar" [class.close]="isSidebarClosed">
+    <ul>
+      <li>
+        <button id="toggle-btn" [class.rotate]="isSidebarClosed" (click)="toggleSidebar()">
+          <div class="icon"><ui-icon icon="chevron-double-left"></ui-icon></div>
+        </button>
+      </li>
+      <li [routerLink]="'/'" routerLinkActive="active">
+        <a>
+          <div class="icon"><ui-icon icon="home"></ui-icon></div>
+          <span>Home</span>
+        </a>
+      </li>
+      <li [routerLink]="'/style-guid'" routerLinkActive="active">
+        <a>
+          <div class="icon"><ui-icon icon="lifebuoy"></ui-icon></div>
+          <span>Style</span>
+        </a>
+      </li>
+      <li>
+        <button class="dropdown-btn" [class.rotate]="subMenusState[0]" (click)="toggleSubMenu(0)">
+          <div class="icon"><ui-icon icon="microphone"></ui-icon></div>
+          <span>Create</span>
+          <div class="icon"><ui-icon icon="chevron-down"></ui-icon></div>
+        </button>
+        <ul class="sub-menu" [class.show]="subMenusState[0]">
+          <div>
+            <li>
+              <a href="#"><span>Folder</span></a>
+            </li>
+            <li>
+              <a href="#"><span>Document</span></a>
+            </li>
+            <li>
+              <a href="#"><span>Project</span></a>
+            </li>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <button class="dropdown-btn" [class.rotate]="subMenusState[1]" (click)="toggleSubMenu(1)">
+          <div class="icon">
+            <ui-icon icon="arrow-path-rounded-square"></ui-icon>
+          </div>
+          <span>Todo-Lists</span>
+          <div class="icon"><ui-icon icon="chevron-down"></ui-icon></div>
+        </button>
+        <ul class="sub-menu" [class.show]="subMenusState[1]">
+          <div>
+            <li>
+              <a href="#"><span>Work</span></a>
+            </li>
+            <li>
+              <a href="#"><span>Private</span></a>
+            </li>
+            <li>
+              <a href="#"><span>Coding</span></a>
+            </li>
+            <li>
+              <a href="#"><span>Gardening</span></a>
+            </li>
+            <li>
+              <a href="#"><span>School</span></a>
+            </li>
+          </div>
+        </ul>
+      </li>
+      <li>
+        <a href="">
+          <div class="icon"><ui-icon icon="calendar-days"></ui-icon></div>
+          <span>Calendar</span>
+        </a>
+      </li>
+      <li>
+        <a href="">
+          <div class="icon"><ui-icon icon="user"></ui-icon></div>
+          <span>Profile</span>
+        </a>
+      </li>
+    </ul>
+  </nav>

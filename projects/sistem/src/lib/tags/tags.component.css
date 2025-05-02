@@ -1,0 +1,36 @@
+.tag-container{
+  max-width: 88px;
+  height: 32px;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  margin: 50px;
+  padding: 2px;
+}
+
+.tag-container .tag-text{
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 500;
+}
+.closed{
+  background-color: var(--closed-tag);
+}
+.closed .tag-text {
+  color: var(--closed-text);
+}
+
+.new{
+  background-color: var(--new-tag);
+}
+
+.new .tag-text {
+  color: var(--new-text);
+}
+.canclled{
+  background-color: var(--canclled-tag);
+}
+.canclled .tag-text {
+  color: var(--text);
+}

@@ -1,0 +1,38 @@
+<div class="filter-list pl-20">
+    <div class="left">
+      <div class="small-heading mr-3">Filters</div>
+      <ui-search size="small" class="mr-3" style="max-width: 190px" />
+      <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="sessionTypes"
+        [selectedValue]="tempSelectedType" (selectionChange)="onTypeSelectionChange($event)" />
+
+      <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="operatorList"
+        [selectedValue]="tempSelectedOperator" (selectionChange)="onOperatorSelectionChange($event)" />
+      <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="statusList"
+        [selectedValue]="tempSelectedStatus" (selectionChange)="onStatusSelectionChange($event)" />
+      <ui-range-calendar 
+        #rangeCalendar
+        class="mr-3" 
+        [resetTrigger]="resetCalendarTrigger"
+        (dateRangeSelected)="onDateRangeSelected($event)"
+      />
+      <ui-button variant="primary" size="small" label="Apply" (click)="applyFilter()" time="1000" />
+      <div class="small-heading filter ml-10" (click)="clearFilters()">
+        Clear
+      </div>
+    </div>
+
+    <div class="right pr-12">
+      <div class="paggination">
+        <ui-button variant="secondary" size="small" shape="round"
+          iconRight="../../../../assets/images/icons/arrow-left.svg" (click)="goToPreviousPage()"
+          [disabled]="currentPage === 1" />
+        <input type="text" [(ngModel)]="tempPage" value="{{ currentPage }}" (keypress)="onEnterPress($event)"
+          class="current ml-10 mr-10" min="1" [max]="totalPages" />
+
+        <div class="no-of mr-10">of {{ totalPages }}</div>
+        <ui-button variant="secondary" size="small" shape="round"
+          iconRight="../../../../assets/images/icons/arrow-right.svg" (click)="goToNextPage()"
+          [disabled]="currentPage === totalPages" />
+      </div>
+    </div>
+  </div>

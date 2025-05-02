@@ -1,0 +1,52 @@
+:root {
+  --background-color: #ffffff;
+  --primary: #FF3B30;
+  --secondary: #F8F9FA;
+  --heading: #171E27;
+  --text: #566881;
+  --white:#fff;
+  --hover:linear-gradient(0deg, #FF3B30, #FF3B30);
+  --disable:#EDF1F5;
+  --disable-text:#B9C1CC;
+  --input-hover:#B9C1CC;
+  --border:#B9C1CC;
+  --fill-bg:#171E27;
+  --check-icon-url: url('../assets/images/icons/check.svg');
+  --toggle-bg:#EDF1F5;
+  --toggle-btn:#ffff;
+  --input-text:#566881;
+  --error:#FF3B30;
+  --lable-color:#171E27;
+  --span-circle:var(--white);
+  --list-bg:#fff;
+  --shadow:#00000029;
+  --bar-line:#007AFF;
+  --selected-menu:#007AFF1A;
+  --tab:#566881;
+  --closed-tag:#CBFCD466;
+  --new-tag:#FF95001A;
+  --canclled-tag:#B9C1CC33;
+  --closed-text:#4CD964;
+  --new-text:#FF9500;
+  --canclled-text:#566881;
+  --stage-green:#30D158;
+  --stage-complete:#4CD964;
+  --stage-active:#5AC8FA;
+  --stage-blue:#64D2FF;
+  --stage-pending:#fff;
+  --stage-gry:#F8F9FA;
+  --mid-width: 1200px;
+  --full-width: 100%;
+  --full-height: 100%;
+  --info:#E8F3FF;
+  --info-text:#007AFF;
+  --warning:#FFF7D5;
+  --warning-text:#FFCC00;
+  --error-bg:#FCE9E8;
+  --error-text:#DE1135;
+  --success:#EDFFF0;
+  --success-text:#30D158;
+  --switch-bg:#171E27
+}
+
+

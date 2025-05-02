@@ -1,0 +1,272 @@
+.primary.form {
+  /* width: 50%; */
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.primary.form input {
+  width: 100%;
+  height: 100%;
+  color: var(--heading);
+  padding-top: 8px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: transparent;
+}
+
+.primary.form label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0px;
+  left: 0%;
+  pointer-events: none;
+  border-bottom: 1.3px solid var(--border);
+  color: var(--lable-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.primary.form label::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid var(--heading);
+  bottom: -1px;
+  left: 0px;
+  transform: translateX(-120%);
+  transition: all 0.3s ease;
+}
+
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all .3s ease;
+}
+
+.primary.form input:focus+.label-name .content-name,
+.primary.form input:valid+.label-name .content-name {
+  transform: translateY(-100%);
+  font-size: 12px;
+  line-height: 14.52px;
+  color: var(--input-text);
+}
+
+.primary.form input:focus+.label-name::after,
+.primary.form input:valid+.label-name::after {
+  transform: translateX(0%);
+}
+
+.required {
+  margin-top: -2px;
+  position: absolute;
+}
+
+.ui-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  bottom: 0px;
+}
+
+.counter {
+  text-align: right;
+}
+
+.counter img {
+  width: 16px;
+  height: 16px;
+}
+
+.word {
+  font-size: 12px;
+  line-height: 12.1px;
+  color: var(--input-text);
+  margin-bottom: 3px;
+  visibility: hidden;
+}
+
+.word.focused {
+  visibility: visible;
+}
+
+
+.error label {
+  color: var(--error);
+}
+
+.primary.form.error .label-name .content-name {
+  color: var(--error);
+}
+
+
+
+
+
+/* secondary */
+.secondary.form {
+  width: auto;
+  position: relative;
+  /* overflow: hidden; */
+  margin-bottom: 10px;
+}
+
+.secondary.form input {
+  width: 100%;
+  height: 48px;
+  padding: 0 12px;
+  color: var(--heading);
+  border: 1px solid var(--border);
+  outline: none;
+  font-size: 16px;
+  line-height: 24px;
+  background-color: transparent;
+}
+
+.secondary.form input:focus {
+  border: 1px solid var(--heading);
+}
+
+.secondary.form label {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -35px;
+  left: 0%;
+  pointer-events: none;
+  color: var(--heading);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.secondary.form .icon-img {
+  position: absolute;
+  bottom: -35px;
+  right: -12px;
+}
+
+
+.secondary.form .error-icon {
+  position: absolute;
+  bottom: -35px;
+  right: -12px;
+}
+
+
+.content-name {
+  bottom: 5px;
+  left: 0px;
+  transition: all .3s ease;
+}
+
+
+
+.required {
+  margin-top: -2px;
+  position: absolute;
+}
+
+.ui-flex {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  bottom: 0px;
+}
+
+.counter {
+  text-align: right;
+}
+
+.counter img {
+  width: 16px;
+  height: 16px;
+}
+
+.word {
+  font-size: 12px;
+  line-height: 12.1px;
+  color: var(--input-text);
+  margin-bottom: 3px;
+  visibility: hidden;
+}
+
+.word.focused {
+  visibility: visible;
+}
+
+
+.error label {
+  color: var(--error);
+}
+
+.secondary.form.error .label-name .content-name {
+  color: var(--error);
+}
+
+
+
+/* error msg  */
+.primary.form.error .label-name {
+  border-color: var(--error);
+}
+
+.secondary.form.error input:focus {
+  border-color: var(--error);
+}
+
+.secondary.form.error input:invalid {
+  border-color: var(--error);
+}
+
+.secondary.form.error .word {
+  color: var(--error);
+}
+
+.secondary.form .word {
+  margin-right: -22px;
+}
+
+
+.form:not(.error) .error-icon {
+  display: none;
+}
+
+
+.form.default input {
+  border-radius: 8px;
+}
+
+.form.round input {
+  border-radius: 40px;
+}
+
+.error .icon-img {
+  display: none;
+}
+
+.disable label {
+  color: var(--disable)!important;
+  border-color: var(--disable)!important;
+}
+
+.password-toggle {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.password-toggle:hover {
+  opacity: 0.8;
+}
+

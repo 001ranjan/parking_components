@@ -1,0 +1,89 @@
+
+.avatar-icon {
+  border-radius: 4px;
+  overflow: hidden;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.round{
+  border-radius: 50%;
+}
+
+.with-label{
+  background-color: var(--stage-active);
+}
+
+.avatar-icon.xxl {
+  width: 52px;
+  height: 52px;
+}
+
+.avatar-icon.xl {
+  width: 44px;
+  height: 44px;
+}
+
+.avatar-icon.md {
+  width: 36px;
+  height: 36px;
+}
+
+.avatar-icon.sm {
+  width: 28px;
+  height: 28px;
+}
+
+.avatar-icon.xsm {
+  width: 24px;
+  height: 24px;
+}
+
+.avatar-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+ .avatar-name{
+  font-weight: 600;
+  color: var(--white);
+}
+
+.xxl .avatar-name{
+  font-size: 20px;
+  line-height: 24.2px;
+}
+
+.xl .avatar-name{
+  font-size: 16px;
+  line-height: 19.36px;
+}
+.md .avatar-name{
+  font-size: 14px;
+  line-height: 16.94px;
+}
+
+.sm .avatar-name{
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
+.xsm .avatar-name{
+  font-size: 12px;
+  line-height: 14.52px;
+}
+
+
+
+.xl .avatar-name{
+  font-size: 14px;
+  line-height: 16.94px;
+}
+
+img{
+  max-width: 100%;
+  height: 100%;
+}

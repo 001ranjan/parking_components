@@ -1,0 +1,15 @@
+<!-- Show when stage is not 'lead' -->
+<button class="stage-button" [class]="stage">
+  <span class="stage-icon">
+    <div><ui-icon icon="check" /></div>
+  </span> 
+  <span class="label">{{label}}</span>
+</button>
+
+<!-- Show only when stage is 'lead' -->
+<button class="stage-button" *ngIf="stage === 'lead'" [class]="stage">
+  <span class="label">{{label}}</span>
+  <span class="stage-icon">
+    <div><ui-icon icon="check" /></div>
+  </span> 
+</button>

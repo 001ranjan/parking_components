@@ -1,0 +1,95 @@
+.toast-container {
+  width: 345px;
+  height: 52px;
+  border-radius: 0px 8px 8px 0px;
+  padding: 0 14px;
+  position: absolute;
+  top: 50px;
+  right: 20px;
+  transition: opacity 0.5s ease, transform 0.5s ease; 
+  z-index: 9999;
+}
+
+.close-toast {
+  opacity: 0;
+  transform: translateX(100%); 
+}
+
+.toast-content,
+.toast-icon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  cursor: pointer;
+}
+
+.toast-msg {
+  padding: 0 10px;
+}
+
+.toast-heading {
+  font-size: 16px;
+  line-height: 19.36px;
+  font-weight: 600;
+}
+
+.msg {
+  font-size: 14px;
+  line-height: 16.94px;
+  font-weight: 400;
+  color: var(--lable-color);
+}
+
+
+.toast-container.info{
+  background-color: var(--info);
+}
+.info .toast-heading{
+  color: var(--info-text);
+}
+.toast-container.info::after {
+  background-color: var(--info-text);
+}
+
+.toast-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -5px;
+  width: 8px;
+  height: 100%;
+  border-radius: 8px 0px 0px 8px;
+}
+
+.toast-container.warning{
+  background-color: var(--warning);
+}
+.warning .toast-heading{
+  color: var(--warning-text);
+}
+
+.toast-container.warning::after {
+  background-color: var(--warning-text);
+}
+
+.toast-container.error{
+  background-color: var(--error-bg);
+}
+.error .toast-heading{
+  color: var(--error-text);
+}
+.toast-container.error::after {
+  background-color: var(--error-text);
+}
+
+.toast-container.success{
+  background-color: var(--success);
+}
+.success .toast-heading{
+  color: var(--success-text);
+}
+.toast-container.success::after {
+  background-color: var(--success-text);
+}
+ 

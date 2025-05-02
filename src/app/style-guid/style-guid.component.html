@@ -1,0 +1,1502 @@
+<section class="style-guid mt-40">
+  <div class="ui-xl-container pl-12 pr-12">
+    <ng-template #tabContent1>
+      <!-- button Kind -->
+      <div class="btn-kind">
+        <h3>Primary</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <h6 class="pb-15">Large</h6>
+            <ui-button
+              label="Text"
+              variant="primary"
+              size="large"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabled"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalled($event)"
+                label="Disable"
+              ></ui-checkbox>
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Medium</h6>
+            <ui-button
+              label="Text"
+              variant="primary"
+              size="medium"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabled_2"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox (change)="disableCalled_2($event)" label="Disable" />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Small</h6>
+            <ui-button
+              label="Text"
+              variant="primary"
+              size="small"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabled_3"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox (change)="disableCalled_3($event)" label="Disable" />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">XSmall</h6>
+            <ui-button
+              label="Text"
+              variant="primary"
+              size="xsmall"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabled_4"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox (change)="disableCalled_4($event)" label="Disable" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button sizes -->
+      <div class="btn-size mt-40">
+        <h3>Circular Icon Button</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="primary"
+              size="large"
+              [disabled]="isDisabledRound1"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledRound1($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="primary"
+              size="medium"
+              [disabled]="isDisabledRound2"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledRound2($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="primary"
+              size="small"
+              [disabled]="isDisabledRound3"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledRound3($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="primary"
+              size="xsmall"
+              [disabled]="isDisabledRound4"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledRound4($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button with icon -->
+      <div class="btn-size mt-40">
+        <h3>Square Icon Button</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              variant="primary"
+              size="large"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSquare1"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSquare1($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="primary"
+              size="medium"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSquare2"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSquare2($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="primary"
+              size="small"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSquare3"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSquare3($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="primary"
+              size="xsmall"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSquare4"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSquare4($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button secondary -->
+      <div class="btn-kind mt-50">
+        <h3>Secondary</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <h6 class="pb-15">Large</h6>
+            <ui-button
+              label="Text"
+              variant="secondary"
+              size="large"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec1"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec1($event)"
+                label="Disable"
+              ></ui-checkbox>
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Medium</h6>
+            <ui-button
+              label="Text"
+              variant="secondary"
+              size="medium"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec2"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec2($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Small</h6>
+            <ui-button
+              label="Text"
+              variant="secondary"
+              size="small"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec4"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec4($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">XSmall</h6>
+            <ui-button
+              label="Text"
+              variant="secondary"
+              size="xsmall"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec6"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec6($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button sizes -->
+      <div class="btn-size mt-40">
+        <h3>Circular Icon Button</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="secondary"
+              size="large"
+              [disabled]="isDisabledSec7"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec7($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="secondary"
+              size="medium"
+              [disabled]="isDisabledSec8"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec8($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="secondary"
+              size="small"
+              [disabled]="isDisabledSec9"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec9($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="secondary"
+              size="xsmall"
+              [disabled]="isDisabledSec10"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec10($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button with icon -->
+      <div class="btn-size mt-40">
+        <h3>Square Icon Button</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              variant="secondary"
+              size="large"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec11"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec11($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="secondary"
+              size="medium"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec12"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec12($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="secondary"
+              size="small"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec13"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec13($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="secondary"
+              size="xsmall"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec14"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec14($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button outlined -->
+      <div class="btn-kind mt-50">
+        <h3>Tertiary</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <h6 class="pb-15">Large</h6>
+            <ui-button
+              label="Text"
+              variant="outlined"
+              size="large"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec1"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec1($event)"
+                label="Disable"
+              ></ui-checkbox>
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Medium</h6>
+            <ui-button
+              label="Text"
+              variant="outlined"
+              size="medium"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec2"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec2($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Small</h6>
+            <ui-button
+              label="Text"
+              variant="outlined"
+              size="small"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec4"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec4($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">XSmall</h6>
+            <ui-button
+              label="Text"
+              variant="outlined"
+              size="xsmall"
+              iconLeft="briefcase"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec6"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec6($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button sizes -->
+      <div class="btn-size mt-40">
+        <h3>Circular Icon Button</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="outlined"
+              size="large"
+              [disabled]="isDisabledSec7"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec7($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="outlined"
+              size="medium"
+              [disabled]="isDisabledSec8"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec8($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="outlined"
+              size="small"
+              [disabled]="isDisabledSec9"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec9($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              shape="round"
+              iconLeft="bell"
+              variant="outlined"
+              size="xsmall"
+              [disabled]="isDisabledSec10"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec10($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button with icon -->
+      <div class="btn-size mt-40">
+        <h3>Square Icon Button</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              variant="outlined"
+              size="large"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec11"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec11($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="outlined"
+              size="medium"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec12"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec12($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="outlined"
+              size="small"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec13"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec13($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              variant="outlined"
+              size="xsmall"
+              shape="corner"
+              iconLeft="user"
+              [disabled]="isDisabledSec14"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec14($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button splitBorder -->
+      <div class="btn-kind mt-50">
+        <h2>Split</h2>
+        <h5 class="mt-15">Without Border</h5>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <h6 class="pb-15">Large</h6>
+            <ui-button
+              label="Text"
+              variant="split"
+              size="large"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec15"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec15($event)"
+                label="Disable"
+              ></ui-checkbox>
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Medium</h6>
+            <ui-button
+              label="Text"
+              variant="split"
+              size="medium"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec16"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec16($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Small</h6>
+            <ui-button
+              label="Text"
+              variant="split"
+              size="small"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec17"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec17($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">XSmall</h6>
+            <ui-button
+              label="Text"
+              variant="split"
+              size="xsmall"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec18"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec18($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-kind mt-50">
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="split"
+              size="large"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec19"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec19($event)"
+                label="Disable"
+              ></ui-checkbox>
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="split"
+              size="medium"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec20"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec20($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="split"
+              size="small"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec21"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec21($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="split"
+              size="xsmall"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec22"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec22($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- button split -->
+      <div class="btn-kind mt-50">
+        <h2>Split</h2>
+        <h5 class="mt-15">With Border</h5>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <h6 class="pb-15">Large</h6>
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="large"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec23"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec23($event)"
+                label="Disable"
+              ></ui-checkbox>
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Medium</h6>
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="medium"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec24"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec24($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">Small</h6>
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="small"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec25"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec25($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <h6 class="pb-15">XSmall</h6>
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="xsmall"
+              iconLeft="briefcase"
+              [disabled]="isDisabledSec26"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec26($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-kind mt-50">
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="large"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec7"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec7($event)"
+                label="Disable"
+              ></ui-checkbox>
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="medium"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec8"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec8($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="small"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec9"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec9($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+          <div class="ui-col-3">
+            <ui-button
+              label="Text"
+              variant="splitBorder"
+              size="xsmall"
+              iconRight="briefcase"
+              [disabled]="isDisabledSec10"
+            />
+            <div class="ui-col-1 mt-15 ml-5">
+              <ui-checkbox
+                (change)="disableCalledSec10($event)"
+                label="Disable"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-kind mb-100">
+        <h3>Text Button</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-3">
+            <h6 class="pb-15">Large</h6>
+            <ui-button label="Text" variant="text" size="large" />
+          </div>
+
+          <div class="ui-col-3">
+            <h6 class="pb-15">Small</h6>
+            <ui-button label="Text" variant="text" size="small" />
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent2>
+      <!-- button Icons -->
+      <div class="btn-kind">
+        <h3>Icons (Hero - Outline)</h3>
+        <div class="ui-grid mt-30">
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="user" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="bell" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="arrow-down-right" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="arrow-path-rounded-square" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="user" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="arrow-path" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="arrow-top-right-on-square" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="arrow-up-tray" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="arrows-pointing-out" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="bars-3-bottom-left" />
+            </div>
+          </div>
+
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="bell-alert" />
+            </div>
+          </div>
+          <div class="ui-col-1">
+            <div class="tab-icons">
+              <ui-icon icon="briefcase" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent3>
+      <!-- Text Area -->
+      <div class="text-area">
+        <h3 class="mb-20">Text Area</h3>
+        <div class="ui-grid">
+          <div class="ui-col-3">
+            <ui-text-field variant="primary" />
+          </div>
+          <div class="ui-col-1"></div>
+          <div class="ui-col-3">
+            <ui-text-field variant="primary" [error]="true" />
+          </div>
+          <div class="ui-col-1"></div>
+          <div class="ui-col-3">
+            <ui-text-field variant="primary" [disable]="true" />
+          </div>
+        </div>
+
+        <div class="ui-grid p-5">
+          <ui-range-calendar class="mr-5" />
+        </div>
+
+        <h3 class="mt-30">Number</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-12">
+            <ui-number />
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent4>
+      <div class="ui-grid">
+        <div class="ui-col-5 mr-20">
+          <ui-dropdown
+            class="mr-5"
+            size="small"
+            isDropdown="isDropdown"
+            [dropdownList]="statusList"
+            (selectionChange)="onStatusSelectionChange($event)"
+          />
+        </div>
+      </div>
+
+      <div class="ui-grid">
+        <div class="ui-col-6 mr-20">
+          <ui-dropdown
+            class="mr-5"
+            size="medium"
+            isDropdown="isDropdown"
+            [dropdownList]="statusList"
+            (selectionChange)="onStatusSelectionChange($event)"
+          />
+        </div>
+      </div>
+      <div class="ui-grid">
+        <div class="ui-col-7 mr-20">
+          <ui-dropdown
+            class="mr-5"
+            size="large"
+            isDropdown="isDropdown"
+            [dropdownList]="statusList"
+            (selectionChange)="onStatusSelectionChange($event)"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent5>
+      <div class="ui-grid mb-30 mt-30">
+        <div class="ui-col-5">
+          <h6>Click the Button to open Info Toaster</h6>
+        </div>
+        <div class="ui-col-3">
+          <ui-button label="Info" size="medium" (click)="showInfo()" />
+        </div>
+      </div>
+
+      <div class="ui-grid mb-30">
+        <div class="ui-col-5">
+          <h6>Click the Button to open Info warning</h6>
+        </div>
+        <div class="ui-col-3">
+          <ui-button label="Warning" size="medium" (click)="showWarning()" />
+        </div>
+      </div>
+
+      <div class="ui-grid mb-30">
+        <div class="ui-col-5">
+          <h6>Click the Button to open Info success</h6>
+        </div>
+        <div class="ui-col-3">
+          <ui-button label="success" size="medium" (click)="showSuccess()" />
+        </div>
+      </div>
+
+      <div class="ui-grid mb-30">
+        <div class="ui-col-5">
+          <h6>Click the Button to open Info Error</h6>
+        </div>
+        <div class="ui-col-3">
+          <ui-button label="Error" size="medium" (click)="showError()" />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent6>
+      <h3 class="mt-20 mb-30">Tabs</h3>
+      <ng-template #tab1>
+        <p>This is content for Tab 1</p>
+      </ng-template>
+
+      <ng-template #tab2>
+        <p>This is content for Tab 2</p>
+      </ng-template>
+      <ng-template #tab3>
+        <p>This is content for Tab 3</p>
+      </ng-template>
+
+      <ui-tab
+        [tabs]="[
+          { id: 1, title: 'Button', content: tab1 },
+          { id: 2, title: 'Icons', content: tab2 },
+          { id: 3, title: 'Icons', content: tab3 }
+        ]"
+      />
+    </ng-template>
+
+    <ng-template #tabContent7>
+      <h3 class="mb-30 mt-20">Avatar (size)</h3>
+      <div class="ui-grid mt-20 mb-20">
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xsm"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="sm"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="md"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xl"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xxl"
+          />
+        </div>
+      </div>
+
+      <h3 class="mb-30 mt-20">Avatar (shape)</h3>
+      <div class="ui-grid mt-20 mb-20">
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xsm"
+            shape="round"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="sm"
+            shape="round"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="md"
+            shape="round"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xl"
+            shape="round"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xxl"
+            shape="round"
+          />
+        </div>
+      </div>
+
+      <div class="ui-grid mt-20 mb-20">
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xsm"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="sm"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="md"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xl"
+          />
+        </div>
+        <div class="ui-col-1">
+          <ui-avatar
+            avatarIcon="../../assets/images/icons/avatar-2.svg"
+            size="xxl"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent8>
+      <ui-typography />
+    </ng-template>
+
+    <ng-template #tabContent9>
+      <div class="ui-grid">
+        <div class="ui-col-4 pr-20">
+          <h2 class="mb-20">Suffix Icon</h2>
+          <ui-search icons="suffix" />
+        </div>
+
+        <div class="ui-col-4 pr-20">
+          <h2 class="mb-20">Prefix Icon</h2>
+          <ui-search icons="prefix" />
+        </div>
+
+        <div class="ui-col-4">
+          <h2 class="mb-20">Suffix with Button</h2>
+          <ui-search icons="suffix" isCategory="isCategory" />
+        </div>
+      </div>
+
+      <h2 class="mt-30 mb-20">Search Bar (size)</h2>
+      <div class="ui-grid">
+        <div class="ui-col-4 pr-20">
+          <ui-search icons="suffix" [contacts]="contactData" size="small" />
+        </div>
+        <div class="ui-col-4 pr-20">
+          <ui-search icons="suffix" [contacts]="contactData" size="medium" />
+        </div>
+        <div class="ui-col-4 pr-20">
+          <ui-search icons="suffix" [contacts]="contactData" size="large" />
+        </div>
+      </div>
+
+      <h2 class="mt-30">Active Search Bar</h2>
+      <div class="ui-grid p-5">
+        <div class="ui-col-4 pr-20">
+          <h5 class="mt-20 mb-20">Suffix with Button</h5>
+          <ui-search icons="suffix" [contacts]="contactData" searchTerms="a" />
+        </div>
+
+        <div class="ui-col-4 pr-20">
+          <h5 class="mt-20 mb-20">Prefix with Button</h5>
+          <ui-search
+            icons="prefix"
+            [contacts]="contactData"
+            searchTerms="sudesh"
+          />
+        </div>
+
+        <div class="ui-col-4 pr-20">
+          <h5 class="mt-20 mb-20">Suffix with Button</h5>
+          <ui-search
+            icons="suffix"
+            isCategory="isCategory"
+            [contacts]="contactData"
+            [categories]="[
+              'Select parking',
+              'Sales',
+              'eCommerce',
+              'Parking',
+              'Sistem'
+            ]"
+            searchTerms="a"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent10>
+      <h2 class="mt-20">Controls</h2>
+
+      <h3 class="mt-20 mb-10">Radio Button</h3>
+      <h5 class="mt-10 mb-10">Radio Button (size)</h5>
+      <div class="ui-grid p-7">
+        <div class="ui-col-1"><ui-radio-button size="small" /></div>
+        <div class="ui-col-1"><ui-radio-button size="large" /></div>
+      </div>
+
+      <h5 class="mt-10 mb-10">Radio Button (state)</h5>
+      <div class="ui-grid p-7">
+        <div class="ui-col-1">
+          <ui-radio-button size="large" />
+          <p class="xsmall-p mt-6">Radio-Default</p>
+        </div>
+        <div class="ui-col-1">
+          <ui-radio-button size="large" class="hover" />
+          <p class="xsmall-p mt-6">Radio-Hover</p>
+        </div>
+        <div class="ui-col-1">
+          <ui-radio-button size="large" class="select" />
+          <p class="xsmall-p mt-6">Radio-Selected</p>
+        </div>
+      </div>
+
+      <h3 class="mt-20 mb-10">Check Button</h3>
+      <h5 class="mt-10 mb-10">Check Button (size)</h5>
+      <div class="ui-grid p-7">
+        <div class="ui-col-1"><ui-checkbox size="small" /></div>
+        <div class="ui-col-1"><ui-checkbox size="large" /></div>
+      </div>
+
+      <h5 class="mt-10 mb-10">Check Button (state)</h5>
+      <div class="ui-grid p-7">
+        <div class="ui-col-1">
+          <ui-checkbox size="large" />
+          <p class="xsmall-p mt-6">Check-Default</p>
+        </div>
+        <div class="ui-col-1">
+          <ui-checkbox size="large" class="hover" />
+          <p class="xsmall-p mt-6">Check-Hover</p>
+        </div>
+        <div class="ui-col-1">
+          <ui-checkbox size="large" class="select" />
+          <p class="xsmall-p mt-6">Check-Selected</p>
+        </div>
+      </div>
+
+      <h3 class="mt-20 mb-10">Switch</h3>
+      <div class="ui-grid p-7">
+        <div class="ui-col-1"><ui-toggle /></div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent11>
+      <div class="ui-grid">
+        <div class="ui-col-2">
+          <ui-tags variant="canclled" lable="Canclled" />
+        </div>
+        <div class="ui-col-2"><ui-tags variant="closed" lable="Closed" /></div>
+        <div class="ui-col-2"><ui-tags variant="new" lable="New" /></div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent12>
+      <ui-breadcrumbs [breadcrumbs]="breadcrumbs" />
+    </ng-template>
+
+    <ng-template #tabContent13>
+      <div class="ui-grid">
+        <div class="ui-col-3">
+          <ui-navigation [menuItems]="menuItems" variant="primary" />
+        </div>
+        <div class="ui-col-1"></div>
+        <div class="ui-col-3">
+          <ui-navigation [menuItems]="menuItems" variant="secondary" />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent14>
+      <div class="ui-grid">
+        <div class="ui-col">
+          <h5 class="mb-20">Tooltip Bottom</h5>
+          <ui-button
+            variant="primary"
+            size="medium"
+            label="Tooltip Bottom"
+            appTooltip="Tooltip Text"
+          />
+        </div>
+        <div class="ui-col">
+          <h5 class="mb-20">Tooltip Top</h5>
+          <ui-button
+            variant="primary"
+            size="medium"
+            label="Tooltip Top"
+            appTooltip="Tooltip Text"
+            placement="top"
+          />
+        </div>
+        <div class="ui-col">
+          <h5 class="mb-20">Tooltip Left</h5>
+          <ui-button
+            variant="primary"
+            size="medium"
+            label="Tooltip Left"
+            appTooltip="Tooltip Text"
+            placement="left"
+          />
+        </div>
+        <div class="ui-col">
+          <h5 class="mb-20">Tooltip Right</h5>
+          <ui-button
+            variant="primary"
+            size="medium"
+            label="Tooltip Right"
+            appTooltip="Tooltip Text"
+            placement="right"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent15>
+      <div class="ui-grid">
+        <div class="ui-col-2">
+          <h3 class="mb-20">Complete</h3>
+          <ui-stages stage="complete" />
+        </div>
+        <div class="ui-col-2">
+          <h3 class="mb-20">Active</h3>
+          <ui-stages stage="active" />
+        </div>
+        <div class="ui-col-2">
+          <h3 class="mb-20">Pending</h3>
+          <ui-stages stage="pending" />
+        </div>
+
+        <div class="ui-col-2">
+          <h3 class="mb-20">Lead Completed</h3>
+          <ui-stages stage="lead" />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template #tabContent16>
+      <ui-modal footerText="Demo Text" cancelText="Cancel" size="small" />
+      <ui-button
+        variant="primary"
+        label="Modal"
+        iconLeft="share"
+        (click)="modal.openModal(modalContentOne)"
+      />
+
+      <ng-template #modalContentOne>
+        <h5>Modal Text</h5>
+        <P
+          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
+          molestias.</P
+        >
+      </ng-template>
+    </ng-template>
+
+    <ui-tab
+      [tabs]="[
+        { id: 1, title: 'Button', content: tabContent1 },
+        { id: 2, title: 'Icons', content: tabContent2 },
+        { id: 3, title: 'Input', content: tabContent3 },
+        { id: 4, title: 'Dropdown', content: tabContent4 },
+        { id: 5, title: 'Toaster', content: tabContent5 },
+        { id: 6, title: 'Tabs', content: tabContent6 },
+        { id: 7, title: 'Avatar', content: tabContent7 },
+        { id: 8, title: 'Typography', content: tabContent8 },
+        { id: 9, title: 'Search Bar', content: tabContent9 },
+        { id: 10, title: 'Controls', content: tabContent10 },
+        { id: 11, title: 'Tags', content: tabContent11 },
+        { id: 12, title: 'Breadcrumbs', content: tabContent12 },
+        { id: 13, title: 'Side navigation', content: tabContent13 },
+        { id: 14, title: 'Tooltip', content: tabContent14 },
+        { id: 15, title: 'Stages', content: tabContent15 },
+        { id: 16, title: 'Modal', content: tabContent16 }
+      ]"
+    />
+  </div>
+
+  <ui-toast
+    [toast]="'info'"
+    [message]="'This is an info toast!'"
+    [heading]="'Info'"
+    [isShown]="isToastInfo"
+  />
+
+  <ui-toast
+    [toast]="'warning'"
+    [message]="'This is an warning toast!'"
+    [heading]="'Info'"
+    [isShown]="isToastWarning"
+  />
+
+  <ui-toast
+    [toast]="'success'"
+    [message]="'This is an success toast!'"
+    [heading]="'Info'"
+    [isShown]="isToastSuccess"
+  />
+
+  <ui-toast
+    [toast]="'error'"
+    [message]="'This is an error toast!'"
+    [heading]="'Info'"
+    [isShown]="isToastError"
+  />
+</section>

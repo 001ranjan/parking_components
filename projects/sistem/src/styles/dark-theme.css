@@ -1,0 +1,61 @@
+:root.dark-theme {
+  --background-color: #171e27;
+  --primary: #ff3b30;
+  --primary-btn-hover: rgba(243, 58, 49, 1);
+  --secondary-btn-hover: rgba(36, 50, 70, 1);
+  --tertiary-btn-hover: rgba(35, 41, 50, 1);
+  --secondary: #18273c;
+  --heading: #ffffff;
+  --text: #b9c1cc;
+  --white: #fff;
+  --hover: linear-gradient(0deg, #ff3b30, #ff3b30);
+  --disable: #213550;
+  --disable-text: #566881;
+  --input-hover: #18273c;
+  --border: rgba(86, 104, 129, 0.25);
+  --fill-bg: #ffffff;
+  --check-icon-url: url("../assets/images/icons/light-check.svg");
+  --toggle-bg: #ffffff;
+  --toggle-btn: #171e27;
+  --error: #ff3b30;
+  --lable-color: #566881;
+  --span-circle: #171e27;
+  --list-bg: var(--toggle-btn);
+  --shadow: #ffffff29;
+  --bar-line: #007aff;
+  --selected-menu: rgba(0, 122, 255, 0.2);
+  --tab: #fff;
+  --stage-complete: #30d158;
+  --stage-green: #4cd964;
+  --stage-active: #64d2ff;
+  --stage-blue: #5ac8fa;
+  --stage-pending: #171e27;
+  --stage-gry: #18273c;
+  --info: #e8f3ff;
+  --info-text: #007aff;
+  --warning: #fff7d5;
+  --warning-text: #ffcc00;
+  --error-bg: #fce9e8;
+  --error-text: #de1135;
+  --success: #edfff0;
+  --success-text: #30d158;
+  --switch-bg: #213550;
+  --dark-bg: #171e27;
+  --tooltip: rgba(23, 30, 39, 1);
+  --shadow-tooltip: 0px 4px 14px 0px rgba(255, 255, 255, 0.22);
+  --stage-complete: rgba(76, 217, 100, 1);
+  --stage-active: rgba(90, 200, 250, 1);
+  --stage-pending: rgba(255, 255, 255, 1);
+  --stage-complete-circle: rgba(48, 209, 88, 1);
+  --stage-pending: rgba(23, 30, 39, 1);
+  --stage-pending-circle: #18273c;
+  --overlay-background-color: rgba(28, 36, 46, 0.5);
+  --loading-animation: rgba(33, 53, 80, 1);
+  --loading-animation-sec: rgb(36, 58, 87);
+  --bg-split: rgba(33, 53, 80, 1);
+  --split-text: rgba(86, 104, 129, 1);
+}
+
+.dark-theme label {
+  color: #fff;
+}

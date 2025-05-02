@@ -1,0 +1,24 @@
+<div class="side-navigation" [class.collapsed]="isCollapsed" [class]="variant">
+  <div class="navigation-list">
+    <ul>
+      <!-- Collapsed Button -->
+      <li (click)="collapsed()" class="collapsed-btn">
+        <img [src]="collapsIcon" alt="menu icon" (error)="onImageError()" *ngIf="collapsIcon">
+      </li>
+
+      <!-- Menu Items -->
+      <li *ngFor="let item of menuItems" [routerLink]="item.route" routerLinkActive="active">
+        <span>
+          <ng-container *ngIf="isSvgPath(item.icon); else svgIcon">
+            <img [src]="item.icon" alt="notification icon">
+          </ng-container>
+          <ng-template #svgIcon>
+            <div class="icon" [innerHTML]="getIconSvg(item.icon)"></div>
+          </ng-template>
+
+        </span>
+        <div class="menu-text">{{ item.label }}</div>
+      </li>
+    </ul> 
+  </div>
+</div>
