@@ -160,34 +160,21 @@ export class UserService {
     // Add filter parameters if they exist
     if (filters) {
       if (filters.vehicleType) {
-        // Set both vehicleType and vehicleTypeId parameters
         params = params.set('vehicleType', filters.vehicleType);
-        params = params.set('vehicleTypeId', filters.vehicleType);
-        console.log('Setting vehicle type filters:', {
-          vehicleType: filters.vehicleType,
-          vehicleTypeId: filters.vehicleType
-        });
       }
       if (filters.operator) {
         params = params.set('operatorId', filters.operator);
-        console.log('Setting operator filter:', filters.operator);
       }
       if (filters.status) {
         params = params.set('status', filters.status);
-        console.log('Setting status filter:', filters.status);
       }
       if (filters.from) {
         params = params.set('fromDate', filters.from);
-        console.log('Setting from date:', filters.from);
       }
       if (filters.to) {
         params = params.set('toDate', filters.to);
-        console.log('Setting to date:', filters.to);
       }
     }
-
-    // console.log('Making API request to:', `${this.baseUrl}/pass/${parkingId}`);
-    // console.log('With parameters:', params.toString());
 
     return this.http.get(`${this.baseUrl}/pass/${parkingId}`, { headers, params });
   }

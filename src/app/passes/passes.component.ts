@@ -144,6 +144,7 @@ interface ShareRequest {
 export class PassesComponent implements OnInit {
   @ViewChild('modal') modal!: ModalComponent;
   @ViewChild('modalShare') modalShare: any;
+  @ViewChild('modalSuspend') modalSuspend!: any;
   
   subject: string = '';
   emails: string = '';
@@ -223,15 +224,34 @@ export class PassesComponent implements OnInit {
   toastMessage = '';
   toastType: 'info' | 'success' | 'warning' | 'error' = 'info';
   toastHeading = '';
+  openDotActionIndex: number | null = null;
+  selectedPass: any = null;
 
   paginatedPasses: any[] = [];
   totalPasses: number = 0;
 
-  showSuccessToast() {
-    this.isToastInfo = true;
-    this.toastType = 'success';
-    this.toastMessage = 'Operation completed successfully!';
-    this.toastHeading = 'Success';
+  toggleDotAction(event: Event, index: number) {
+    event.stopPropagation();
+    if (this.openDotActionIndex === index) {
+      this.openDotActionIndex = null;
+    } else {
+      this.openDotActionIndex = index;
+    }
+  }
+
+  isDotActionOpen(index: number): boolean {
+    return this.openDotActionIndex === index;
+  }
+
+  showSuccessToast(message: string = 'Operation completed successfully!') {
+    this.isToastInfo = false;
+    setTimeout(() => {
+      this.toastType = 'success';
+      this.toastMessage = message;
+      this.toastHeading = 'Success';
+      this.isToastInfo = true;
+      this.cdr.detectChanges();
+    }, 10);
   }
 
   showExcelToast() {
@@ -349,7 +369,11 @@ export class PassesComponent implements OnInit {
               id: pass.id,
               vehicle: {
                 regNumber: pass.vehicle?.regNumber || '',
-                vehicleTypeId: pass.vehicle?.vehicleTypeId || ''
+                vehicleTypeId: pass.vehicle?.vehicleTypeId || '',
+                name: pass.vehicle?.name || '',
+                phone: pass.vehicle?.phone || '',
+                email: pass.vehicle?.email || '',
+                paymentMethod: pass.vehicle?.paymentMethod || ''
               },
               type: pass.type || '',
               startDate: pass.startDate || '',
@@ -979,5 +1003,103 @@ export class PassesComponent implements OnInit {
       case '3d3f97d3-4cf0-45a6-9bbd-15ab5a6df8d6': return '#c7dffb';
       default: return '#f2defd';
     }
+  }
+
+  onViewSubmit() {
+    // Handle view modal submit
+  }
+
+  sharePassDetails() {
+    if (!this.selectedPass) return;
+    
+    const subject = 'Your Parking Sistem Pass Details';
+    const validFor = this.selectedPass.parking.name;
+    const vehicleNumber = this.selectedPass.vehicle.regNumber;
+    const passStatus = this.calculateRemainingDays(this.selectedPass.startDate, this.selectedPass.endDate) > 0 ? 'Active' : 'Expired';
+    const passType = this.selectedPass.type;
+    const createdOn = new Date(this.selectedPass.startDate).toLocaleDateString('en-US', { weekday: 'short', day: '2-digit', month: 'short', year: '2-digit' });
+    const expiresOn = new Date(this.selectedPass.endDate).toLocaleDateString('en-US', { weekday: 'short', day: '2-digit', month: 'short', year: '2-digit' });
+    const ownerName = this.selectedPass.vehicle.name || 'N/A';
+    const mobileNo = this.selectedPass.vehicle.phone || 'N/A';
+    const payment = `₹${this.selectedPass.amount}/- • ${this.selectedPass.paymentMode || 'N/A'}`;
+
+    const body = `
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9f9f9;">
+  <div style="text-align: center; margin-bottom: 20px;">
+    <img src="https://sistem.app/assets/images/logo.svg" alt="Sistem Logo" style="max-width: 150px; height: auto;">
+  </div>
+  
+  <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+    <h2 style="color: #333; margin-bottom: 20px; text-align: center;">Parking Pass Details</h2>
+    
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #666; margin-bottom: 10px;">Pass Information</h3>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Valid for:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${validFor}</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Vehicle number:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${vehicleNumber}</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Pass Status:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${passStatus}</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Pass type:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${passType}</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Created on:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${createdOn}</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Expires on:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${expiresOn}</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <h3 style="color: #666; margin-bottom: 10px;">Owner Details</h3>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Name:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${ownerName}</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Mobile No.:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${mobileNo}</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 8px; border-bottom: 1px solid #eee; color: #666;">Payment received:</td>
+          <td style="padding: 8px; border-bottom: 1px solid #eee;"><strong>${payment}</strong></td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="background-color: #f5f5f5; padding: 15px; border-radius: 4px; margin-top: 20px;">
+      <p style="color: #666; margin: 0; font-size: 14px;">
+        <strong>Note:</strong> This is a non-refundable pass. Only the owner of the vehicle can use this. No other category of vehicle will be permitted to park on behalf of the pass.
+      </p>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 20px; color: #666; font-size: 12px;">
+    <p>This is an automated message from Sistem Parking Management System</p>
+  </div>
+</div>`;
+
+    const mailtoLink = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+  }
+
+  suspendSelectedPass() {
+    if (!this.selectedPass) return;
+    this.selectedPass.status = 'suspended';
+    if (this.modalSuspend) this.modalSuspend.closeModal();
+    this.showSuccessToast('Pass suspended successfully!');
   }
 }

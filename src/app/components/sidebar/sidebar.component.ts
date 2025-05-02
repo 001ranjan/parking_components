@@ -21,6 +21,7 @@ import {
 export class SidebarComponent {
   isSidebarClosed = false;
   subMenusState: boolean[] = [false, false];
+  parkingId: string = 'f5b0fc9f-ddde-4c3a-a25f-9ef679660db7';
   
   toggleSidebar(): void {
     this.isSidebarClosed = !this.isSidebarClosed;

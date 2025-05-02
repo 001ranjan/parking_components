@@ -3485,6 +3485,30 @@ button.split.disabled .icon-left svg,
 button.split.disabled .icon-right svg {
   stroke: var(--split-text);
 }
+.ui-flex{
+  display: flex;
+  align-items: center;
+  p{
+    margin: 0;
+    margin-bottom: 0!important;
+  }
+}
+.justify-between{
+  justify-content: space-between;
+}
+.justify-center{
+  justify-content: center;
+}
+.justify-end{
+  justify-content: flex-end;
+}
+.justify-start{
+  justify-content: flex-start;
+}
+.text-center{
+  text-align: center;
+}
+
 
 .fixed{
   position: fixed;

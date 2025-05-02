@@ -63,7 +63,7 @@
               </div>
 
               <div class="sharing-info mt-20">
-                <p class="medium-p">Sharing as <strong>Test Vendor</strong></p>
+                <span>Sharing as <strong>Test Vendor</strong></span>
                 <p class="small-p">
                   You should be aware of the privacy policy of sharing from Sistem Apps. The client might have restricted
                   policy around it. Please refer to the
@@ -127,6 +127,8 @@
       <div *ngIf="paginatedPasses.length === 0" style="padding: 20px; color: var(--text);">
         No data to display. Total passes: {{totalPasses}}
       </div>
+      
+      <div class="overlay" *ngIf="openDotActionIndex !== null" (click)="openDotActionIndex = null"></div>
       
       <table>
         <thead>
@@ -198,7 +200,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let pass of paginatedPasses | slice:((currentPage-1)*rowsPerPage):(currentPage*rowsPerPage); let i = index">
+          <tr *ngFor="let pass of paginatedPasses; let i = index">
             <td>
               <div class="number ml-7" [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span>{{ (currentPage - 1) * rowsPerPage + i + 1 }}</span>
@@ -266,7 +268,20 @@
                 </span>
 
                 <div [ngClass]="{ skeleton: isSkeletonVisible }">
-                  <span >...</span>
+                  <span class="dot-action">
+                    <ui-button variant="secondary" size="small" shape="round"
+                    iconRight="../../../../assets/images/icons/3-dots.svg" (click)="toggleDotAction($event, i)" />
+                  </span>
+                </div>
+                <div class="dot-action-pop" [class.show]="isDotActionOpen(i)" (click)="$event.stopPropagation()">
+                  <div class="dot-action-pop-item" (click)="openDotActionIndex = null" (click)="selectedPass = pass; modalView.openModal(modalViewTemplate)">
+                    <span>View</span>
+                    <img src="../../../../assets/images/icons/reportldpi.svg" alt="View">
+                  </div>
+                  <div class="dot-action-pop-item" (click)="openDotActionIndex = null" (click)="modalSuspend.openModal(modalSuspendTemplate)">
+                    <span>Suspend</span>
+                    <img src="../../../../assets/images/icons/detailsldpi.svg" alt="View">
+                  </div>
                 </div>
               </div>
             </td>
@@ -275,6 +290,100 @@
         </tbody>
       </table>
     </div>
+
+   <!-- Pass Details -->
+   <ui-modal footerText="" title="Pass Details" size="small" submitText="Share Pass" #modalView (submit)="sharePassDetails()">
+    <ng-template #modalViewTemplate>
+      <div class="modal-content" *ngIf="selectedPass">
+        <h6>Vehicle Number</h6>
+        <div class="ui-flex gap-10 mt-5 mb-10">
+          <div class="type-vehicle">
+            <span class="vehicle" [ngClass]="{ skeleton: isSkeletonVisible }"
+            [style.background-color]="getVehicleBgColor(selectedPass.vehicle.vehicleTypeId)">
+            <ui-vehicle [vehicle]="getVehicleType(selectedPass.vehicle.vehicleTypeId)" [vehicleIcon]="getVehicleIcon(selectedPass.vehicle.vehicleTypeId)" class="hide" />
+          </span>
+          </div>
+          <div class="vehicle-number">
+            <h5>{{ selectedPass.vehicle.regNumber }}</h5>
+          </div>
+        </div>
+        <div class="pass-type ui-flex gap-10 mb-20">
+          <img src="{{calculateRemainingDays(selectedPass.startDate, selectedPass.endDate)>0 ? '../../../../assets/images/icons/activePass.svg' : '../../../../assets/images/icons/expirePass.svg'}}" alt="pass-type">
+          <p class="small-p">{{calculateRemainingDays(selectedPass.startDate, selectedPass.endDate)>0 ? 'Active' : 'Expired'}} Pass</p>
+          <div class="remening_days" *ngIf="calculateRemainingDays(selectedPass.startDate, selectedPass.endDate) > 0">
+            <p class="small-p remaining-days">{{ calculateRemainingDays(selectedPass.startDate, selectedPass.endDate) }} days remaining</p>
+          </div>  
+        </div>
+      <!-- Owner Details -->
+        <h5>Owner Details</h5>
+        <div class="owner-details ui-flex justify-between mt-7 mb-20">
+          <div class="owner-details-item">
+            <div class="owner-details-item-label">
+              <p class="small-p">Name</p> 
+            </div>
+            <div class="owner-details-item-value">
+              <span>{{ selectedPass.vehicle.name || 'N/A' }}</span>
+            </div>
+          </div>
+          <div class="owner-details-item">
+            <div class="owner-details-item-label">
+              <p class="small-p">Phone</p>
+            </div>
+            <div class="owner-details-item-value">
+              <span>  {{ selectedPass.vehicle.phone || 'N/A' }} </span>
+            </div>
+          </div>
+          <div class="owner-details-item">
+            <div class="owner-details-item-label">
+              <p class="small-p">Payment</p>
+            </div>
+            <div class="owner-details-item-value">
+              <span>₹{{selectedPass.amount}}/- {{ selectedPass.paymentMode || 'N/A' }} </span>
+            </div>
+          </div>
+          <div class="owner-details-item">
+            <div class="owner-details-item-label">
+              <p class="small-p">Agent</p>
+            </div>
+            <div class="owner-details-item-value">
+              <span>{{ selectedPass.createdBy.firstName || 'N/A' }} {{ selectedPass.createdBy.lastName || 'N/A' }} </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Session Total -->
+        <h5>Session Total</h5>
+        <div class="session-total ui-flex justify-between mt-7">
+          <div class="session-total-item">
+            <p class="small-p">IN TIME</p>
+            <span>{{ selectedPass.inTime | date:'EEE dd MMMyy hh:mm a' }}</span>
+          </div>
+          <div class="session-total-item">
+            <p class="small-p">OUT TIME</p>
+            <span>{{ selectedPass.outTime | date:'EEE dd MMMyy hh:mm a' }}</span>
+          </div>
+          <div class="session-total-item">
+            <p class="small-p">TOTAL</p>
+            <span>{{ selectedPass.totalTime }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+   </ui-modal>
+
+   <!-- Suspend Pass -->
+    <ui-modal footerText="" title="Suspend Pass" size="small" submitText="Suspend Pass" #modalSuspend (submit)="suspendSelectedPass()">
+      <ng-template #modalSuspendTemplate>
+        <div class="modal-content">
+          <div class="pass ui-flex justify-center text-center">
+            <div> 
+              <p class="small-p">Are you sure you want to suspend this pass?</p>
+              <b>You can not undo the change.</b>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ui-modal>
 
     <div class="filter-list pl-20">
       <div class="left">
@@ -309,5 +418,6 @@
   [heading]="toastHeading"
   [isShown]="isToastInfo"
   [duration]="2000"
-  [position]="'bottom-right'"
+  
 /> 
+

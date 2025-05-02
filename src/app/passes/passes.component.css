@@ -410,14 +410,29 @@ table thead th:nth-child(1) {
 }
 
 .table-container {
+  position: relative;
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--overlay-background-color);
+  z-index: 999;
+  cursor: pointer;
 }
 
 .filter {
   cursor: pointer;
 }
 
+p.remaining-days {
+  color: var(--closed-text)!important;
+}
 .current {
   border: none;
   text-align: center;
@@ -627,7 +642,76 @@ th > div .sort {
   background-color: var(--secondary);
 }
 
+.dot-action {
+  position: relative;
+  cursor: pointer;
+}
 
+.dot-action-pop {
+  position: absolute;
+  right: 60%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--list-bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  display: none;
+  z-index: 1000;
+  min-width: 150px;
+}
+
+.dot-action-pop::before {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 8px 8px;
+  border-color: transparent transparent transparent var(--list-bg);
+}
+.dot-action-pop::after {
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 9px 0 9px 9px;
+  border-color: transparent transparent transparent var(--border);
+  z-index: -1;
+}
+
+
+.dot-action-pop.show {
+  display: block;
+}
+
+.dot-action-pop-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  cursor: pointer;
+  gap: 8px;
+}
+
+.dot-action-pop-item:hover {
+  background-color: var(--secondary);
+}
+
+.dot-action-pop-item img {
+  width: 26px;
+  height: 26px;
+}
+
+td .flex {
+  position: relative;
+}
 
 
 
