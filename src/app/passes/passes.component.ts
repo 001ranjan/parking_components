@@ -24,6 +24,7 @@ import {
   StagesComponent,
   RadioButtonComponent,
   ToastComponent,
+  TagsComponent
 } from 'sistem';
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
 
@@ -132,7 +133,8 @@ interface ShareRequest {
     StagesComponent,
     RadioButtonComponent,
     ToastComponent,
-    SidebarComponent
+    SidebarComponent,
+    TagsComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './passes.component.html',
@@ -399,6 +401,27 @@ export class PassesComponent implements OnInit {
             });
           }
 
+          // Date Range Filter
+          if (this.selectedRange && this.selectedRange.startDate && this.selectedRange.endDate) {
+            filteredData = filteredData.filter((item: { startDate: string, endDate: string }) => {
+              const startDate = new Date(item.startDate);
+              const endDate = new Date(item.endDate);
+              const filterStartDate = new Date(this.selectedRange!.startDate!);
+              const filterEndDate = new Date(this.selectedRange!.endDate!);
+              
+              // Set all dates to midnight for accurate comparison
+              startDate.setHours(0, 0, 0, 0);
+              endDate.setHours(0, 0, 0, 0);
+              filterStartDate.setHours(0, 0, 0, 0);
+              filterEndDate.setHours(0, 0, 0, 0);
+              
+              // Check if the pass's date range overlaps with the filter date range
+              return (startDate >= filterStartDate && startDate <= filterEndDate) ||
+                     (endDate >= filterStartDate && endDate <= filterEndDate) ||
+                     (startDate <= filterStartDate && endDate >= filterEndDate);
+            });
+          }
+
           // Update the data with filtered results
           this.paginatedPasses = filteredData;
           this.totalPasses = response.count || 0;
@@ -430,12 +453,19 @@ export class PassesComponent implements OnInit {
   }
 
   updateTags() {
+    const isFiltered = this.selectedType !== this.sessionTypes[0] || 
+                      this.selectedOperator !== this.operatorList[0] || 
+                      this.selectedStatus !== this.statusList[0] || 
+                      (this.selectedRange && this.selectedRange.startDate && this.selectedRange.endDate);
+
+    const displayCount = isFiltered ? this.paginatedPasses.length : this.totalPasses;
+    
     this.topTag = [
-      { label: `${this.totalPasses} items`, url: '/' },
+      { label: `${displayCount} items`, url: '/' },
       { label: 'Sorted by START DATE', url: '/' },
     ];
     this.bottomTag = [
-      { label: `Total: ${this.totalPasses} items`, url: '/' },
+      { label: `Total: ${displayCount} items`, url: '/' },
     ];
   }
 
@@ -909,9 +939,10 @@ export class PassesComponent implements OnInit {
     const end = new Date(endDate);
     const today = new Date();
     
-    // Set time to midnight for accurate day calculation
-    today.setHours(0, 0, 0, 0);
+    // Set all dates to midnight for accurate day calculation
+    start.setHours(0, 0, 0, 0);
     end.setHours(0, 0, 0, 0);
+    today.setHours(0, 0, 0, 0);
     
     // Calculate remaining days from today to end date
     const remainingDays = Math.ceil((end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));

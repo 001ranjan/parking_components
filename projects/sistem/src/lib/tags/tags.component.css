@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: center;
   border-radius: 20px;
-  margin: 50px;
+  /* margin: 50px; */
   padding: 2px;
 }
 
@@ -17,6 +17,19 @@
 .closed{
   background-color: var(--closed-tag);
 }
+.active{
+  background-color: var(--closed-tag);
+}
+.active .tag-text {
+  color: var(--closed-text);
+}
+.expired{
+  background-color: var(--new-tag);
+}
+.expired .tag-text {
+  color: var(--new-text);
+}
+
 .closed .tag-text {
   color: var(--closed-text);
 }

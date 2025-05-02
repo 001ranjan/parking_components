@@ -178,12 +178,12 @@
                 <span>REMAINING</span>
               </div>
             </th>
-            <th width="6%">
+            <th width="9%">
               <div [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span>STATUS</span>
               </div>
             </th>
-            <th width="8.5%">
+            <th width="4.5%">
               <div [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span>AMOUNT</span>
               </div>
@@ -198,7 +198,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let pass of paginatedPasses; let i = index">
+          <tr *ngFor="let pass of paginatedPasses | slice:((currentPage-1)*rowsPerPage):(currentPage*rowsPerPage); let i = index">
             <td>
               <div class="number ml-7" [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span>{{ (currentPage - 1) * rowsPerPage + i + 1 }}</span>
@@ -247,7 +247,10 @@
             </td>
             <td>
               <div [ngClass]="{ skeleton: isSkeletonVisible }">
-                <span>{{ pass.paymentMode }}</span>
+                <span>
+                  <!-- {{ calculateRemainingDays(pass.startDate, pass.endDate)>0 ? 'Active' : 'Expired' }} -->
+                  <ui-tags [lable]="calculateRemainingDays(pass.startDate, pass.endDate)>0 ? 'Active' : 'Expired'" [variant]="calculateRemainingDays(pass.startDate, pass.endDate)>0 ? 'active' : 'expired'" />
+                </span>
               </div>
             </td>
             <td>
@@ -263,7 +266,7 @@
                 </span>
 
                 <div [ngClass]="{ skeleton: isSkeletonVisible }">
-                  <!-- <span>...</span> -->
+                  <span >...</span>
                 </div>
               </div>
             </td>
