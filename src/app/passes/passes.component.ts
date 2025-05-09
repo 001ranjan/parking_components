@@ -1102,4 +1102,8 @@ export class PassesComponent implements OnInit {
     if (this.modalSuspend) this.modalSuspend.closeModal();
     this.showSuccessToast('Pass suspended successfully!');
   }
+
+  onSidebarToggled(closed: boolean) {
+    this.isSidebarClosed = closed;
+  }
 }

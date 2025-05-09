@@ -6,6 +6,8 @@ import {
   SimpleChanges,
   HostListener,
   ElementRef,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -19,12 +21,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchComponent implements OnInit, OnChanges {
   @Input() icons: 'suffix' | 'prefix' = 'suffix';
-  @Input() categories: string[] = [
-    'All Parking',
-    'Sales',
-    'eCommerce',
-    'Parking',
-  ];
+  @Input() categories: string[] = ['All Parking', 'Sales', 'eCommerce', 'Parking'];
   @Input() size: 'large' | 'medium' | 'small' = 'medium';
   @Input() isCategory: string = 'notHave';
   @Input() searchList: { label: string; url?: string }[] = [];
@@ -36,8 +33,8 @@ export class SearchComponent implements OnInit, OnChanges {
     image: string;
     description: string;
   }[] = [];
-
   @Input() searchTerms: string = '';
+  @Output() searchTermChange = new EventEmitter<string>();
 
   searchTerm: string = '';
   isFocused: boolean = false;
@@ -66,7 +63,6 @@ export class SearchComponent implements OnInit, OnChanges {
     if (changes['contacts'] || changes['searchTerms']) {
       this.filterContacts();
     }
-
     if (changes['categories']) {
       this.setDefaultCategory();
       this.filterContacts();
@@ -101,17 +97,21 @@ export class SearchComponent implements OnInit, OnChanges {
 
     this.filteredContacts = this.contacts.filter((contact) => {
       const matchesCategory =
-        contact.category.toLowerCase() ===
-          this.selectedCategory.toLowerCase() ||
+        contact.category.toLowerCase() === this.selectedCategory.toLowerCase() ||
         this.selectedCategory === this.categories[0];
-      const matchesSearch = contact.name
-        .toLowerCase()
-        .includes(term.toLowerCase());
+      const matchesSearch = contact.name.toLowerCase().includes(term.toLowerCase());
       return matchesCategory && matchesSearch;
     });
   }
 
-  // Close dropdown if clicked outside
+  selectContact(contact: any): void {
+    this.searchTerm = contact.name;
+    this.searchTermChange.emit(contact.name);
+    this.filteredContacts = [];
+    this.isFocused = false;
+    this.typing = false; // Prevent "no-results" message from showing
+  }
+
   @HostListener('document:click', ['$event.target'])
   onClickOutside(target: HTMLElement): void {
     if (!this.elementRef.nativeElement.contains(target)) {

@@ -1,11 +1,34 @@
 .container-main {
   min-height: calc(100vh - 54px);
-  min-height: calc(100vh - 54px);
-  display: grid;
-  grid-template-columns: auto 1fr;
+  position: relative;
 }
-main{
+
+ui-sidebar {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 210px;
+  height: calc(100vh - 60px);
+  z-index: 100;
+  transition: width 0.3s;
+}
+
+ui-sidebar.close {
+  width: 60px;
+}
+
+main {
+  margin-left: 210px;
   padding-top: 54px;
+  transition: margin-left 0.3s;
+}
+
+.container-main.sidebar-closed ui-sidebar {
+  width: 60px;
+}
+
+.container-main.sidebar-closed main {
+  margin-left: 60px;
 }
 
 #sidebar {

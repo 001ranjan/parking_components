@@ -9,7 +9,7 @@ import {
 import { ThemeService } from '../../theme.service';
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../services/user.service';
-import {
+import { 
   NotificationComponent,
   ToggleComponent,
   AvatarComponent,

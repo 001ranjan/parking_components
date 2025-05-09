@@ -1,6 +1,6 @@
-<div class="container-main">
+<div class="container-main" [ngClass]="{'sidebar-closed': isSidebarClosed}">
  <!-- sidebar -->
-<ui-sidebar></ui-sidebar>
+<ui-sidebar (sidebarToggled)="onSidebarToggled($event)"></ui-sidebar>
 
   <main>
     <!-- top Heading -->
@@ -112,7 +112,11 @@
     <div class="filter-list pl-20">
       <div class="left">
         <div class="small-heading mr-3">Filters</div>
-        <ui-search size="small" class="mr-3" style="max-width: 190px" />
+        <!-- <ui-search size="small" class="mr-3" style="max-width: 190px" [(ngModel)]="searchQuery" (ngModelChange)="onSearch($event)" [contacts]="searchData" /> -->
+        <ui-search
+        size="small" class="mr-3" style="max-width: 190px"
+        [contacts]="searchData"
+      />
         <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="sessionTypes"
           [selectedValue]="tempSelectedType" (selectionChange)="onTypeSelectionChange($event)" />
 

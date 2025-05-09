@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -20,11 +20,13 @@ import {
 })
 export class SidebarComponent {
   isSidebarClosed = false;
+  @Output() sidebarToggled = new EventEmitter<boolean>();
   subMenusState: boolean[] = [false, false];
   parkingId: string = 'f5b0fc9f-ddde-4c3a-a25f-9ef679660db7';
   
   toggleSidebar(): void {
     this.isSidebarClosed = !this.isSidebarClosed;
+    this.sidebarToggled.emit(this.isSidebarClosed);
   }
   
   toggleSubMenu(index: number): void {

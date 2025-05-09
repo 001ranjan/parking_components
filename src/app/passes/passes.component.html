@@ -1,7 +1,7 @@
-<div class="container-main">
+<div class="container-main" [ngClass]="{'sidebar-closed': isSidebarClosed}">
   <!-- sidebar -->
-  <ui-sidebar></ui-sidebar>
-
+ <ui-sidebar (sidebarToggled)="onSidebarToggled($event)"></ui-sidebar>
+ 
   <main>
     <!-- top Heading -->
     <div class="list-header">

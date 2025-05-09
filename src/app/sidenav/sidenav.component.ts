@@ -214,10 +214,12 @@ export class SidenavComponent implements OnInit {
   parking_id = '';
   selectedOption: string = '';
   dateOption: string = 'yesterday';
+  searchQuery: string = '';
 
   // Attachment related properties
   attachmentList: string[] = ['All', 'Excel', 'PDF'];
   selectedAttachment: string = 'All';
+  allVehicles: any[] = [];
 
   isSkeletonVisible: boolean = true;
   isToastInfo = false;
@@ -244,6 +246,7 @@ export class SidenavComponent implements OnInit {
       this.parking_id = params['id'] || '';
       // Only start data fetching after we have the parking_id
       this.initializeData();
+      this.getVehicleData();
     });
   }
 
@@ -277,8 +280,67 @@ export class SidenavComponent implements OnInit {
     endDate: null
   };
 
+ 
+
+  onSearch(value: string): void {
+    console.log('Search value:', value);
+    this.searchQuery = value;
+    this.currentPage = 1;
+    this.fetchVehicleData();
+  }
+  searchData = [
+    {
+      name: '',
+      role: '',
+      company: '',
+      category: '',
+      image: '',
+      description: '',
+    },
+  ];
+
+  filterSearchResults(): void {
+    const query = this.searchQuery.trim().toLowerCase();
+  
+    this.searchData = this.allVehicles.filter(item =>
+      (item.name || '').toLowerCase().includes(query) ||
+      (item.role || '').toLowerCase().includes(query) ||
+      (item.company || '').toLowerCase().includes(query) ||
+      (item.category || '').toLowerCase().includes(query)
+    );
+  }
+  
+  getVehicleImage(vehicleTypeId: string): string {
+    if (!vehicleTypeId) return '../../../../assets/images/icons/cycle.svg';
+    switch (vehicleTypeId) {
+      case 'e7e2ffc1-faec-48b5-b8b1-735f28c1d3ab':
+        return '../../../../assets/images/icons/bike.svg';
+      case '3d3f97d3-4cf0-45a6-9bbd-15ab5a6df8d6':
+        return '../../../../assets/images/icons/car.svg';
+      default:
+        return '../../../../assets/images/icons/cycle.svg';
+    }
+  }
+  
+  
+
+
+  getVehicleData(): void {
+    this.userService.vehicleList(this.parking_id, 1, 'createdAt:DESC', 10000, {}).subscribe((data) => {
+      this.allVehicles = data.rows.map((item: any) => ({
+        name: item.vehicle?.regNumber,
+        role: item.inBy?.firstName || 'N/A',
+        category: item.vehicle?.vehicleType || 'Uncategorized',
+        image: this.getVehicleImage(item.vehicle?.vehicleTypeId)  // <-- image resolved here
+      }));
+      this.filterSearchResults();
+    });
+  }
+  
+  
+
+
   onTypeSelectionChange(value: string): void {
-    console.log('Type selection changed:', value);
     this.tempSelectedType = value; // Store in temporary variable
   }
 
@@ -303,14 +365,24 @@ export class SidenavComponent implements OnInit {
     this.fetchVehicleData();
   }
 
+
   clearFilters(): void {
-    this.selectedType = this.sessionTypes[0];
-    this.selectedOperator = this.operatorList[0];
-    this.selectedStatus = this.statusList[0];
+    // Reset all filter selections to their default values
+    this.selectedType = this.sessionTypes[0]; // 'type'
+    this.selectedOperator = this.operatorList[0]; // 'operator'
+    this.selectedStatus = this.statusList[0]; // 'Status'
+    
+    // Reset range and force calendar update
     this.selectedRange = {
       startDate: null,
       endDate: null
     };
+    this.resetCalendarTrigger = !this.resetCalendarTrigger;
+    
+    // Reset search query
+    this.searchQuery = '';
+    
+    // Reset temporary filter values
     this.tempSelectedType = this.sessionTypes[0];
     this.tempSelectedOperator = this.operatorList[0];
     this.tempSelectedStatus = this.statusList[0];
@@ -318,11 +390,25 @@ export class SidenavComponent implements OnInit {
       startDate: null,
       endDate: null
     };
-    this.resetCalendarTrigger = !this.resetCalendarTrigger;
+    
+    // Reset pagination
     this.currentPage = 1;
+    
+    // Force immediate UI updates
+    this.cdr.detectChanges();
+    
+    // Fetch fresh data
     this.fetchVehicleData();
+    
+    // Debug log
+    console.log('Filters cleared:', {
+      type: this.selectedType,
+      operator: this.selectedOperator,
+      status: this.selectedStatus,
+      range: this.selectedRange,
+      search: this.searchQuery
+    });
   }
-
   fetchVehicleData() {
     if (!this.parking_id) {
       console.error('No parking ID available');
@@ -337,17 +423,17 @@ export class SidenavComponent implements OnInit {
 
     const filters: any = {};
     
+    // Search Filter - Only by vehicle number
+    if (this.searchQuery && this.searchQuery.trim()) {
+      console.log('Adding vehicle number search filter:', this.searchQuery);
+      filters.vehicleNo = this.searchQuery.trim();
+    }
+
     // Vehicle Type Filter
     if (this.selectedType && this.selectedType !== this.sessionTypes[0]) {
       const vehicleTypeId = this.vehicleTypeMap[this.selectedType];
-      console.log('Selected Type:', this.selectedType);
-      console.log('Vehicle Type ID:', vehicleTypeId);
-      
       if (vehicleTypeId) {
         filters.vehicleType = vehicleTypeId;
-        console.log('Filters being sent:', filters);
-      } else {
-        console.error('No vehicleTypeId found for:', this.selectedType);
       }
     }
 
@@ -356,7 +442,6 @@ export class SidenavComponent implements OnInit {
       const operatorId = this.operatorMap[this.selectedOperator];
       if (operatorId) {
         filters.inById = operatorId;
-        console.log('Setting operator filter:', operatorId);
       }
     }
 
@@ -380,7 +465,7 @@ export class SidenavComponent implements OnInit {
     }
 
     // Date Range Filter
-    if (this.selectedRange && this.selectedRange.startDate && this.selectedRange.endDate) {
+    if (this.selectedRange?.startDate && this.selectedRange?.endDate) {
       const formatDateToString = (date: Date) => {
         const year = date.getFullYear();
         const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -390,21 +475,11 @@ export class SidenavComponent implements OnInit {
 
       filters.from = formatDateToString(this.selectedRange.startDate);
       filters.to = formatDateToString(this.selectedRange.endDate);
-      console.log('Setting date range filter:', { from: filters.from, to: filters.to });
     }
 
-    console.log('Making API call with filters:', {
-      parkingId,
-      page,
-      orderBy,
-      limit,
-      filters
-    });
 
     this.userService.vehicleList(parkingId, page, orderBy, limit, filters).subscribe({
       next: (response: ApiResponse) => {
-        console.log('API Response:', response);
-        
         if (response && Array.isArray(response.rows)) {
           const mappedData = response.rows.map((item: VehicleResponse) => {
             const vehicle = item.vehicle || {};
@@ -444,6 +519,15 @@ export class SidenavComponent implements OnInit {
             filteredData = filteredData.filter(item => 
               item.vehicleTypeId === vehicleTypeId
             );
+          }
+
+          // Apply client-side vehicle number search
+          if (this.searchQuery && this.searchQuery.trim()) {
+            const searchTerm = this.searchQuery.trim().toLowerCase();
+            filteredData = filteredData.filter(item => {
+              const vehicleNo = item.vehicleNo || '';
+              return vehicleNo.toLowerCase().includes(searchTerm);
+            });
           }
 
           // Update the data with filtered results
@@ -710,23 +794,58 @@ export class SidenavComponent implements OnInit {
 
   @ViewChild('rangeCalendar') rangeCalendar: any;
  
-  updateTags() {
-    try {
-      const itemCount = this.totalSessions || 0;
-      this.topTag = [
-        { label: `${itemCount} items`, url: '/' },
-        { label: 'Sorted by CREATED AT', url: '/' },
-      ];
-      this.bottomTag = [
-        { label: `Total: ${itemCount} items`, url: '/' },
-      ];
-    } catch (error) {
-      console.error('Error in updateTags:', error);
-      this.topTag = [{ label: '0 items', url: '/' }];
-      this.bottomTag = [{ label: 'Total: 0 items', url: '/' }];
+  getAppliedFilterCount(): number {
+    let count = 0;
+    
+    // Vehicle type - only count if not default and not empty
+    if (this.selectedType && this.selectedType !== this.sessionTypes[0] && this.selectedType !== 'type') {
+      count++;
     }
+  
+    // Operator - only count if not default and not empty
+    if (this.selectedOperator && this.selectedOperator !== this.operatorList[0] && this.selectedOperator !== 'operator') {
+      count++;
+    }
+  
+    // Status - only count if not default and not empty
+    if (this.selectedStatus && this.selectedStatus !== this.statusList[0] && this.selectedStatus !== 'Status') {
+      count++;
+    }
+  
+    // Date range - only count if both dates are set
+    if (this.selectedRange?.startDate && this.selectedRange?.endDate) {
+      count++;
+    }
+  
+    // Search - only count if there's actual search text
+    if (this.searchQuery && this.searchQuery.trim().length > 0) {
+      count++;
+    }
+  
+    return count;
+}
+  
+  updateTags() {
+    console.log('Updating tags - current filters:', {
+      type: this.selectedType,
+      operator: this.selectedOperator,
+      status: this.selectedStatus,
+      range: this.selectedRange,
+      search: this.searchQuery
+    });
+  
+    const itemCount = this.totalSessions || 0;
+    const filterCount = this.getAppliedFilterCount();
+    
+    this.topTag = [
+      { label: `${itemCount} items`, url: '#' },
+      ...(filterCount > 0 ? [{ label: `${filterCount} Filter applied`, url: '#' }] : []),
+      { label: 'Sorted by CREATED AT', url: '#' },
+    ];
+    this.bottomTag = [
+      { label: `Total: ${itemCount} items`, url: '#' },
+    ];
   }
-
   // Method to handle "Select All" checkbox change
   selectAll(event: any): void {
     const checked = event?.target?.checked;
@@ -1010,5 +1129,9 @@ export class SidenavComponent implements OnInit {
     this.selectedAttachment = value;
     // Handle attachment type selection logic here
     console.log('Selected attachment type:', value);
+  }
+
+  onSidebarToggled(closed: boolean) {
+    this.isSidebarClosed = closed;
   }
 }

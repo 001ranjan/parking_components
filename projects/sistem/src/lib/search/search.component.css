@@ -126,6 +126,39 @@ ul li {
   transition: opacity 0.3s ease, visibility 0s;
   margin-bottom: -2px;
   z-index: 9;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* width */
+  .filter_data::-webkit-scrollbar,
+  .no-results::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 10px;
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  height: 90%;
+}
+
+/* Track */
+.filter_data::-webkit-scrollbar-track,
+.no-results::-webkit-scrollbar-track {
+  background:var(--secondary);
+  border-radius: 10px;
+}
+ 
+/* Handle */
+.filter_data::-webkit-scrollbar-thumb,
+.no-results::-webkit-scrollbar-thumb {
+  background: var(--border); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.filter_data::-webkit-scrollbar-thumb:hover,
+.no-results::-webkit-scrollbar-thumb:hover {
+  background: var(--border); 
+  border-radius: 10px;
 }
 
 .filter_data ul li {
