@@ -3,6 +3,9 @@
     position: relative;
     /* display: block; */
 }
+li{
+    cursor: pointer;
+}
 
 #sidebar {
     position: fixed;

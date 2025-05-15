@@ -5,24 +5,33 @@
           <div class="icon"><ui-icon icon="chevron-double-left"></ui-icon></div>
         </button>
       </li>
+      <li [routerLink]="['/dashboard', parkingId]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a>
+          <div class="icon">
+          <ui-icon icon="dashboard" appTooltip="Dashboard" placement="right"></ui-icon></div>
+          <span>Dashboard</span>
+        </a>
+      </li>
       <li [routerLink]="['/parking', parkingId]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <a>
-          <div class="icon"><ui-icon icon="home"></ui-icon></div>
-          <span>Home</span>
+          <div class="icon">
+          <ui-icon icon="sessions" appTooltip="Sessions" placement="right"></ui-icon></div>
+          <span>Sessions</span>
         </a>
       </li>
       <li [routerLink]="['/parking/passes', parkingId]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         <a>
-          <div class="icon"><ui-icon icon="home"></ui-icon></div>
+          <div class="icon">
+          <ui-icon icon="pass" appTooltip="Passes" placement="right"></ui-icon></div>
           <span>Passes</span>
         </a>
       </li>
-      <li [routerLink]="'/style-guid'" routerLinkActive="active">
+      <!-- <li [routerLink]="'/style-guid'" routerLinkActive="active">
         <a>
           <div class="icon"><ui-icon icon="lifebuoy"></ui-icon></div>
           <span>Style</span>
         </a>
-      </li>
+      </li> -->
       <!-- <li>
         <button class="dropdown-btn" [class.rotate]="subMenusState[0]" (click)="toggleSubMenu(0)">
           <div class="icon"><ui-icon icon="microphone"></ui-icon></div>

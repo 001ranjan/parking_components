@@ -35,6 +35,16 @@ export class DoubleCalendarComponent implements OnChanges {
   }>();
   constructor(private elementRef: ElementRef) {}
 
+  public clear(): void {
+    this.startDate = null;
+    this.endDate = null;
+    this.dateRangeSelected.emit({
+      startDate: null,
+      endDate: null
+    });
+  }
+  
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes['resetTrigger'] && changes['resetTrigger'].currentValue) {
       this.resetDateRange();

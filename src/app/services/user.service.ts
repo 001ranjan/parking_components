@@ -41,12 +41,14 @@ export class UserService {
     page: number,
     orderBy: string,
     limit: number,
-    filters?: any
+    offset: number,
+    filters?: any,
   ): Observable<any> {
     // Start with base URL and required parameters
     let params = new HttpParams()
       .set('page', page.toString())
       .set('orderBy', orderBy)
+      .set('offset', offset.toString())
       .set('limit', limit.toString());
     
     // Add filter parameters if they exist
@@ -125,9 +127,9 @@ export class UserService {
       Authorization: `Bearer ${token}`,
     });
 
-    console.log('Making API request to:', url);
-    console.log('Request headers:', headers);
-    console.log('Request body:', shareRequest);
+    // console.log('Making API request to:', url);
+    // console.log('Request headers:', headers);
+    // console.log('Request body:', shareRequest);
 
     return this.http.post(url, shareRequest, { headers }).pipe(
       catchError(error => {

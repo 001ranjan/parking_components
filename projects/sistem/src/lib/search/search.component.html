@@ -7,15 +7,21 @@
     <!-- Dropdown menu for categories -->
     <div class="search-category">
       <div class="category" (click)="toggleDropdown()">
-        <div [ngClass]="{ hidden: selectedCategory !== 'All Categories' }" class="text"></div>
+        <div [ngClass]="{ hidden: selectedCategory !== 'All Categories' }" class="text">{{ initialValue }}</div>
         <span class="text">{{ selectedCategory }}</span>
         <div>
           <img src="../../assets/images/icons/angle-down.svg" alt="Dropdown Icon" />
         </div>
       </div>
       <ul *ngIf="showDropdown" class="list-item">
-        <li *ngFor="let category of categories" (mousedown)="selectCategory(category)">
+        <!-- <li *ngFor="let category of categories" (mousedown)="selectCategory(category)"  id="{{ categoriesId }}" >
           {{ category }}
+        </li> -->
+       <!-- Template -->
+        <li *ngFor="let category of categories; let i = index" 
+        (mousedown)="selectCategory(category, categoriesId[i])"
+        [id]="categoriesId[i]">
+        {{ category }}
         </li>
       </ul>
     </div>

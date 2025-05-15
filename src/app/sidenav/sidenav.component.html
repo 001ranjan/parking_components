@@ -114,8 +114,10 @@
         <div class="small-heading mr-3">Filters</div>
         <!-- <ui-search size="small" class="mr-3" style="max-width: 190px" [(ngModel)]="searchQuery" (ngModelChange)="onSearch($event)" [contacts]="searchData" /> -->
         <ui-search
+        #searchInput
         size="small" class="mr-3" style="max-width: 190px"
         [contacts]="searchData"
+        (searchTermChange)="onSearch($event)"
       />
         <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="sessionTypes"
           [selectedValue]="tempSelectedType" (selectionChange)="onTypeSelectionChange($event)" />
@@ -156,16 +158,16 @@
 
     <div class="table-container">
       <!-- Debug info -->
-      <div *ngIf="paginatedSessions.length === 0" style="padding: 20px; color: var(--text);">
+      <!-- <div *ngIf="paginatedSessions.length === 0" style="padding: 20px; color: var(--text);">
         No data to display. Total sessions: {{totalSessions}}
-      </div>
+      </div> -->
       
       <table>
         <thead>
           <tr>
             <th width="3.3%">
               <div class="number ml-7" [ngClass]="{ skeleton: isSkeletonVisible }">
-                <span>#</span>
+                <span></span>
               </div>
             </th>
             <th width="6.5%">

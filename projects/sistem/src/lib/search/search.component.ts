@@ -22,10 +22,12 @@ import { FormsModule } from '@angular/forms';
 export class SearchComponent implements OnInit, OnChanges {
   @Input() icons: 'suffix' | 'prefix' = 'suffix';
   @Input() categories: string[] = ['All Parking', 'Sales', 'eCommerce', 'Parking'];
+  @Input() categoriesId: string[] = ['All Parking', 'Sales', 'eCommerce', 'Parking'];
   @Input() size: 'large' | 'medium' | 'small' = 'medium';
   @Input() isCategory: string = 'notHave';
   @Input() searchList: { label: string; url?: string }[] = [];
   @Input() contacts: {
+    id?: any;
     name: string;
     role: string;
     company: string;
@@ -41,8 +43,15 @@ export class SearchComponent implements OnInit, OnChanges {
   showDropdown: boolean = false;
   selectedCategory: string = '';
   typing: boolean = false;
+  selectedValue: string = '';
+  // initialValue: string = '';
+  @Input() initialValue: string = '';
+  @Output() initialValueChange = new EventEmitter<string>();
+  @Output() categoryChange = new EventEmitter<string>();
+
 
   filteredContacts: {
+    id?: any;
     name: string;
     role: string;
     company: string;
@@ -53,6 +62,16 @@ export class SearchComponent implements OnInit, OnChanges {
 
   constructor(private elementRef: ElementRef) {}
 
+  public clear(): void {
+    this.searchTerm = '';
+    this.searchTerms = '';
+    this.filteredContacts = [];
+    this.isFocused = false;
+    this.typing = false;
+    this.searchTermChange.emit('');
+    this.filterContacts();
+  }
+
   ngOnInit(): void {
     this.setDefaultCategory();
     this.searchTerm = this.searchTerms || '';
@@ -60,13 +79,26 @@ export class SearchComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (this.initialValue) {
+      this.selectedValue = this.initialValue;
+    }
     if (changes['contacts'] || changes['searchTerms']) {
       this.filterContacts();
     }
-    if (changes['categories']) {
+    if (changes['categories'] || changes['categoriesId']) {
       this.setDefaultCategory();
       this.filterContacts();
     }
+  }
+
+  getCategoryId(category: string | {id: string, name: string}): string {
+    console.log("category",category);
+    console.log("category.id",typeof category === 'object' ? category.id : category);
+    return typeof category === 'object' ? category.id : category;
+  }
+  
+  getCategoryName(category: string | {id: string, name: string}): string {
+    return typeof category === 'object' ? category.name : category;
   }
 
   private setDefaultCategory(): void {
@@ -79,11 +111,16 @@ export class SearchComponent implements OnInit, OnChanges {
     this.showDropdown = !this.showDropdown;
   }
 
-  selectCategory(category: string): void {
+  selectCategory(category: string, id: string): void {
     this.selectedCategory = category;
     this.showDropdown = false;
     this.filterContacts();
+    this.categoryChange.emit(category);
+    this.listClick.emit(id);
+    // console.log("selectedCategory",this.selectedCategory);
+    // console.log("category",category);
   }
+  @Output() listClick = new EventEmitter<string>();
 
   hideDropdown(): void {
     setTimeout(() => {
@@ -111,6 +148,9 @@ export class SearchComponent implements OnInit, OnChanges {
     this.isFocused = false;
     this.typing = false; // Prevent "no-results" message from showing
   }
+  // onListClick(id: string): void {
+  //   console.log("id",id);
+  // }
 
   @HostListener('document:click', ['$event.target'])
   onClickOutside(target: HTMLElement): void {

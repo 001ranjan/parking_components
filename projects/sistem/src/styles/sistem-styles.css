@@ -3509,6 +3509,9 @@ button.split.disabled .icon-right svg {
   text-align: center;
 }
 
+label{
+  color: var(--text)!important;
+}
 
 .fixed{
   position: fixed;

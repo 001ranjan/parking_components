@@ -27,7 +27,6 @@ import { ButtonsComponent } from "../../../../projects/sistem/src/lib/buttons/bu
   imports: [
     ToggleComponent,
     SearchComponent,
-    SearchComponent,
     AvatarComponent,
     NotificationComponent,
     SideNavigationComponent,
@@ -51,6 +50,8 @@ export class HeaderComponent implements AfterViewInit {
   selectedSize: 'xsmall' | 'small' | 'medium' | 'large' = 'large';
   selectedShape: 'ovel' | 'round' | 'corner' = 'ovel';
   labelText: string = 'Text';
+  categories: any[] = ['Select parking'];
+  categoriesId: string[] = [''];
 
   isPrimaryChecked: boolean = false;
   isSecondaryChecked: boolean = false;
@@ -85,6 +86,12 @@ export class HeaderComponent implements AfterViewInit {
     // this.checkScrollButtons();
     // this.renderer.listen(this.menuContainer.nativeElement, 'scroll', () => this.checkScrollButtons());
   }
+  
+
+  // ngAfterViewInit(): void {
+  //   // this.checkScrollButtons();
+  //   // this.renderer.listen(this.menuContainer.nativeElement, 'scroll', () => this.checkScrollButtons());
+  // }
 
   // checkScrollButtons(): void {
   //   const container = this.menuContainer.nativeElement;
@@ -119,11 +126,10 @@ export class HeaderComponent implements AfterViewInit {
     this.fetchParking();
     this.getUserDetails();
   }
-
-  categories: string[] = ['Select parking'];
-
+  
   contactData = [
     {
+      id: '', 
       name: '',
       role: '',
       company: '',
@@ -140,11 +146,12 @@ export class HeaderComponent implements AfterViewInit {
         // get parking name
         data.map((parkingId: any) => {
           this.categories.push(parkingId.name);
+          this.categoriesId.push(parkingId.id);
         });
         // get parking details
         if (Array.isArray(data)) {
-          // console.log(data);
           this.contactData = data.map((parking: any) => ({
+            id: parking.id,
             name: parking.name,
             role: parking.address,
             company: parking.company || 'Unknown',
@@ -159,6 +166,7 @@ export class HeaderComponent implements AfterViewInit {
           // If the response is a single object, map it to contactData
           this.contactData = [
             {
+              id: data.id,
               name: data.name || 'Unknown',
               role: data.address,
               company: data.company || 'Unknown',
@@ -232,23 +240,7 @@ export class HeaderComponent implements AfterViewInit {
     this.isDisabled = inputElement.checked;
   }
 
-  tabs = [
-    {
-      id: 1,
-      title: 'Session',
-      content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-    },
-    {
-      id: 2,
-      title: 'Movie',
-      content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-    },
-    {
-      id: 3,
-      title: 'Hall',
-      content: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit.',
-    },
-  ];
+  
 
   breadcrumbs = [
     { label: 'Home', url: '/' },
@@ -257,27 +249,7 @@ export class HeaderComponent implements AfterViewInit {
     { label: 'Televisions' },
   ];
 
-  menuLinks = [
-    { label: 'Link1', route: 'home' },
-    { label: 'Link2', route: 'about' },
-    { label: 'Link3', route: 'about' },
-    { label: 'Link4', route: 'service' },
-    { label: 'Link5', route: 'home' },
-    { label: 'Link6', route: 'about' },
-    { label: 'Link7', route: 'about' },
-    // { label: 'Link8', route: 'service' },
-    // { label: 'Link9', route: 'home' },
-    // { label: 'Link10', route: 'about' },
-    // { label: 'Link11', route: 'about' },
-    // { label: 'Link12', route: 'service' },
-    // { label: 'Link13', route: 'about' },
-    // { label: 'Link14', route: 'service' },
-    // { label: 'Link15', route: 'home' },
-    // { label: 'Link16', route: 'about' },
-    // { label: 'Link17', route: 'about' },
-    // { label: 'Link18', route: 'service' }
-  ];
-
+  
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
     this.updateBodyScroll();
@@ -295,25 +267,18 @@ export class HeaderComponent implements AfterViewInit {
       this.renderer.removeClass(document.body, 'no-scroll');
     }
   }
+  
 
-  // contactData = [
-  //   {
-  //     name: 'Sudesh kumar',
-  //     role: 'Contact',
-  //     company: 'Aadinath Retails',
-  //     category: 'Sales',
-  //     image: 'assets/images/icons/Avatar.svg',
-  //     description: 'Description',
-  //   },
-  //   {
-  //     name: 'Anita Rao',
-  //     role: 'Contact',
-  //     company: 'Global Trade',
-  //     category: 'eCommerce',
-  //     image: 'assets/images/icons/Avatar.svg',
-  //     description: 'Description',
-  //   },
-  // ];
+  selectedCategory: string = '';
+  isCategory: boolean = false;
+
+  onCategoryChange(category: any) {
+    this.selectedCategory = category; 
+  }
+  onListClick(id: any): void {
+    this.router.navigate([`/parking/${id}`]);
+  }
+  
 
   collapsIcon = 'assets/images/icons/Loader.svg';
 
@@ -492,7 +457,6 @@ export class HeaderComponent implements AfterViewInit {
 
       this.userService.parkingUserDetail(userId).subscribe(
         (response) => {
-          console.log('User details response:', response);
           if (response && response.length > 0) {
             const user = response[0];
             // Save complete user data
