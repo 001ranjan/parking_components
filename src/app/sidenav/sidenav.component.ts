@@ -28,8 +28,6 @@ import {
 import { TrimTextPipe } from '../trim-text.pipe';
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
 import { FiltersComponent } from '../components/filters/filters.component';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
 interface SessionData {
   id?: string;
@@ -159,10 +157,8 @@ export class SidenavComponent implements OnInit {
   isSidebarClosed = false;
   subMenusState: Record<number, boolean> = {};
   resetCalendarTrigger: boolean = false;
+  // topTag: { label: string; url: string }[] = [];
   @ViewChild(SearchComponent) searchInput!: SearchComponent;
-
-  // Debounce Subject for Search
-  private searchSubject = new Subject<string>();
 
   toggleSidebar(): void {
     this.isSidebarClosed = !this.isSidebarClosed;
@@ -179,6 +175,7 @@ export class SidenavComponent implements OnInit {
       this.subMenusState[index] = true;
     }
 
+    // If any submenu is open, remove the 'close' class from the sidebar
     if (Object.values(this.subMenusState).includes(true)) {
       this.isSidebarClosed = false;
     }
@@ -201,7 +198,7 @@ export class SidenavComponent implements OnInit {
   bottomTag: { label: string; url: string }[] = [];
   sessionTypes = ['type', 'Car', 'Bike', 'Cycle', 'Truck'];
   operatorList = ['operator'];
-  operatorMap: { [key: string]: string } = {};
+  operatorMap: { [key: string]: string } = {}; // Map to store operator name to ID mapping
   statusList = ['Status', 'in vehicle', 'out vehicle', 'booking'];
   selectedType = this.sessionTypes[0];
   selectedOperator = this.operatorList[0];
@@ -220,6 +217,7 @@ export class SidenavComponent implements OnInit {
   dateOption: string = 'yesterday';
   searchQuery: string = '';
 
+  // Attachment related properties
   attachmentList: string[] = ['All', 'Excel', 'PDF'];
   selectedAttachment: string = 'All';
   allVehicles: any[] = [];
@@ -247,38 +245,34 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.parking_id = params['id'] || '';
+      // Only start data fetching after we have the parking_id
       this.initializeData();
       this.getVehicleData();
-    });
-
-    // Subscribe to search subject with debounce
-    this.searchSubject.pipe(
-      debounceTime(300), // Adjust debounce time as needed
-      distinctUntilChanged()
-    ).subscribe(searchText => {
-      this.searchQuery = searchText;
-      this.currentPage = 1;
-      this.fetchVehicleData();
     });
   }
 
   private initializeData() {
+    // set title
     this.title.setTitle('Sistem - Sessions');
+    // Initialize arrays
     this.sessions = [];
     this.filteredSessions = [];
     this.paginatedSessions = [];
     this.totalSessions = 0;
+    // Fetch data
     this.fetchVehicleData();
     this.getParkingUserDetails();
   }
 
+  // Vehicle type mapping
   private vehicleTypeMap: { [key: string]: string } = {
-    'Bike': 'e7e2ffc1-faec-48b5-b8b1-735f28c1d3ab',
+    'Bike': 'e7e2ffc1-faec-48b5-b8b1-735f28c1d3ab', 
     'Car': '3d3f97d3-4cf0-45a6-9bbd-15ab5a6df8d6',
     'Cycle': '6a2aa2ad-cba2-49dc-b82f-531e8b158bf9',
     'Truck': 'truck-id-here'
   };
 
+  // Temporary filter values
   tempSelectedType: string = '';
   tempSelectedOperator: string = '';
   tempSelectedStatus: string = '';
@@ -287,10 +281,15 @@ export class SidenavComponent implements OnInit {
     endDate: null
   };
 
-  onSearch(value: string): void {
-    this.searchSubject.next(value);
-  }
+ 
 
+  onSearch(value: string): void {
+    console.log('Search value:', value);
+    this.searchQuery = value;
+    this.currentPage = 1;
+    this.fetchVehicleData();
+  }
+  
   searchData = [
     {
       name: '',
@@ -304,7 +303,7 @@ export class SidenavComponent implements OnInit {
 
   filterSearchResults(): void {
     const query = this.searchQuery.trim().toLowerCase();
-
+  
     this.searchData = this.allVehicles.filter(item =>
       (item.name || '').toLowerCase().includes(query) ||
       (item.role || '').toLowerCase().includes(query) ||
@@ -312,7 +311,7 @@ export class SidenavComponent implements OnInit {
       (item.category || '').toLowerCase().includes(query)
     );
   }
-
+  
   getVehicleImage(vehicleTypeId: string): string {
     if (!vehicleTypeId) return '../../../../assets/images/icons/cycle.svg';
     switch (vehicleTypeId) {
@@ -324,21 +323,25 @@ export class SidenavComponent implements OnInit {
         return '../../../../assets/images/icons/cycle.svg';
     }
   }
-
+  
+  
   getVehicleData(): void {
     this.userService.vehicleList(this.parking_id, 1, 'createdAt:DESC', 25, 0, {}).subscribe((data) => {
       this.allVehicles = data.rows.map((item: any) => ({
         name: item.vehicle?.regNumber,
         role: item.inBy?.firstName || 'N/A',
         category: item.vehicle?.vehicleType || 'Uncategorized',
-        image: this.getVehicleImage(item.vehicle?.vehicleTypeId)
+        image: this.getVehicleImage(item.vehicle?.vehicleTypeId)  
       }));
       this.filterSearchResults();
     });
   }
+  
+  
+
 
   onTypeSelectionChange(value: string): void {
-    this.tempSelectedType = value;
+    this.tempSelectedType = value; // Store in temporary variable
   }
 
   onOperatorSelectionChange(value: string): void {
@@ -362,14 +365,18 @@ export class SidenavComponent implements OnInit {
     this.fetchVehicleData();
   }
 
-  clearFilters(): void {
-    this.selectedType = this.sessionTypes[0];
-    this.selectedOperator = this.operatorList[0];
-    this.selectedStatus = this.statusList[0];
-    if (this.searchInput) {
-      this.searchInput.clear();
-    }
 
+
+  clearFilters(): void {
+    // Reset all filter selections to their default values
+    this.selectedType = this.sessionTypes[0]; // 'type'
+    this.selectedOperator = this.operatorList[0]; // 'operator'
+    this.selectedStatus = this.statusList[0]; // 'Status'
+    if (this.searchInput) {
+      this.searchInput.clear();  
+    }
+    
+    // Reset range and force calendar update
     this.selectedRange = {
       startDate: null,
       endDate: null
@@ -379,9 +386,11 @@ export class SidenavComponent implements OnInit {
       this.rangeCalendar.clear();
     }
     this.resetCalendarTrigger = !this.resetCalendarTrigger;
-
+    
+    // Reset search query
     this.searchQuery = '';
-
+    
+    // Reset temporary filter values
     this.tempSelectedType = this.sessionTypes[0];
     this.tempSelectedOperator = this.operatorList[0];
     this.tempSelectedStatus = this.statusList[0];
@@ -390,11 +399,15 @@ export class SidenavComponent implements OnInit {
       endDate: null
     };
 
+    // Reset pagination
+    // this.currentPage = 1;
+    
+    // Force immediate UI updates
     this.cdr.detectChanges();
-
+    
+    // Fetch fresh data
     this.fetchVehicleData();
   }
-
   fetchVehicleData() {
     if (!this.parking_id) {
       console.error('No parking ID available');
@@ -493,9 +506,27 @@ export class SidenavComponent implements OnInit {
             };
           });
 
-          this.sessions = mappedData;
+          // Apply client-side filtering for vehicle type
+          let filteredData = mappedData;
+          if (this.selectedType && this.selectedType !== this.sessionTypes[0]) {
+            const vehicleTypeId = this.vehicleTypeMap[this.selectedType];
+            filteredData = filteredData.filter(item =>
+              item.vehicleTypeId === vehicleTypeId
+            );
+          }
+
+          // Apply client-side vehicle number search
+          if (this.searchQuery && this.searchQuery.trim()) {
+            const searchTerm = this.searchQuery.trim().toLowerCase();
+            filteredData = filteredData.filter(item => {
+              const vehicleNo = item.vehicleNo || '';
+              return vehicleNo.toLowerCase().includes(searchTerm);
+            });
+          }
+
+          this.sessions = filteredData;
           this.totalSessions = response.count;
-          this.paginatedSessions = mappedData;
+          this.paginatedSessions = filteredData;
           this.totalPages = Math.ceil(response.count / this.rowsPerPage);
           this.updateTags();
 
@@ -523,6 +554,7 @@ export class SidenavComponent implements OnInit {
       }
     });
   }
+
 
   private formatDate(dateString: string | undefined): string {
     if (!dateString) return 'N/A';
@@ -585,15 +617,19 @@ export class SidenavComponent implements OnInit {
       console.error('No token found');
       return;
     }
-
+    
     const tokenPayload = JSON.parse(atob(token.split('.')[1]));
     const userId = tokenPayload.sub;
-
+    
     this.userService.parkingUserDetail(userId).subscribe(
       (response) => {
+        // Reset the operator map
         this.operatorMap = {};
+        
+        // Add default operator
         this.operatorList = ['Operator'];
-
+        
+        // Map response data
         response.forEach((res: any) => {
           const operatorName = `${res.firstName} ${res.lastName}`;
           this.operatorList.push(operatorName);
@@ -606,6 +642,7 @@ export class SidenavComponent implements OnInit {
     );
   }
 
+  // loading data animations
   loadData(): void {
     this.simulateAsyncOperation().then(() => {
       this.isSkeletonVisible = false;
@@ -683,24 +720,27 @@ export class SidenavComponent implements OnInit {
   updatePagination(): void {
     try {
       this.isSkeletonVisible = true;
-
+      
+      // Ensure we have valid arrays
       if (!Array.isArray(this.sessions)) this.sessions = [];
       if (!Array.isArray(this.filteredSessions)) this.filteredSessions = [];
       if (!Array.isArray(this.paginatedSessions)) this.paginatedSessions = [];
-
+      
       const startIndex = Math.max(0, (this.currentPage - 1) * this.rowsPerPage);
       const endIndex = Math.min(startIndex + this.rowsPerPage, this.totalSessions);
-
+      
+      // Use filteredSessions if it has items, otherwise use sessions
       const sourceArray = this.filteredSessions.length > 0 ? this.filteredSessions : this.sessions;
-
+      
+      // Ensure we don't exceed array bounds
       if (startIndex < sourceArray.length) {
         this.paginatedSessions = sourceArray.slice(startIndex, endIndex);
       } else {
         this.paginatedSessions = [];
       }
-
+      
       this.totalPages = Math.max(1, Math.ceil(this.totalSessions / this.rowsPerPage));
-
+      
     } catch (error) {
       console.error('Error in updatePagination:', error);
       this.paginatedSessions = [];
@@ -746,38 +786,50 @@ export class SidenavComponent implements OnInit {
   }
 
   @ViewChild('rangeCalendar') rangeCalendar: any;
-
+ 
   getAppliedFilterCount(): number {
     let count = 0;
-
+    
+    // Vehicle type - only count if not default and not empty
     if (this.selectedType && this.selectedType !== this.sessionTypes[0] && this.selectedType !== 'type') {
       count++;
     }
-
+  
+    // Operator - only count if not default and not empty
     if (this.selectedOperator && this.selectedOperator !== this.operatorList[0] && this.selectedOperator !== 'operator') {
       count++;
     }
-
+  
+    // Status - only count if not default and not empty
     if (this.selectedStatus && this.selectedStatus !== this.statusList[0] && this.selectedStatus !== 'Status') {
       count++;
     }
-
+  
+    // Date range - only count if both dates are set
     if (this.selectedRange?.startDate && this.selectedRange?.endDate) {
       count++;
     }
-
+  
+    // Search - only count if there's actual search text
     if (this.searchQuery && this.searchQuery.trim().length > 0) {
       count++;
     }
-
+  
     return count;
 }
-
+  
   updateTags() {
-
+    // console.log('Updating tags - curre/nt filters:', {
+    //   type: this.selectedType,
+    //   operator: this.selectedOperator,
+    //   status: this.selectedStatus,
+    //   range: this.selectedRange,
+    //   search: this.searchQuery
+    // });
+  
     const itemCount = this.totalSessions || 0;
     const filterCount = this.getAppliedFilterCount();
-
+    
     this.topTag = [
       { label: `${itemCount} items`, url: '#' },
       ...(filterCount > 0 ? [{ label: `${filterCount} Filter applied`, url: '#' }] : []),
@@ -787,16 +839,18 @@ export class SidenavComponent implements OnInit {
       { label: `Total: ${itemCount} items`, url: '#' },
     ];
   }
-
+  // Method to handle "Select All" checkbox change
   selectAll(event: any): void {
     const checked = event?.target?.checked;
 
     if (checked) {
+      // Add all indices for the current page to checkedRows
       this.paginatedSessions.forEach((_, i) => {
         const globalIndex = (this.currentPage - 1) * this.rowsPerPage + i;
         this.checkedRows.add(globalIndex);
       });
     } else {
+      // Remove all indices for the current page from checkedRows
       this.paginatedSessions.forEach((_, i) => {
         const globalIndex = (this.currentPage - 1) * this.rowsPerPage + i;
         this.checkedRows.delete(globalIndex);
@@ -804,11 +858,13 @@ export class SidenavComponent implements OnInit {
     }
   }
 
+  // Check if a specific row is checked
   isRowChecked(index: number): boolean {
     const globalIndex = (this.currentPage - 1) * this.rowsPerPage + index;
     return this.checkedRows.has(globalIndex);
   }
 
+  // Method to handle individual checkbox change
   onCheckboxChange(event: any, index: number): void {
     const checked = event?.target?.checked;
     const globalIndex = (this.currentPage - 1) * this.rowsPerPage + index;
@@ -820,6 +876,7 @@ export class SidenavComponent implements OnInit {
     }
   }
 
+  // Check if all rows on the current page are checked
   areAllRowsChecked(): boolean {
     return this.paginatedSessions.every((_, i) =>
       this.checkedRows.has((this.currentPage - 1) * this.rowsPerPage + i)
@@ -829,14 +886,18 @@ export class SidenavComponent implements OnInit {
   sortColumn: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
 
+  // data shorting
   sortSessions(column: string): void {
     if (this.sortColumn === column) {
+      // Toggle sort direction
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
+      // Change column and reset direction
       this.sortColumn = column;
       this.sortDirection = 'asc';
     }
 
+    // Perform the sorting
     this.sessions = this.sessions.sort((a: any, b: any) => {
       const valueA = a[column];
       const valueB = b[column];
@@ -869,17 +930,20 @@ export class SidenavComponent implements OnInit {
     this.modal.openModal(modalContentOne);
   }
 
+  // Add new properties for sharing
   shareModalRange: ShareDateRange | null = null;
   isShareDateRangeVisible: boolean = false;
   shareEmailAddress: string = '';
   @ViewChild('shareForm') shareForm!: NgForm;
 
+  // Initialize form model
   shareFormModel = {
     dateOption: 'yesterday',
     subject: '',
     emails: ''
   };
 
+  // Update the properties to use form model
   get selectedDateOption(): 'yesterday' | 'thisMonth' | 'custom' {
     return this.shareFormModel.dateOption as 'yesterday' | 'thisMonth' | 'custom';
   }
@@ -887,30 +951,35 @@ export class SidenavComponent implements OnInit {
     this.shareFormModel.dateOption = value;
   }
 
+  // Update the event type for share modal date range selection
   onShareDateRangeSelected(range: ShareDateRange) {
     this.shareModalRange = range;
   }
 
+  // Add method to toggle date range visibility
   toggleShareDateRange() {
     this.isShareDateRangeVisible = !this.isShareDateRangeVisible;
     if (!this.isShareDateRangeVisible) {
+      // Reset date range when hiding
       this.shareModalRange = null;
     }
   }
 
+  // Add this helper function at class level
   private parseCustomDate(dateStr: string): string {
     try {
       if (!dateStr || dateStr === 'N/A') {
         return new Date().toISOString();
       }
 
+      // Example format: "Wed 27 Mar 24 2:30PM"
       const parts = dateStr.match(/(\w+) (\d+) (\w+) (\d+) (\d+):(\d+)(AM|PM)/);
       if (!parts) {
         return new Date().toISOString();
       }
 
       const [_, _day, date, month, year, hours, minutes, ampm] = parts;
-
+      
       const monthMap: { [key: string]: number } = {
         'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
         'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
