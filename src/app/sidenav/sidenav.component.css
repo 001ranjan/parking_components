@@ -40,7 +40,7 @@ main {
   border-right: 1px solid var(--border);
   position: sticky;
   top: 60px;
-  align-self: start; 
+  align-self: start;
   transition: 300ms ease-in-out;
   overflow: hidden;
   text-wrap: nowrap;
@@ -55,12 +55,13 @@ main {
 #sidebar ul {
   list-style: none;
 }
+
 #sidebar ul li {
   margin: 2px 0;
   position: relative;
 }
 
-#sidebar > ul > li:first-child {
+#sidebar>ul>li:first-child {
   /* display: flex;
   justify-content: flex-end; */
   margin-bottom: 16px;
@@ -90,6 +91,7 @@ main {
   right: -0.5em;
 }
 
+/*
 #sidebar a,
 #sidebar .dropdown-btn,
 #sidebar .logo {
@@ -100,7 +102,7 @@ main {
   display: flex;
   align-items: center;
   gap: 1em;
-}
+} */
 
 .dropdown-btn {
   width: 100%;
@@ -131,7 +133,7 @@ main {
   grid-template-rows: 0fr;
   transition: 300ms ease-in-out;
 
-  > div {
+  >div {
     overflow: hidden;
   }
 }
@@ -197,6 +199,7 @@ ul li .icon {
   width: 20px;
   height: 20px;
 }
+
 ul li span {
   font-size: 14px;
   font-weight: 400;
@@ -226,7 +229,7 @@ ul li span {
     top: unset;
     bottom: 0;
 
-    > ul {
+    >ul {
       padding: 0;
       display: grid;
       grid-auto-columns: 60px;
@@ -266,7 +269,7 @@ ul li span {
       display: flex;
       justify-content: center;
 
-      > div {
+      >div {
         overflow-x: auto;
       }
 
@@ -307,6 +310,7 @@ ul li span {
   padding-bottom: min(10px, 7%);
   padding-right: min(10px, 7%);
 }
+
 .list-header .right {
   display: flex;
   justify-content: end;
@@ -320,12 +324,14 @@ ul li span {
   align-items: center;
   border-bottom: 0.5px solid var(--border);
 }
+
 .small-heading {
   font-size: 14px;
   font-weight: 600;
   line-height: 16.94px;
   color: var(--heading);
 }
+
 .filter-list .left {
   display: flex;
   justify-content: center;
@@ -344,6 +350,7 @@ ul li span {
   justify-content: start;
   align-items: center;
 }
+
 .current {
   width: 36px;
   height: 36px;
@@ -357,6 +364,7 @@ ul li span {
   line-height: 19.64px;
   font-weight: 400;
 }
+
 .no-of {
   color: var(--heading);
   font-size: 14px;
@@ -396,9 +404,7 @@ th span {
   gap: 0.2px;
 }
 
-th {
-  background-color: var(--dark-bg);
-}
+
 
 tr:hover {
   background-color: var(--stage-gry);
@@ -419,6 +425,7 @@ table thead th {
   background-color: var(--dark-bg);
   border-bottom: 0.5px solid var(--border);
 }
+
 table thead th:nth-child(1) {
   border-left: 0.5px solid var(--border);
 }
@@ -446,6 +453,7 @@ table thead th:nth-child(1) {
   text-align: center;
   color: var(--disable-text);
 }
+
 .current:focus {
   outline: none;
 }
@@ -453,7 +461,8 @@ table thead th:nth-child(1) {
 .icon-left {
   width: 15px;
 }
-.close .icon{
+
+.close .icon {
   margin-left: 8px;
 }
 
@@ -465,12 +474,13 @@ table thead th:nth-child(1) {
   align-items: center;
   justify-content: center;
 }
+
 .blank {
   width: 100%;
   height: 20px;
 }
 
-td:not(:first-child) > div.skeleton {
+td:not(:first-child)>div.skeleton {
   min-width: 80px;
   height: 25px;
 }
@@ -479,14 +489,17 @@ td:not(:first-child) > div.skeleton {
 .skeleton {
   position: relative;
 }
+
 span.check {
   max-height: 27px;
   margin-top: 13px;
 }
+
 .check.skeleton {
   max-height: 27px;
   margin-top: 5px;
 }
+
 .vehicle {
   max-height: 36px;
   margin-top: 3px;
@@ -495,7 +508,8 @@ span.check {
   align-items: center;
   justify-content: center;
 }
-.vehicle.skeleton{
+
+.vehicle.skeleton {
   background-color: var(--secondary);
   width: 37px;
   height: 37px;
@@ -509,16 +523,15 @@ span.check {
   width: 95%;
   height: 95%;
   z-index: 10;
-  background: linear-gradient(
-    90deg,
-    var(--loading-animation) 25%,
-    var(--loading-animation-sec) 50%,
-    var(--loading-animation) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--loading-animation) 25%,
+      var(--loading-animation-sec) 50%,
+      var(--loading-animation) 75%);
   animation: shimmer 1s infinite reverse;
   background-size: 200% 100%;
   border-radius: 20px;
 }
+
 .vehicle.skeleton::before {
   content: "";
   position: absolute;
@@ -527,29 +540,30 @@ span.check {
   width: 100%;
   height: 100%;
   z-index: 10;
-  background: linear-gradient(
-    90deg,
-    var(--loading-animation) 25%,
-    var(--loading-animation-sec) 50%,
-    var(--loading-animation) 75%
-  );
+  background: linear-gradient(90deg,
+      var(--loading-animation) 25%,
+      var(--loading-animation-sec) 50%,
+      var(--loading-animation) 75%);
   animation: shimmer 1s infinite reverse;
   background-size: 200% 100%;
   border-radius: 20px;
 }
 
-.skeleton > span {
+.skeleton>span {
   opacity: 0;
 }
+
 .skeleton .hide {
   opacity: 0;
 }
-th > div {
+
+th>div {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-th > div .sort {
+
+th>div .sort {
   width: 15px;
   display: inline-block;
 }
@@ -560,6 +574,7 @@ th > div .sort {
   0% {
     background-position: -100px 0;
   }
+
   100% {
     background-position: 100px 0;
   }
@@ -674,11 +689,7 @@ th > div .sort {
 }
 
 
-.highlight{
+.highlight {
   background-color: var(--secondary);
   border: .5px solid var(--border);
 }
-
-
-
-

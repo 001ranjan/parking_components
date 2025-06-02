@@ -1,6 +1,6 @@
 <div class="container-main" [ngClass]="{'sidebar-closed': isSidebarClosed}">
- <!-- sidebar -->
-<ui-sidebar (sidebarToggled)="onSidebarToggled($event)"></ui-sidebar>
+  <!-- sidebar -->
+  <ui-sidebar (sidebarToggled)="onSidebarToggled($event)"></ui-sidebar>
 
   <main>
     <!-- top Heading -->
@@ -20,81 +20,59 @@
         <ui-button variant="split" size="small" label="Text" class="mr-10" iconRight="arrow-right" /> -->
 
         <!-- share modal -->
-        <ui-modal footerText="" title="Session Sharing" size="small" submitText="Share" #modal (submit)="onModalShareClick()">
+        <ui-modal footerText="" title="Session Sharing" size="small" submitText="Share" #modal
+          (submit)="onModalShareClick()">
           <ng-template #modalShare>
             <div class="sharing-modal">
               <div class="form-group mb-20">
-                <ui-text-field 
-                  label="Subject" 
-                  variant="primary" 
-                  [(ngModel)]="shareFormModel.subject" 
-                  name="subject" 
-                  placeholder="" 
-                  type="text" 
-                  required 
-                />
+                <ui-text-field label="Subject" variant="primary" [(ngModel)]="shareFormModel.subject" name="subject"
+                  placeholder="" type="text" required />
               </div>
               <div class="ui-grid gap-10 mt-7">
                 <div class="ui-col-6">
-                  <ui-dropdown
-                    size="medium"
-                    isDropdown="isDropdown"
-                    [dropdownList]="attachmentList"
-                    [(ngModel)]="selectedStatus"
-                    (selectionChange)="onAttachmentSelectionChange($event)"
-                  />
+                  <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="attachmentList"
+                    [(ngModel)]="selectedStatus" (selectionChange)="onAttachmentSelectionChange($event)" />
                 </div>
                 <div class="ui-col-6">
                   <div class="form-group">
-                    <ui-dropdown 
-                      isDropdown="isDropdown" 
-                      size="medium" 
-                      [dropdownList]="operatorList"
-                      [(ngModel)]="selectedOperator" 
-                      (selectionChange)="onOperatorSelectionChange($event)" 
-                    />
+                    <ui-dropdown isDropdown="isDropdown" size="medium" [dropdownList]="operatorList"
+                      [(ngModel)]="selectedOperator" (selectionChange)="onOperatorSelectionChange($event)" />
                   </div>
                 </div>
               </div>
 
               <div class="form-group mb-20 custom-radio">
-                <ui-text-field 
-                  label="Add ID of People" 
-                  variant="primary" 
-                  [(ngModel)]="shareFormModel.emails" 
-                  name="emails" 
-                  placeholder="" 
-                  type="text" 
-                  required 
-                />
+                <ui-text-field label="Add ID of People" variant="primary" [(ngModel)]="shareFormModel.emails"
+                  name="emails" placeholder="" type="text" required />
               </div>
 
               <div class="form-group">
                 <label>Choose date</label>
                 <div class="ui-grid mt-15">
                   <div class="ui-col-4">
-                    <ui-radio-button name="dateGroup" label="Yesterday" value="yesterday" (change)="onDateOptionChange('yesterday')" />
+                    <ui-radio-button name="dateGroup" label="Yesterday" value="yesterday"
+                      (change)="onDateOptionChange('yesterday')" />
                   </div>
                   <div class="ui-col-4">
-                    <ui-radio-button name="dateGroup" label="This Month" value="thisMonth" (change)="onDateOptionChange('thisMonth')" />
+                    <ui-radio-button name="dateGroup" label="This Month" value="thisMonth"
+                      (change)="onDateOptionChange('thisMonth')" />
                   </div>
                   <div class="ui-col-4">
-                    <ui-radio-button name="dateGroup" label="Choose Range" value="custom" (change)="onDateOptionChange('custom')" />
+                    <ui-radio-button name="dateGroup" label="Choose Range" value="custom"
+                      (change)="onDateOptionChange('custom')" />
                   </div>
                 </div>
               </div>
 
               <div *ngIf="isShareDateRangeVisible" class="date-range-picker mt-15">
-                <ui-range-calendar
-                  #rangeCalendar
-                  (dateRangeSelected)="onShareDateRangeSelected($event)"
-                />
+                <ui-range-calendar #rangeCalendar (dateRangeSelected)="onShareDateRangeSelected($event)" />
               </div>
 
               <div class="sharing-info mt-20">
                 <p class="medium-p">Sharing as <strong>Test Vendor</strong></p>
                 <p class="small-p">
-                  You should be aware of the privacy policy of sharing from Sistem Apps. The client might have restricted
+                  You should be aware of the privacy policy of sharing from Sistem Apps. The client might have
+                  restricted
                   policy around it. Please refer to the
                   <a href="#" class="text-red">Client Privacy Policy</a> and
                   <a href="#" class="text-red">Sistem Apps Sharing Policy</a>.
@@ -113,12 +91,8 @@
       <div class="left">
         <div class="small-heading mr-3">Filters</div>
         <!-- <ui-search size="small" class="mr-3" style="max-width: 190px" [(ngModel)]="searchQuery" (ngModelChange)="onSearch($event)" [contacts]="searchData" /> -->
-        <ui-search
-        #searchInput
-        size="small" class="mr-3" style="max-width: 190px"
-        [contacts]="searchData"
-        (searchTermChange)="onSearch($event)"
-      />
+        <ui-search #searchInput size="small" class="mr-3" style="max-width: 190px" [contacts]="searchData"
+          (searchTermChange)="onSearch($event)" />
         <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="sessionTypes"
           [selectedValue]="tempSelectedType" (selectionChange)="onTypeSelectionChange($event)" />
 
@@ -126,14 +100,9 @@
           [selectedValue]="tempSelectedOperator" (selectionChange)="onOperatorSelectionChange($event)" />
         <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="statusList"
           [selectedValue]="tempSelectedStatus" (selectionChange)="onStatusSelectionChange($event)" />
-        <ui-range-calendar 
-          #rangeCalendar
-          class="mr-3" 
-          [startDate]="tempSelectedRange.startDate"
-          [endDate]="tempSelectedRange.endDate"
-          [reset]="resetCalendarTrigger"
-          (dateRangeSelected)="onDateRangeSelected($event)"
-        />
+        <ui-range-calendar #rangeCalendar class="mr-3" [startDate]="tempSelectedRange.startDate"
+          [endDate]="tempSelectedRange.endDate" [reset]="resetCalendarTrigger"
+          (dateRangeSelected)="onDateRangeSelected($event)" />
         <ui-button variant="primary" size="small" label="Apply" (click)="applyFilter()" time="1000" />
         <div class="small-heading filter ml-10" (click)="clearFilters()">
           Clear
@@ -161,7 +130,7 @@
       <!-- <div *ngIf="paginatedSessions.length === 0" style="padding: 20px; color: var(--text);">
         No data to display. Total sessions: {{totalSessions}}
       </div> -->
-      
+
       <table>
         <thead>
           <tr>
@@ -195,13 +164,14 @@
                 <span> BOOKING {{ getSortIcon("booking") }}</span>
               </div>
             </th> -->
-            <th width="12.92%" (click)="sortSessions('timeIn')">
+            <th width="13.92%" (click)="sortSessions('timeIn')">
               <div [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span>IN TIME
-                  <span class="sort" [innerHTML]="getSortIcon('timeIn')"></span></span>
+                  <span class="sort" [innerHTML]="getSortIcon('timeIn')"></span>
+                </span>
               </div>
             </th>
-            <th width="12.92%" (click)="sortSessions('timeOut')">
+            <th width="13.92%" (click)="sortSessions('timeOut')">
               <div [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span>OUT TIME
                   <span class="sort" [innerHTML]="getSortIcon('timeOut')"></span></span>
@@ -261,7 +231,7 @@
                 [ngClass]="{ skeleton: isSkeletonVisible }"
               ></div>
             </th> -->
-            
+
             <th>
               <div class="blank" [ngClass]="{ skeleton: isSkeletonVisible }"></div>
             </th>
@@ -300,13 +270,13 @@
             <td>
               <div [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span appTooltip="{{ session.timeIn }}" placement="top">
-                  {{ session.timeIn | trimText : 14 }}</span>
+                  {{ session.timeIn }}</span>
               </div>
             </td>
             <td>
               <div [ngClass]="{ skeleton: isSkeletonVisible }">
                 <span appTooltip="{{ session.timeOut }}" placement="top">
-                  {{ session.timeOut | trimText : 14 }}</span>
+                  {{ session.timeOut }}</span>
               </div>
             </td>
             <td>
@@ -397,11 +367,5 @@
   time="100" />
 
 
-  <ui-toast
-    [toast]="toastType"
-    [message]="toastMessage"
-    [heading]="toastHeading"
-    [isShown]="isToastInfo"
-    [duration]="2000"
-    [position]="'bottom-right'"
-  />
+<ui-toast [toast]="toastType" [message]="toastMessage" [heading]="toastHeading" [isShown]="isToastInfo"
+  [duration]="2000" [position]="'bottom-right'" />

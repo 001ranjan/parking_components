@@ -26,10 +26,12 @@ export class ButtonsComponent {
   @Input() loader: string = '../../assets/images/icons/Loader.svg';
   @Input() disabled = false;
   @Input() time: any = '1000';
+  @Input() routerLink?: any[] | string;
+
 
   isLoading: boolean = false;
 
-  constructor(private sanitizer: DomSanitizer) {}
+  constructor(private sanitizer: DomSanitizer) { }
 
   onSubmit() {
     if (this.isLoading || this.disabled) return;

@@ -1,5 +1,5 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'; 
+import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,20 +20,20 @@ export class TextFieldComponent implements ControlValueAccessor {
   title: string = '';
   wordCount: number = 0;
   isFocused: boolean = false;
-  errorMessage: string = 'Please enter only numbers.';  
+  errorMessage: string = 'Please enter only numbers.';
   showPassword: boolean = false;
-  
+
   @Input() variant: 'primary' | 'secondary' = 'secondary';
   @Input() shape?: 'round' | 'corner' | 'default' = 'round';
-  @Input() hasError: boolean = false;  
-  @Input() error: boolean = false;  
-  @Input() disable: boolean = false;  
+  @Input() hasError: boolean = false;
+  @Input() error: boolean = false;
+  @Input() disable: boolean = false;
   @Input() label: string = 'Text';
   @Input() placeholder: string = 'Enter your text';
   @Input() type: string = 'text';
 
-  onChange: any = () => {};
-  onTouched: any = () => {};
+  onChange: any = () => { };
+  onTouched: any = () => { };
 
   writeValue(value: any): void {
     this.title = value;
@@ -75,10 +75,10 @@ export class TextFieldComponent implements ControlValueAccessor {
   }
 
   handleFocus(): void {
-    this.isFocused = true; 
+    this.isFocused = true;
   }
 
   handleBlur(): void {
-    this.isFocused = false; 
+    this.isFocused = false;
   }
 }

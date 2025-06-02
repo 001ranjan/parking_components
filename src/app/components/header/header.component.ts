@@ -7,9 +7,9 @@ import {
   HostListener,
 } from '@angular/core';
 import { ThemeService } from '../../theme.service';
-import { environment } from '../../../environments/environment';
 import { UserService } from '../../services/user.service';
-import { 
+import { RouterModule } from '@angular/router';
+import {
   NotificationComponent,
   ToggleComponent,
   AvatarComponent,
@@ -18,7 +18,7 @@ import {
   SearchComponent,
 } from 'sistem';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, NavigationStart } from '@angular/router';
 import { ButtonsComponent } from "../../../../projects/sistem/src/lib/buttons/buttons.component";
 
 @Component({
@@ -32,13 +32,13 @@ import { ButtonsComponent } from "../../../../projects/sistem/src/lib/buttons/bu
     SideNavigationComponent,
     IconComponent,
     CommonModule,
-    ButtonsComponent
-],
+    ButtonsComponent,
+    RouterModule,
+  ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements AfterViewInit {
-  parkingId: any;
   isUserDropdownOpen = false;
   userName = '';
   userEmail = '';
@@ -52,6 +52,7 @@ export class HeaderComponent implements AfterViewInit {
   labelText: string = 'Text';
   categories: any[] = ['Select parking'];
   categoriesId: string[] = [''];
+  parkingId: string = 'f5b0fc9f-ddde-4c3a-a25f-9ef679660db7';
 
   isPrimaryChecked: boolean = false;
   isSecondaryChecked: boolean = false;
@@ -80,24 +81,19 @@ export class HeaderComponent implements AfterViewInit {
     private renderer: Renderer2,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) {
+    // Router events subscription should be inside constructor body
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.isUserDropdownOpen = false;
+      }
+    });
+  }
 
   ngAfterViewInit(): void {
-    // this.checkScrollButtons();
-    // this.renderer.listen(this.menuContainer.nativeElement, 'scroll', () => this.checkScrollButtons());
+
   }
-  
 
-  // ngAfterViewInit(): void {
-  //   // this.checkScrollButtons();
-  //   // this.renderer.listen(this.menuContainer.nativeElement, 'scroll', () => this.checkScrollButtons());
-  // }
-
-  // checkScrollButtons(): void {
-  //   const container = this.menuContainer.nativeElement;
-  //   this.showScrollButtonNext = container.scrollWidth > container.clientWidth && container.scrollLeft < (container.scrollWidth - container.clientWidth - 10);
-  //   this.showScrollButtonPrev = container.scrollLeft > 10;
-  // }
   isFixed: boolean = false;
   @HostListener('window:scroll', ['$event'])
   onWindowScroll() {
@@ -116,20 +112,18 @@ export class HeaderComponent implements AfterViewInit {
 
   ngOnInit() {
     const savedTheme = localStorage.getItem('theme');
-    // console.log(savedTheme);
     if (savedTheme === 'dark') {
       document.documentElement.classList.add('dark-theme');
     } else {
       document.documentElement.classList.remove('dark-theme');
     }
-
     this.fetchParking();
     this.getUserDetails();
   }
-  
+
   contactData = [
     {
-      id: '', 
+      id: '',
       name: '',
       role: '',
       company: '',
@@ -240,7 +234,7 @@ export class HeaderComponent implements AfterViewInit {
     this.isDisabled = inputElement.checked;
   }
 
-  
+
 
   breadcrumbs = [
     { label: 'Home', url: '/' },
@@ -249,7 +243,7 @@ export class HeaderComponent implements AfterViewInit {
     { label: 'Televisions' },
   ];
 
-  
+
   toggleMobileMenu(): void {
     this.isMobileMenuOpen = !this.isMobileMenuOpen;
     this.updateBodyScroll();
@@ -267,18 +261,23 @@ export class HeaderComponent implements AfterViewInit {
       this.renderer.removeClass(document.body, 'no-scroll');
     }
   }
-  
+
 
   selectedCategory: string = '';
   isCategory: boolean = false;
 
   onCategoryChange(category: any) {
-    this.selectedCategory = category; 
+    this.selectedCategory = category;
   }
-  onListClick(id: any): void {
-    this.router.navigate([`/parking/${id}`]);
+  // onListClick(id: any): void {
+  //   this.router.navigate([`/parking/${id}`]);
+  // }
+
+  onListClick(id: any, page: 'parking' | 'passes' | 'bookings'): void {
+    this.router.navigate([`/${page}/${id}`]);
   }
-  
+
+
 
   collapsIcon = 'assets/images/icons/Loader.svg';
 
@@ -470,7 +469,7 @@ export class HeaderComponent implements AfterViewInit {
               // Add any other user properties you need
             };
             localStorage.setItem('userData', JSON.stringify(userData));
-            
+
             this.userName = `${user.firstName} ${user.lastName}`;
             this.userEmail = user.email || '';
           } else {

@@ -1,0 +1,201 @@
+<div class="container-main">
+  <!-- sidebar -->
+  <ui-settingSidebar (sidebarToggled)="onSidebarToggled($event)"></ui-settingSidebar>
+
+  <main class="pb-40">
+    <!-- profile details -->
+    <div class="parking-profile-detail mb-50">
+      <div>
+        <div class="parking-icon mb-20">
+          <ui-avatar class="mr-10" size="xxl" shape="round" avatarIcon="../../../assets/images/icons/avatar-2.svg" />
+        </div>
+        <div class="parking-name">
+          <div class="details">
+            <h2 class="mb-9">Roles & Users</h2>
+            <p class="">People & Roles in Test Godowlia Multilevel Parking and manage them across <br>Parking
+              Sistem Apps.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parking-rate-details">
+      <!-- parking rate -->
+      <div>
+        <h6 class="mb-6">Teams</h6>
+        <p class="small-p">Manage team members</p>
+      </div>
+      <div class="ui-grid mt-30">
+        <div class="ui-col-12">
+          <div class="rate-container">
+            <div class="flex space-between flex-align-items pl-15 pr-15 pt-15 pb-10">
+              <div class="rate-details flex flex-align-items gap-15">
+                <!-- <ui-vehicle vehicleIcon="../../../../assets/images/icons/helmet.svg" background="rgb(199, 223, 251)"
+                  size="xl" /> -->
+                <ui-notification icon="team" size="xxl" shape="circle" class="hide" sameIcon="invert" />
+                <div>
+                  <b>Teams</b>
+                  <p class="small-p">{{totalTeams}} items</p>
+                </div>
+              </div>
+              <!-- modal button -->
+              <ui-button variant="primary" shape="round" iconLeft="plus" size="medium"
+                (click)="modal.openModal(modalShareBike)" />
+            </div>
+
+            <!-- Parking ate list -->
+            <table>
+              <thead>
+                <tr>
+                  <th width="3%"></th>
+                  <th class="pl-15 pb-15"><span>FIRST NAME</span></th>
+                  <th class="pl-15 pb-15"><span>LAST NAME</span></th>
+                  <th class="pl-15 pb-15"><span>EMAIL</span></th>
+                  <th class="pl-15 pb-15"><span>PHONE</span></th>
+                  <th class="pl-15 pb-15"><span>GENDER</span></th>
+                  <th class="pl-15 pb-15"><span>ROLE</span></th>
+                  <th class="pl-15 pb-15"><span>STATUS</span></th>
+                  <th class="pl-15 pb-15"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let team of teams; let i = index">
+                  <td class="pl-15">
+                    <ui-notification size="md" icon="user" shape="circle" />
+                  </td>
+                  <td class="pl-15"><b>{{ team.firstName }}</b></td>
+                  <td class="pl-15"><span>{{ team.lastName }}</span></td>
+                  <td class="pl-15"><span>{{ team.email }}</span></td>
+                  <td class="pl-15"><span>{{ team.phone }}</span></td>
+                  <td class="pl-15"><span>{{ team.gender }}</span></td>
+                  <td class="pl-15"><span>{{ team.type }}</span></td>
+                  <td class="pl-15"><span>{{ team.status ? 'Active' : 'Inactive' }}</span></td>
+                  <td style="position: relative;" class="pr-10">
+                    <ui-notification icon="../../../../assets/images/icons/3-dots.svg" size="md" shape="circle"
+                      (click)="toggleDotAction($event, i, 'car')" />
+                    <div class="dot-action-pop" [class.show]="isDotActionOpen(i, 'car')"
+                      (click)="$event.stopPropagation()">
+                      <div class="dot-action-pop-item invert" (click)="editUser(team.id)">
+                        <span>Edit</span>
+                        <img src="../../../../assets/images/icons/editldpi.svg" alt="Edit">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="openDeleteModal(team)">
+                        <span>Delete</span>
+                        <img src="../../../../assets/images/icons/deleteldpi.svg" alt="Delete">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="modalSuspend.openModal(modalSuspendTemplate)">
+                        <span>Suspend</span>
+                        <img src="../../../../assets/images/icons/leadsldpi.svg" alt="Suspend">
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+
+<!-- modal container car parking-->
+<!-- <ui-modal footerText="" title="Add Team" size="small" submitText="Save" #modal (submit)="updateCarRate()">
+  <ng-template #modalShareBike> -->
+<ui-modal footerText="" [title]="editingUserId ? 'Edit Team Member' : 'Add Team Member'" size="small"
+  [submitText]="editingUserId ? 'Update' : 'Save'" #modal
+  (submit)="editingUserId ? updateTeamMember() : addTeamMember()">
+  <ng-template #modalShareBike>
+    <div class="ui-grid gap-20">
+      <div class="ui-col-6">
+        <ui-text-field label="First name" name="firstName" placeholder="" icon="users" type="text" variant="primary"
+          [(ngModel)]="newTeamMember.firstName" />
+      </div>
+      <div class="ui-col-6">
+        <ui-text-field label="Last name" name="lastName" placeholder="" type="text" variant="primary"
+          [(ngModel)]="newTeamMember.lastName" />
+      </div>
+      <div class="ui-col-6">
+        <ui-text-field label="Email" placeholder="" name="email" type="text" variant="primary"
+          [(ngModel)]="newTeamMember.email" />
+      </div>
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="roleList"
+          [(selectedValue)]="newTeamMember.userType" (selectionChange)="onRoleChange($event)">
+        </ui-dropdown>
+
+        <!-- <p>Selected Role: {{ newTeamMember.userType }}</p> -->
+
+      </div>
+      <div class="ui-col-6">
+        <ui-text-field label="Phone" placeholder="" name="phone" type="number" variant="primary"
+          [(ngModel)]="newTeamMember.phone" />
+      </div>
+
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="gender" [(ngModel)]="newTeamMember.gender"
+          (selectionChange)="onGenderChange($event)" optionValue="value" />
+      </div>
+    </div>
+
+    <div class="ui-col-6">
+      <ui-text-field label="Password" placeholder="" name="password" type="pass" variant="primary"
+        [(ngModel)]="newTeamMember.password" />
+    </div>
+  </ng-template>
+</ui-modal>
+
+
+
+
+
+<!-- Suspend Pass -->
+<ui-modal footerText="" title="Suspend Price Hour" size="small" submitText="Suspend Price Hour" #modalSuspend
+  (submit)="suspendSelectedPass()">
+  <ng-template #modalSuspendTemplate>
+    <div class="modal-content">
+      <div class="pass ui-flex justify-center text-center">
+        <div>
+          <p class="small-p">Are you sure to suspend this price hour?</p>
+          <b>You can not undo the change.</b>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ui-modal>
+
+
+<!-- delete Pass -->
+<!-- <ui-modal footerText=""
+  [title]="'Delete User - ' + (selectedUser?.firstName || '') + ' ' + (selectedUser?.lastName || '')" size="small"
+  submitText="Delete Price Hour" #modalDelete (submit)="deleteSelectedUser(selectedUser.id)">
+  <ng-template #modalDeleteTemplate>
+    <div class="modal-content">
+      <div class="pass ui-flex justify-center text-center">
+        <div>
+          <p class="small-p">Are you sure to delete this price hour?</p>
+          <b>You can not undo the change.</b>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ui-modal> -->
+
+<ui-modal footerText=""
+  [title]="'Delete User - ' + (selectedUser?.firstName || '') + ' ' + (selectedUser?.lastName || '')" size="small"
+  submitText="Delete" (submit)="deleteSelectedUser(selectedUser?.id)" #modalDelete>
+  <ng-template #modalDeleteTemplate>
+    <div class="modal-content">
+      <div class="pass ui-flex justify-center text-center">
+        <div>
+          <p class="small-p">Are you sure you want to delete this user?</p>
+          <b>You cannot undo this change.</b>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ui-modal>

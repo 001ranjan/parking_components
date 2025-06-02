@@ -3,8 +3,8 @@ import { UserService } from '../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { 
-  ButtonsComponent, 
+import {
+  ButtonsComponent,
   TextFieldComponent,
   IconComponent,
   ToastComponent
@@ -14,7 +14,7 @@ import {
   selector: 'app-login',
   standalone: true,
   imports: [
-    FormsModule, 
+    FormsModule,
     CommonModule,
     ButtonsComponent,
     TextFieldComponent,
@@ -30,7 +30,7 @@ export class LoginComponent {
   toastMessage = '';
   toastType: 'info' | 'success' | 'warning' | 'error' = 'error';
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) { }
 
   userLogin() {
     if (!this.loginData.loginId || !this.loginData.password) {
@@ -42,7 +42,7 @@ export class LoginComponent {
 
     this.userService.loginUser(this.loginData).subscribe(
       (response: any) => {
-        console.log('Login successful:', response);
+        // console.log('Login successful:', response);
         localStorage.setItem('token', response.token);
         if (response.user) {
           const userData = {
@@ -52,8 +52,24 @@ export class LoginComponent {
             email: response.user.email,
             role: response.user.role,
             permissions: response.user.permissions,
+            type: response.user.type //for user type
           };
           localStorage.setItem('userData', JSON.stringify(userData));
+          // on the base of user role define page
+          switch (response.user.type) {
+            case 'admin':
+              this.router.navigate(['/admin/dashboard']);
+              break;
+            case 'user':
+              this.router.navigate(['/user/home']);
+              break;
+            case 'manager':
+              this.router.navigate(['/manager/overview']);
+              break;
+            default:
+              this.router.navigate(['/parking/f5b0fc9f-ddde-4c3a-a25f-9ef679660db7']);
+          }
+
         }
         this.router.navigate(['/parking/f5b0fc9f-ddde-4c3a-a25f-9ef679660db7']);
       },

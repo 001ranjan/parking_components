@@ -140,11 +140,12 @@ interface ShareRequest {
     ToastComponent,
     SidebarComponent,
     FiltersComponent
-],
+  ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.css'],
 })
+
 export class SidenavComponent implements OnInit {
   subject: string = '';
   emails: string = '';
@@ -191,7 +192,7 @@ export class SidenavComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   selectedRange: { startDate: Date | null; endDate: Date | null } | null = null;
   topTag: { label: string; url: string }[] = [];
@@ -266,7 +267,7 @@ export class SidenavComponent implements OnInit {
 
   // Vehicle type mapping
   private vehicleTypeMap: { [key: string]: string } = {
-    'Bike': 'e7e2ffc1-faec-48b5-b8b1-735f28c1d3ab', 
+    'Bike': 'e7e2ffc1-faec-48b5-b8b1-735f28c1d3ab',
     'Car': '3d3f97d3-4cf0-45a6-9bbd-15ab5a6df8d6',
     'Cycle': '6a2aa2ad-cba2-49dc-b82f-531e8b158bf9',
     'Truck': 'truck-id-here'
@@ -281,15 +282,14 @@ export class SidenavComponent implements OnInit {
     endDate: null
   };
 
- 
+
 
   onSearch(value: string): void {
-    console.log('Search value:', value);
     this.searchQuery = value;
     this.currentPage = 1;
     this.fetchVehicleData();
   }
-  
+
   searchData = [
     {
       name: '',
@@ -303,7 +303,7 @@ export class SidenavComponent implements OnInit {
 
   filterSearchResults(): void {
     const query = this.searchQuery.trim().toLowerCase();
-  
+
     this.searchData = this.allVehicles.filter(item =>
       (item.name || '').toLowerCase().includes(query) ||
       (item.role || '').toLowerCase().includes(query) ||
@@ -311,7 +311,7 @@ export class SidenavComponent implements OnInit {
       (item.category || '').toLowerCase().includes(query)
     );
   }
-  
+
   getVehicleImage(vehicleTypeId: string): string {
     if (!vehicleTypeId) return '../../../../assets/images/icons/cycle.svg';
     switch (vehicleTypeId) {
@@ -323,25 +323,22 @@ export class SidenavComponent implements OnInit {
         return '../../../../assets/images/icons/cycle.svg';
     }
   }
-  
-  
+
+
   getVehicleData(): void {
     this.userService.vehicleList(this.parking_id, 1, 'createdAt:DESC', 25, 0, {}).subscribe((data) => {
       this.allVehicles = data.rows.map((item: any) => ({
         name: item.vehicle?.regNumber,
         role: item.inBy?.firstName || 'N/A',
         category: item.vehicle?.vehicleType || 'Uncategorized',
-        image: this.getVehicleImage(item.vehicle?.vehicleTypeId)  
+        image: this.getVehicleImage(item.vehicle?.vehicleTypeId)
       }));
       this.filterSearchResults();
     });
   }
-  
-  
-
 
   onTypeSelectionChange(value: string): void {
-    this.tempSelectedType = value; // Store in temporary variable
+    this.tempSelectedType = value;
   }
 
   onOperatorSelectionChange(value: string): void {
@@ -373,9 +370,9 @@ export class SidenavComponent implements OnInit {
     this.selectedOperator = this.operatorList[0]; // 'operator'
     this.selectedStatus = this.statusList[0]; // 'Status'
     if (this.searchInput) {
-      this.searchInput.clear();  
+      this.searchInput.clear();
     }
-    
+
     // Reset range and force calendar update
     this.selectedRange = {
       startDate: null,
@@ -386,10 +383,10 @@ export class SidenavComponent implements OnInit {
       this.rangeCalendar.clear();
     }
     this.resetCalendarTrigger = !this.resetCalendarTrigger;
-    
+
     // Reset search query
     this.searchQuery = '';
-    
+
     // Reset temporary filter values
     this.tempSelectedType = this.sessionTypes[0];
     this.tempSelectedOperator = this.operatorList[0];
@@ -401,10 +398,10 @@ export class SidenavComponent implements OnInit {
 
     // Reset pagination
     // this.currentPage = 1;
-    
+
     // Force immediate UI updates
     this.cdr.detectChanges();
-    
+
     // Fetch fresh data
     this.fetchVehicleData();
   }
@@ -420,11 +417,9 @@ export class SidenavComponent implements OnInit {
     const orderBy = 'createdAt:DESC';
     const limit = this.rowsPerPage;
     const offset = (this.currentPage - 1) * this.rowsPerPage;
-
     const filters: any = {};
 
     if (this.searchQuery && this.searchQuery.trim()) {
-      console.log('Adding vehicle number search filter:', this.searchQuery);
       filters.vehicleNo = this.searchQuery.trim();
     }
 
@@ -617,18 +612,18 @@ export class SidenavComponent implements OnInit {
       console.error('No token found');
       return;
     }
-    
+
     const tokenPayload = JSON.parse(atob(token.split('.')[1]));
     const userId = tokenPayload.sub;
-    
+
     this.userService.parkingUserDetail(userId).subscribe(
       (response) => {
         // Reset the operator map
         this.operatorMap = {};
-        
+
         // Add default operator
         this.operatorList = ['Operator'];
-        
+
         // Map response data
         response.forEach((res: any) => {
           const operatorName = `${res.firstName} ${res.lastName}`;
@@ -655,54 +650,7 @@ export class SidenavComponent implements OnInit {
     });
   }
 
-  menuItems = [
-    { route: '/session', label: 'Session', icon: 'bell' },
-    {
-      route: '/radio-button',
-      label: 'Radio btn',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/checkbox',
-      label: 'Checkbox',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/toggle',
-      label: 'Toggle',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/text',
-      label: 'Text',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/otp',
-      label: 'OTP',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/calendar',
-      label: 'Calendar',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/number',
-      label: 'Number',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/search',
-      label: 'Search',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-    {
-      route: '/sidebar',
-      label: 'Sidebar',
-      icon: '../../../assets/images/icons/dark.svg',
-    },
-  ];
+
 
   paginat() {
     try {
@@ -720,27 +668,27 @@ export class SidenavComponent implements OnInit {
   updatePagination(): void {
     try {
       this.isSkeletonVisible = true;
-      
+
       // Ensure we have valid arrays
       if (!Array.isArray(this.sessions)) this.sessions = [];
       if (!Array.isArray(this.filteredSessions)) this.filteredSessions = [];
       if (!Array.isArray(this.paginatedSessions)) this.paginatedSessions = [];
-      
+
       const startIndex = Math.max(0, (this.currentPage - 1) * this.rowsPerPage);
       const endIndex = Math.min(startIndex + this.rowsPerPage, this.totalSessions);
-      
+
       // Use filteredSessions if it has items, otherwise use sessions
       const sourceArray = this.filteredSessions.length > 0 ? this.filteredSessions : this.sessions;
-      
+
       // Ensure we don't exceed array bounds
       if (startIndex < sourceArray.length) {
         this.paginatedSessions = sourceArray.slice(startIndex, endIndex);
       } else {
         this.paginatedSessions = [];
       }
-      
+
       this.totalPages = Math.max(1, Math.ceil(this.totalSessions / this.rowsPerPage));
-      
+
     } catch (error) {
       console.error('Error in updatePagination:', error);
       this.paginatedSessions = [];
@@ -786,50 +734,42 @@ export class SidenavComponent implements OnInit {
   }
 
   @ViewChild('rangeCalendar') rangeCalendar: any;
- 
+
   getAppliedFilterCount(): number {
     let count = 0;
-    
+
     // Vehicle type - only count if not default and not empty
     if (this.selectedType && this.selectedType !== this.sessionTypes[0] && this.selectedType !== 'type') {
       count++;
     }
-  
+
     // Operator - only count if not default and not empty
     if (this.selectedOperator && this.selectedOperator !== this.operatorList[0] && this.selectedOperator !== 'operator') {
       count++;
     }
-  
+
     // Status - only count if not default and not empty
     if (this.selectedStatus && this.selectedStatus !== this.statusList[0] && this.selectedStatus !== 'Status') {
       count++;
     }
-  
+
     // Date range - only count if both dates are set
     if (this.selectedRange?.startDate && this.selectedRange?.endDate) {
       count++;
     }
-  
+
     // Search - only count if there's actual search text
     if (this.searchQuery && this.searchQuery.trim().length > 0) {
       count++;
     }
-  
+
     return count;
-}
-  
+  }
+
   updateTags() {
-    // console.log('Updating tags - curre/nt filters:', {
-    //   type: this.selectedType,
-    //   operator: this.selectedOperator,
-    //   status: this.selectedStatus,
-    //   range: this.selectedRange,
-    //   search: this.searchQuery
-    // });
-  
     const itemCount = this.totalSessions || 0;
     const filterCount = this.getAppliedFilterCount();
-    
+
     this.topTag = [
       { label: `${itemCount} items`, url: '#' },
       ...(filterCount > 0 ? [{ label: `${filterCount} Filter applied`, url: '#' }] : []),
@@ -839,6 +779,8 @@ export class SidenavComponent implements OnInit {
       { label: `Total: ${itemCount} items`, url: '#' },
     ];
   }
+
+
   // Method to handle "Select All" checkbox change
   selectAll(event: any): void {
     const checked = event?.target?.checked;
@@ -979,7 +921,7 @@ export class SidenavComponent implements OnInit {
       }
 
       const [_, _day, date, month, year, hours, minutes, ampm] = parts;
-      
+
       const monthMap: { [key: string]: number } = {
         'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
         'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
@@ -1031,12 +973,12 @@ export class SidenavComponent implements OnInit {
         startDate = yesterday.toISOString().split('T')[0];
         endDate = yesterday.toISOString().split('T')[0];
         break;
-      
+
       case 'thisMonth':
         startDate = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0];
         endDate = today.toISOString().split('T')[0];
         break;
-      
+
       case 'custom':
         if (this.shareModalRange && this.shareModalRange.startDate && this.shareModalRange.endDate) {
           startDate = this.shareModalRange.startDate.toISOString().split('T')[0];

@@ -1,22 +1,9 @@
-<button
-  [class]="variant + ' ' + size + ' ' + shape"
-  [ngClass]="{ disabled: disabled, loading: isLoading }"
-  (click)="onSubmit()"
-  [disabled]="disabled"
->
+<button [class]="variant + ' ' + size + ' ' + shape" [ngClass]="{ disabled: disabled, loading: isLoading }"
+  (click)="onSubmit()" [disabled]="disabled">
   <!-- Left icon if provided -->
   <ng-container *ngIf="iconLeft">
-    <img
-      *ngIf="isSvgPath(iconLeft)"
-      class="icon-left"
-      [src]="iconLeft"
-      alt="Left Icon"
-    />
-    <span
-      *ngIf="!isSvgPath(iconLeft)"
-      class="icon-left"
-      [innerHTML]="getIconSvg(iconLeft)"
-    ></span>
+    <img *ngIf="isSvgPath(iconLeft)" class="icon-left" [src]="iconLeft" alt="Left Icon" />
+    <span *ngIf="!isSvgPath(iconLeft)" class="icon-left" [innerHTML]="getIconSvg(iconLeft)"></span>
   </ng-container>
   <!-- Button label -->
   <span class="btn-lable">{{ label }}</span>
@@ -26,16 +13,7 @@
   </ng-container>
   <!-- Right icon if provided -->
   <ng-container *ngIf="iconRight">
-    <img
-      class="icon-right"
-      *ngIf="isSvgPath(iconRight)"
-      [src]="iconRight"
-      alt="Right Icon"
-    />
-    <span
-      *ngIf="!isSvgPath(iconRight)"
-      class="icon-right"
-      [innerHTML]="getIconSvg(iconRight)"
-    ></span>
+    <img class="icon-right" *ngIf="isSvgPath(iconRight)" [src]="iconRight" alt="Right Icon" />
+    <span *ngIf="!isSvgPath(iconRight)" class="icon-right" [innerHTML]="getIconSvg(iconRight)"></span>
   </ng-container>
 </button>

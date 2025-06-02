@@ -1,0 +1,464 @@
+<div class="container-main">
+  <!-- sidebar -->
+  <ui-settingSidebar (sidebarToggled)="onSidebarToggled($event)"></ui-settingSidebar>
+
+  <main class="pb-40">
+    <!-- profile details -->
+    <div class="parking-profile-detail mb-50">
+      <div>
+        <div class="parking-icon mb-20">
+          <ui-avatar class="mr-10" size="xxl" shape="round" avatarIcon="../../../assets/images/icons/avatar-2.svg" />
+        </div>
+        <div class="parking-name">
+          <div class="details">
+            <h2 class="mb-9">Parking Rates</h2>
+            <p class="medium-p">Easiest way to get going on Sistem Apps is to import your existing database to <br>the
+              Sistem Apps. Upload, Download or delete your data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="parking-rate-details">
+      <!-- parking rate -->
+      <div>
+        <h6 class="mb-6">Standard Parking Rates</h6>
+        <p class="small-p">For all kind of vehicles available at the parking</p>
+      </div>
+      <div class="ui-grid mt-30">
+        <div class="ui-col-12">
+          <div class="rate-container">
+            <div class="flex space-between flex-align-items pl-15 pr-15 pb-7 pt-15">
+              <div class="rate-details flex flex-align-items gap-15">
+                <ui-vehicle vehicleIcon="../../../../assets/images/icons/car.svg" background="rgb(199, 223, 251)"
+                  size="xl" sameIcon="invert" />
+                <div>
+                  <b>Car Rates</b>
+                  <p class="small-p">2 items</p>
+                </div>
+              </div>
+              <!-- modal button -->
+              <ui-button variant="primary" shape="round" iconLeft="plus" size="medium"
+                (click)="modal.openModal(modalShareCar)" />
+            </div>
+
+            <!-- Parking ate list -->
+            <table>
+              <thead>
+                <th class="pl-15 pb-15" width="3%"></th>
+                <th class="pl-15 pb-15"><span>DESCRIPTION</span></th>
+                <th class="pl-15 pb-15"><span>PRICING TYPE</span></th>
+                <th class="pl-15 pb-15"><span>AMOUNT</span></th>
+                <th class="pl-15 pb-15"><span>BEGIN DATE</span></th>
+                <th class="pl-15 pb-15"><span>END DATE</span></th>
+                <th class="pl-15 pb-15"><span>STATUS</span></th>
+                <th class="pl-15 pb-15"></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rate of carRateLists; let i = index">
+                  <td class="pl-15">{{ i + 1 }}</td>
+                  <td class="pl-15"><b>{{ rate.description }}</b></td>
+                  <td class="pl-15"><span>{{ rate.pricingType }}</span></td>
+                  <td class="pl-15"><span>₹{{ rate.amount }}</span></td>
+                  <td class="pl-15"><span>{{ rate.beginDate }}</span></td>
+                  <td class="pl-15"><span>{{ rate.endDate }}</span></td>
+                  <td class="pl-15"><span>{{ rate.status }}</span></td>
+                  <td style="position: relative;">
+                    <ui-notification icon="../../../../assets/images/icons/3-dots.svg" size="md" shape="circle"
+                      (click)="toggleDotAction($event, i, 'car')" />
+                    <div class="dot-action-pop" [class.show]="isDotActionOpen(i, 'car')"
+                      (click)="$event.stopPropagation()">
+                      <div class="dot-action-pop-item invert" (click)="modal.openModal(modalShareBike)">
+                        <span>Edit</span>
+                        <img src="../../../../assets/images/icons/editldpi.svg" alt="View">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="modalDelete.openModal(modalDeleteTemplate)">
+                        <span>Delete</span>
+                        <img src="../../../../assets/images/icons/deleteldpi.svg" alt="View">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="modalSuspend.openModal(modalSuspendTemplate)">
+                        <span>Suspend</span>
+                        <img src="../../../../assets/images/icons/leadsldpi.svg" alt="View">
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+
+
+      <div class="ui-grid mt-30">
+        <div class="ui-col-12">
+          <div class="rate-container">
+            <div class="flex space-between flex-align-items pl-15 pr-15 pb-7 pt-15">
+              <div class="rate-details flex flex-align-items gap-15">
+                <ui-vehicle vehicleIcon="../../../../assets/images/icons/cycle.svg" background="rgb(242, 222, 253)"
+                  size="xl" sameIcon="invert" />
+                <div>
+                  <b>Cycle Rates</b>
+                  <p class="small-p">2 items</p>
+                </div>
+              </div>
+              <!-- modal button -->
+              <ui-button variant="primary" shape="round" iconLeft="plus" size="medium"
+                (click)="modal.openModal(modalShareCycle)" />
+            </div>
+
+            <!-- Parking ate list -->
+            <table>
+              <thead>
+                <th class="pl-15 pb-15" width="2%"></th>
+                <th class="pl-15 pb-15"><span>DESCRIPTION</span></th>
+                <th class="pl-15 pb-15"><span>PRICING TYPE</span></th>
+                <th class="pl-15 pb-15"><span>AMOUNT</span></th>
+                <th class="pl-15 pb-15"><span>BEGIN DATE</span></th>
+                <th class="pl-15 pb-15"><span>END DATE</span></th>
+                <th class="pl-15 pb-15"><span>STATUS</span></th>
+                <th class="pl-15 pb-15"></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rate of cycleRateLists; let i = index">
+                  <td class="pl-15">{{ i + 1 }}</td>
+                  <td class="pl-15"><b>{{ rate.description }}</b></td>
+                  <td class="pl-15"><span>{{ rate.pricingType }}</span></td>
+                  <td class="pl-15"><span>₹{{ rate.amount }}</span></td>
+                  <td class="pl-15"><span>{{ rate.beginDate }}</span></td>
+                  <td class="pl-15"><span>{{ rate.endDate }}</span></td>
+                  <td class="pl-15"><span>{{ rate.status }}</span></td>
+                  <td style="position: relative;">
+                    <ui-notification icon="../../../../assets/images/icons/3-dots.svg" size="md" shape="circle"
+                      (click)="toggleDotAction($event, i, 'cycle')" />
+                    <div class="dot-action-pop" [class.show]="isDotActionOpen(i, 'cycle')"
+                      (click)="$event.stopPropagation()">
+                      <div class="dot-action-pop-item invert" (click)="modal.openModal(modalShareBike)">
+                        <span>Edit</span>
+                        <img src="../../../../assets/images/icons/editldpi.svg" alt="View">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="modalDelete.openModal(modalDeleteTemplate)">
+                        <span>Delete</span>
+                        <img src="../../../../assets/images/icons/deleteldpi.svg" alt="View">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="modalSuspend.openModal(modalSuspendTemplate)">
+                        <span>Suspend</span>
+                        <img src="../../../../assets/images/icons/leadsldpi.svg" alt="View">
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="ui-grid mt-30">
+        <div class="ui-col-12">
+          <div class="rate-container">
+            <div class="flex space-between flex-align-items pl-15 pr-15 pb-7 pt-15">
+              <div class="rate-details flex flex-align-items gap-15">
+                <ui-vehicle vehicleIcon="../../../../assets/images/icons/bike.svg" background="rgb(217, 239, 250)"
+                  size="xl" sameIcon="invert" />
+                <div>
+                  <b>Car Rates</b>
+                  <p class="small-p">2 items</p>
+                </div>
+              </div>
+
+              <div class="line">
+                <hr>
+              </div>
+              <!-- modal button -->
+              <ui-button variant="primary" shape="round" iconLeft="plus" size="medium"
+                (click)="modal.openModal(modalShareBike)" />
+            </div>
+
+            <!-- Parking ate list -->
+            <table>
+              <thead>
+                <th class="pl-15 pb-15" width="2%"></th>
+                <th class="pl-15 pb-15"><span>DESCRIPTION</span></th>
+                <th class="pl-15 pb-15"><span>PRICING TYPE</span></th>
+                <th class="pl-15 pb-15"><span>AMOUNT</span></th>
+                <th class="pl-15 pb-15"><span>BEGIN DATE</span></th>
+                <th class="pl-15 pb-15"><span>END DATE</span></th>
+                <th class="pl-15 pb-15"><span>STATUS</span></th>
+                <th class="pl-15 pb-15"></th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rate of bikeRateLists; let i = index">
+                  <td class="pl-15">{{ i + 1 }}</td>
+                  <td class="pl-15"><b>{{ rate.description }}</b></td>
+                  <td class="pl-15"><span>{{ rate.pricingType }}</span></td>
+                  <td class="pl-15"><span>₹{{ rate.amount }}</span></td>
+                  <td class="pl-15"><span>{{ rate.beginDate }}</span></td>
+                  <td class="pl-15"><span>{{ rate.endDate }}</span></td>
+                  <td class="pl-15"><span>{{ rate.status }}</span></td>
+                  <td style="position: relative;">
+                    <ui-notification icon="../../../../assets/images/icons/3-dots.svg" size="md" shape="circle"
+                      (click)="toggleDotAction($event, i, 'bike')" />
+                    <div class="dot-action-pop" [class.show]="isDotActionOpen(i, 'bike')"
+                      (click)="$event.stopPropagation()">
+                      <div class="dot-action-pop-item invert" (click)="modal.openModal(modalShareBike)">
+                        <span>Edit</span>
+                        <img src="../../../../assets/images/icons/editldpi.svg" alt="View">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="modalDelete.openModal(modalDeleteTemplate)">
+                        <span>Delete</span>
+                        <img src="../../../../assets/images/icons/deleteldpi.svg" alt="View">
+                      </div>
+                      <div class="dot-action-pop-item invert" (click)="modalSuspend.openModal(modalSuspendTemplate)">
+                        <span>Suspend</span>
+                        <img src="../../../../assets/images/icons/leadsldpi.svg" alt="View">
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+
+<!-- modal container car parking-->
+<ui-modal footerText="" title="Add Car Parking Rate" size="small" submitText="Save" #modal (submit)="updateCarRate()">
+  <ng-template #modalShareCar>
+    <div class="ui-grid">
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="priceType" />
+      </div>
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="status" />
+      </div>
+    </div>
+
+    <h5 class="mt-20 mb-0">Add Rates</h5>
+
+    <ul id="draggable-list" class="draggable-list">
+      <li *ngFor="let rate of rateList; let i = index">
+        <div class="draggable">
+          <form>
+            <div class="form-input error pb-15 pt-15">
+              <div class="data-row over">
+                <div class="data-box-container flex flex-align-items">
+                  <div class="data-box">
+                    <label><span>From</span></label>
+                    <input type="text" [(ngModel)]="rate.from" name="from{{i}}" placeholder="From">
+                  </div>
+                  <div class="data-box">
+                    <label><span>To</span></label>
+                    <input type="text" [(ngModel)]="rate.to" name="to{{i}}" placeholder="To">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Hourly Rate (₹)</span></label>
+                    <input type="text" [(ngModel)]="rate.hourlyRate" name="rate{{i}}" placeholder="Hourly Rate"
+                      (ngModelChange)="updateTotal(i)">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Tax (%)</span></label>
+                    <input type="number" [(ngModel)]="rate.tax" name="tax{{i}}" placeholder="Tax"
+                      (ngModelChange)="updateTotal(i)">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Total (₹)</span></label>
+                    <input type="text" [value]="rate.total" name="total{{i}}" placeholder="Total" readonly>
+                  </div>
+                  <ui-button shape="round" size="xsmall" iconLeft="x-mark" (click)="removeRate(i)"></ui-button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <div class="remark mt-10">
+        <ui-text-field label="Remark" placeholder="" type="text" variant="primary" />
+      </div>
+    </ul>
+
+
+    <div class="add-more flex flex-align-items space-between pt-5 pb-10">
+      <b>Add Another Rate</b>
+      <ui-button shape="round" size="xsmall" iconLeft="plus" (click)="addMoreList()"></ui-button>
+    </div>
+
+  </ng-template>
+</ui-modal>
+
+
+
+
+<!-- modal container cycle parking-->
+<ui-modal footerText="" title="Add Cycle Parking Rate" size="small" submitText="Save" #modal (submit)="updateCarRate()">
+  <ng-template #modalShareCycle>
+    <div class="ui-grid">
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="priceType" />
+      </div>
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="status" />
+      </div>
+    </div>
+
+    <h5 class="mt-20 mb-0">Add Rates</h5>
+
+    <ul id="draggable-list" class="draggable-list">
+      <li *ngFor="let rate of rateList; let i = index">
+        <div class="draggable">
+          <form>
+            <div class="form-input error pb-15 pt-15">
+              <div class="data-row over">
+                <div class="data-box-container flex flex-align-items">
+                  <div class="data-box">
+                    <label><span>From</span></label>
+                    <input type="text" [(ngModel)]="rate.from" name="from{{i}}" placeholder="From">
+                  </div>
+                  <div class="data-box">
+                    <label><span>To</span></label>
+                    <input type="text" [(ngModel)]="rate.to" name="to{{i}}" placeholder="To">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Hourly Rate (₹)</span></label>
+                    <input type="text" [(ngModel)]="rate.hourlyRate" name="rate{{i}}" placeholder="Hourly Rate"
+                      (ngModelChange)="updateTotal(i)">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Tax (%)</span></label>
+                    <input type="number" [(ngModel)]="rate.tax" name="tax{{i}}" placeholder="Tax"
+                      (ngModelChange)="updateTotal(i)">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Total (₹)</span></label>
+                    <input type="text" [value]="rate.total" name="total{{i}}" placeholder="Total" readonly>
+                  </div>
+                  <ui-button shape="round" size="xsmall" iconLeft="x-mark" (click)="removeRate(i)"></ui-button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <div class="remark mt-10">
+        <ui-text-field label="Remark" placeholder="" type="text" variant="primary" />
+      </div>
+    </ul>
+
+
+    <div class="add-more flex flex-align-items space-between pt-5 pb-10">
+      <b>Add Another Rate</b>
+      <ui-button shape="round" size="xsmall" iconLeft="plus" (click)="addMoreList()"></ui-button>
+    </div>
+
+  </ng-template>
+</ui-modal>
+
+
+<!-- modal container bike parking-->
+<ui-modal footerText="" title="Add Bike Parking Rate" size="small" submitText="Save" #modal (submit)="updateCarRate()">
+  <ng-template #modalShareBike>
+    <div class="ui-grid">
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="priceType" />
+      </div>
+      <div class="ui-col-6">
+        <ui-dropdown size="medium" isDropdown="isDropdown" [dropdownList]="status" />
+      </div>
+    </div>
+
+    <h5 class="mt-20 mb-0">Add Rates</h5>
+
+    <ul id="draggable-list" class="draggable-list">
+      <li *ngFor="let rate of rateList; let i = index">
+        <div class="draggable">
+          <form>
+            <div class="form-input error pb-15 pt-15">
+              <div class="data-row over">
+                <div class="data-box-container flex flex-align-items">
+                  <div class="data-box">
+                    <label><span>From</span></label>
+                    <input type="text" [(ngModel)]="rate.from" name="from{{i}}" placeholder="From">
+                  </div>
+                  <div class="data-box">
+                    <label><span>To</span></label>
+                    <input type="text" [(ngModel)]="rate.to" name="to{{i}}" placeholder="To">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Hourly Rate (₹)</span></label>
+                    <input type="text" [(ngModel)]="rate.hourlyRate" name="rate{{i}}" placeholder="Hourly Rate"
+                      (ngModelChange)="updateTotal(i)">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Tax (%)</span></label>
+                    <input type="number" [(ngModel)]="rate.tax" name="tax{{i}}" placeholder="Tax"
+                      (ngModelChange)="updateTotal(i)">
+                  </div>
+                  <div class="data-box">
+                    <label><span>Total (₹)</span></label>
+                    <input type="text" [value]="rate.total" name="total{{i}}" placeholder="Total" readonly>
+                  </div>
+                  <ui-button shape="round" size="xsmall" iconLeft="x-mark" (click)="removeRate(i)"></ui-button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </li>
+
+      <div class="remark mt-10">
+        <ui-text-field label="Remark" placeholder="" type="text" variant="primary" />
+      </div>
+    </ul>
+
+
+    <div class="add-more flex flex-align-items space-between pt-5 pb-10">
+      <b>Add Another Rate</b>
+      <ui-button shape="round" size="xsmall" iconLeft="plus" (click)="addMoreList()"></ui-button>
+    </div>
+
+  </ng-template>
+</ui-modal>
+
+
+<!-- Suspend Pass -->
+<ui-modal footerText="" title="Suspend Price Hour" size="small" submitText="Suspend Price Hour" #modalSuspend
+  (submit)="suspendSelectedPass()">
+  <ng-template #modalSuspendTemplate>
+    <div class="modal-content">
+      <div class="pass ui-flex justify-center text-center">
+        <div>
+          <p class="small-p">Are you sure to suspend this price hour?</p>
+          <b>You can not undo the change.</b>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ui-modal>
+
+
+<!-- Suspend Pass -->
+<ui-modal footerText="" title="Delete Price Hour" size="small" submitText="Delete Price Hour" #modalDelete
+  (submit)="deleteSelectedRate()">
+  <ng-template #modalDeleteTemplate>
+    <div class="modal-content">
+      <div class="pass ui-flex justify-center text-center">
+        <div>
+          <p class="small-p">Are you sure to delete this price hour?</p>
+          <b>You can not undo the change.</b>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</ui-modal>

@@ -1,5 +1,4 @@
-
-.icon-container{
+.icon-container {
   border-radius: 4px;
   overflow: hidden;
   display: grid;
@@ -7,22 +6,39 @@
   align-items: center;
   cursor: pointer;
 }
+
 .icon-container.secondary {
   background-color: var(--secondary);
 }
+
 .icon-container.primary {
   background-color: var(--primary);
 }
-.circle{
+
+.circle {
   border-radius: 50%;
 }
-.with-label{
+
+.with-label {
   background-color: var(--stage-active);
 }
 
 .icon-container.xxl {
   width: 52px;
   height: 52px;
+}
+
+.icon-container.xxl img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+.icon-container.xl img {
+  width: 43.5px;
+  height: 43.5px;
 }
 
 .icon-container.xl {
@@ -52,57 +68,62 @@
   display: block;
   border-radius: inherit;
 }
- .avatar-name{
+
+.avatar-name {
   font-weight: 600;
   color: var(--white);
 }
 
-.xxl .avatar-name{
+.xxl .avatar-name {
   font-size: 20px;
   line-height: 24.2px;
 }
 
-.xl .avatar-name{
+.xl .avatar-name {
   font-size: 16px;
   line-height: 19.36px;
 }
-.md .avatar-name{
+
+.md .avatar-name {
   font-size: 14px;
   line-height: 16.94px;
 }
 
-.sm .avatar-name{
+.sm .avatar-name {
   font-size: 12px;
   line-height: 14.52px;
 }
 
-.xsm .avatar-name{
+.xsm .avatar-name {
   font-size: 12px;
   line-height: 14.52px;
 }
 
 
 
-.xl .avatar-name{
+.xl .avatar-name {
   font-size: 14px;
   line-height: 16.94px;
 }
 
-img{
+img {
   max-width: 100%;
   height: 100%;
 }
 
 
-.car{
+.car {
   background-color: rgb(199, 223, 251);
 }
-.bike{
+
+.bike {
   background-color: rgb(199, 223, 251);
 }
-.cycle{
+
+.cycle {
   background-color: rgb(242, 222, 253);
 }
-.truck{
-background-color: #4cd9647a;
+
+.truck {
+  background-color: #4cd9647a;
 }

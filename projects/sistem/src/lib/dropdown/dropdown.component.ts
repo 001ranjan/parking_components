@@ -19,57 +19,67 @@ export class DropdownComponent implements OnInit, OnChanges {
   @Input() searchList: { label: string; url?: string }[] = [];
   @Input() contacts: { name: string; role: string; company: string; category: string; image: string; description: string }[] = [];
   @Input() selectedValue: string | null = null;
-  
-  @Output() selectionChange = new EventEmitter<string>(); 
+  @Output() selectedValueChange = new EventEmitter<string>();
+  @Output() selectionChange = new EventEmitter<string>();
 
   searchTerm: string = '';
   isFocused: boolean = false;
   showDropdown: boolean = false;
   selectedCategory: string = '';
   typing: boolean = false;
-  
+
   filteredContacts: { name: string; role: string; company: string; category: string; image: string; description: string }[] = [];
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
   ngOnInit(): void {
-    this.setDefaultCategory(); 
-    this.filterContacts(); 
+    this.setDefaultCategory();
+    this.filterContacts();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['contacts']) {
       this.filterContacts();
     }
-  
+
     if (changes['dropdownList']) {
       this.setDefaultCategory();
       this.filterContacts();
     }
-  
+
     if (changes['selectedValue'] && changes['selectedValue'].currentValue !== this.selectedCategory) {
       this.selectedCategory = changes['selectedValue'].currentValue || this.dropdownList[0];
     }
+
+    if (changes['selectedValue']) {
+      // console.log('selectedValue changed:', changes['selectedValue'].currentValue);
+
+      const newVal = changes['selectedValue'].currentValue;
+      if (newVal && newVal !== this.selectedCategory) {
+        this.selectedCategory = changes['selectedValue'].currentValue || this.dropdownList[0];
+        this.filterContacts();
+      }
+    }
   }
-  
- 
+
   private setDefaultCategory(): void {
     if (this.dropdownList.length > 0) {
-      this.selectedCategory = this.dropdownList[0]; 
+      this.selectedCategory = this.dropdownList[0];
     }
   }
 
   toggleDropdown(): void {
     this.showDropdown = !this.showDropdown;
-  } 
+  }
 
   selectCategory(category: string): void {
     this.selectedCategory = category;
     this.showDropdown = false;
     this.filterContacts();
     this.selectionChange.emit(this.selectedCategory); // Emit updated value
+    this.selectedValueChange.emit(this.selectedCategory);
   }
-  
+
 
   hideDropdown(): void {
     setTimeout(() => {
@@ -81,8 +91,8 @@ export class DropdownComponent implements OnInit, OnChanges {
     this.isFocused = this.searchTerm.length > 0;
 
     this.filteredContacts = this.contacts.filter(contact => {
-      const matchesCategory = 
-        contact.category.toLowerCase() === this.selectedCategory.toLowerCase() || 
+      const matchesCategory =
+        contact.category.toLowerCase() === this.selectedCategory.toLowerCase() ||
         this.selectedCategory === this.dropdownList[0];
       const matchesSearch = contact.name.toLowerCase().includes(this.searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;

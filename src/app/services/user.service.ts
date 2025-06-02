@@ -10,20 +10,14 @@ import { catchError } from 'rxjs/operators';
 export class UserService {
   private baseUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
+  // Login Api
   loginUser(data: { loginId: string; password: string }): Observable<any> {
     const url = `${environment.baseUrl}/auth/login`;
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.post(url, data, { headers });
   }
-
-  // Parked vehicle data
-  // parkedVehicleData(): Observable<any> {
-  //   const url = `${environment.baseUrl}/parking`;
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  //   return this.http.get(url, { headers });
-  // }
 
   parkedVehicleData(): Observable<any> {
     const url = `${environment.baseUrl}/parking`;
@@ -50,7 +44,7 @@ export class UserService {
       .set('orderBy', orderBy)
       .set('offset', offset.toString())
       .set('limit', limit.toString());
-    
+
     // Add filter parameters if they exist
     if (filters) {
       if (filters.vehicleType) {
@@ -76,19 +70,12 @@ export class UserService {
     }
 
     const url = `${environment.baseUrl}/parking/${parkingId}/transaction`;
-    
+
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${token}`,
     });
-
-    // console.log('Final API Request:');
-    // console.log('URL:', url);
-    // console.log('Headers:', headers);
-    // console.log('Params:', params.toString());
-    // console.log('Full URL with params:', `${url}?${params.toString()}`);
-    
     return this.http.get(url, { headers, params });
   }
 
@@ -116,7 +103,7 @@ export class UserService {
   }): Observable<any> {
     const url = `${environment.baseUrl}/parking/${parkingId}/transaction/share`;
     const token = localStorage.getItem('token');
-    
+
     if (!token) {
       console.error('No authentication token found');
       return throwError(() => new Error('Authentication token not found'));
@@ -127,9 +114,6 @@ export class UserService {
       Authorization: `Bearer ${token}`,
     });
 
-    // console.log('Making API request to:', url);
-    // console.log('Request headers:', headers);
-    // console.log('Request body:', shareRequest);
 
     return this.http.post(url, shareRequest, { headers }).pipe(
       catchError(error => {
@@ -158,7 +142,7 @@ export class UserService {
       .set('page', page.toString())
       .set('orderBy', orderBy)
       .set('limit', limit.toString());
-    
+
     // Add filter parameters if they exist
     if (filters) {
       if (filters.vehicleType) {
@@ -181,14 +165,112 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/pass/${parkingId}`, { headers, params });
   }
 
+
+  // getParkingFacility data
+  getParkingFacility(
+    parkingId: string,
+    page: number,
+    orderBy: string,
+    limit: number,
+    offset: number,
+    filters?: any,
+  ): Observable<any> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('orderBy', orderBy)
+      .set('offset', offset.toString())
+      .set('limit', limit.toString());
+
+    if (filters) {
+      if (filters.vehicleType) {
+        params = params.set('vehicleTypeId', filters.vehicleType);
+      }
+      if (filters.inById) {
+        params = params.set('operator', filters.inById);
+      }
+      if (filters.status) {
+        params = params.set('status', filters.status);
+      }
+      if (filters.from) {
+        params = params.set('from', filters.from);
+      }
+      if (filters.to) {
+        params = params.set('to', filters.to);
+      }
+    }
+
+    const url = `${this.baseUrl}/facility/parking/${parkingId}/transactions`;
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get(url, { headers, params });
+  }
+  // get team api
+  getTeamList(parkingId: string) {
+    const url = `${this.baseUrl}/user/teams/${parkingId}`;
+
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get(url, { headers });
+  }
+
+
+  // new team add post api
+  registerTeamMember(member: any) {
+    const url = `${this.baseUrl}/auth/register`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.post(url, member, { headers });
+  }
+
+  // update team put api
+  updateTeamMember(userId: string, member: any) {
+    const url = `${this.baseUrl}/user/${userId}`; // Using the URL format from your example
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.put(url, member, { headers });
+  }
+
+  // delete user api
+  deleteUser(userId: string): Observable<void> {
+    const url = `${this.baseUrl}/user/${userId}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.delete<void>(url, { headers });
+  }
+
+
+
   // Utility function to format dates
   formatDate(date: Date | string, prefix?: string): string {
     if (!date) return '';
-    
+
     const d = new Date(date);
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    
+
     const day = days[d.getDay()];
     const dateNum = d.getDate().toString().padStart(2, '0');
     const month = months[d.getMonth()];
@@ -197,7 +279,7 @@ export class UserService {
     const minutes = d.getMinutes().toString().padStart(2, '0');
     const amPm = hours >= 12 ? 'PM' : 'AM';
     const formattedHours = hours % 12 || 12;
-    
+
     const formattedDate = `${day} ${dateNum} ${month}${year} ${formattedHours}:${minutes}${amPm}`;
     return prefix ? `${prefix} ${formattedDate}` : formattedDate;
   }

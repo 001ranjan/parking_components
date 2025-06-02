@@ -145,7 +145,7 @@ export class PassesComponent implements OnInit {
   @ViewChild('modal') modal!: ModalComponent;
   @ViewChild('modalShare') modalShare: any;
   @ViewChild('modalSuspend') modalSuspend!: any;
-  
+
   subject: string = '';
   emails: string = '';
   baseUrl = environment.baseUrl;
@@ -190,7 +190,7 @@ export class PassesComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
-  ) {}
+  ) { }
 
   selectedRange: { startDate: Date | null; endDate: Date | null } | null = null;
   topTag: { label: string; url: string }[] = [];
@@ -271,15 +271,15 @@ export class PassesComponent implements OnInit {
 
   fetchOperators() {
     if (!this.parking_id) return;
-    
+
     this.userService.parkingUserDetail(this.parking_id).subscribe({
       next: (response: any) => {
         if (response && Array.isArray(response)) {
           // Update operator list with actual operators
-          this.operatorList = ['operator', ...response.map((op: any) => 
+          this.operatorList = ['operator', ...response.map((op: any) =>
             `${op.firstName} ${op.lastName}`
           )];
-          
+
           // Create operator map for ID lookup
           response.forEach((op: any) => {
             const fullName = `${op.firstName} ${op.lastName}`;
@@ -307,13 +307,13 @@ export class PassesComponent implements OnInit {
 
     // Prepare filters
     const filters: any = {};
-    
+
     // Vehicle Type Filter
     if (this.selectedType && this.selectedType !== this.sessionTypes[0]) {
       const vehicleTypeId = this.vehicleTypeMap[this.selectedType];
       console.log('Selected Type:', this.selectedType);
       console.log('Vehicle Type ID:', vehicleTypeId);
-      
+
       if (vehicleTypeId) {
         filters.vehicleType = vehicleTypeId;
         console.log('Filters being sent:', filters);
@@ -393,11 +393,11 @@ export class PassesComponent implements OnInit {
 
           // Apply client-side filtering for vehicle type, operator, and status
           let filteredData = mappedData;
-          
+
           // Vehicle Type Filter
           if (this.selectedType && this.selectedType !== this.sessionTypes[0]) {
             const vehicleTypeId = this.vehicleTypeMap[this.selectedType];
-            filteredData = filteredData.filter((item: { vehicle: { vehicleTypeId: string } }) => 
+            filteredData = filteredData.filter((item: { vehicle: { vehicleTypeId: string } }) =>
               item.vehicle.vehicleTypeId === vehicleTypeId
             );
           }
@@ -405,7 +405,7 @@ export class PassesComponent implements OnInit {
           // Operator Filter
           if (this.selectedOperator && this.selectedOperator !== this.operatorList[0]) {
             const operatorId = this.operatorMap[this.selectedOperator];
-            filteredData = filteredData.filter((item: { createdBy: { id: string } }) => 
+            filteredData = filteredData.filter((item: { createdBy: { id: string } }) =>
               item.createdBy.id === operatorId
             );
           }
@@ -415,7 +415,7 @@ export class PassesComponent implements OnInit {
             filteredData = filteredData.filter((item: { startDate: string, endDate: string }) => {
               const remainingDays = this.calculateRemainingDays(item.startDate, item.endDate);
               console.log('Pass:', item.startDate, item.endDate, 'Remaining days:', remainingDays);
-              
+
               if (this.selectedStatus === 'active') {
                 return remainingDays > 0;
               } else if (this.selectedStatus === 'expired') {
@@ -432,17 +432,17 @@ export class PassesComponent implements OnInit {
               const endDate = new Date(item.endDate);
               const filterStartDate = new Date(this.selectedRange!.startDate!);
               const filterEndDate = new Date(this.selectedRange!.endDate!);
-              
+
               // Set all dates to midnight for accurate comparison
               startDate.setHours(0, 0, 0, 0);
               endDate.setHours(0, 0, 0, 0);
               filterStartDate.setHours(0, 0, 0, 0);
               filterEndDate.setHours(0, 0, 0, 0);
-              
+
               // Check if the pass's date range overlaps with the filter date range
               return (startDate >= filterStartDate && startDate <= filterEndDate) ||
-                     (endDate >= filterStartDate && endDate <= filterEndDate) ||
-                     (startDate <= filterStartDate && endDate >= filterEndDate);
+                (endDate >= filterStartDate && endDate <= filterEndDate) ||
+                (startDate <= filterStartDate && endDate >= filterEndDate);
             });
           }
 
@@ -451,7 +451,7 @@ export class PassesComponent implements OnInit {
           this.totalPasses = response.count || 0;
           this.totalPages = Math.ceil(this.totalPasses / this.rowsPerPage);
           this.updateTags();
-          
+
           // Force change detection
           this.cdr.detectChanges();
         } else {
@@ -477,13 +477,13 @@ export class PassesComponent implements OnInit {
   }
 
   updateTags() {
-    const isFiltered = this.selectedType !== this.sessionTypes[0] || 
-                      this.selectedOperator !== this.operatorList[0] || 
-                      this.selectedStatus !== this.statusList[0] || 
-                      (this.selectedRange && this.selectedRange.startDate && this.selectedRange.endDate);
+    const isFiltered = this.selectedType !== this.sessionTypes[0] ||
+      this.selectedOperator !== this.operatorList[0] ||
+      this.selectedStatus !== this.statusList[0] ||
+      (this.selectedRange && this.selectedRange.startDate && this.selectedRange.endDate);
 
     const displayCount = isFiltered ? this.paginatedPasses.length : this.totalPasses;
-    
+
     this.topTag = [
       { label: `${displayCount} items`, url: '/' },
       { label: 'Sorted by START DATE', url: '/' },
@@ -495,7 +495,7 @@ export class PassesComponent implements OnInit {
 
   // Vehicle type mapping
   private vehicleTypeMap: { [key: string]: string } = {
-    'Bike': 'e7e2ffc1-faec-48b5-b8b1-735f28c1d3ab', 
+    'Bike': 'e7e2ffc1-faec-48b5-b8b1-735f28c1d3ab',
     'Car': '3d3f97d3-4cf0-45a6-9bbd-15ab5a6df8d6',
     'Cycle': '6a2aa2ad-cba2-49dc-b82f-531e8b158bf9',
     'Truck': 'truck-id-here'
@@ -511,8 +511,7 @@ export class PassesComponent implements OnInit {
   };
 
   onTypeSelectionChange(value: string): void {
-    console.log('Type selection changed:', value);
-    this.tempSelectedType = value; // Store in temporary variable
+    this.tempSelectedType = value;
   }
 
   onOperatorSelectionChange(value: string): void {
@@ -634,27 +633,27 @@ export class PassesComponent implements OnInit {
   updatePagination(): void {
     try {
       this.isSkeletonVisible = true;
-      
+
       // Ensure we have valid arrays
       if (!Array.isArray(this.sessions)) this.sessions = [];
       if (!Array.isArray(this.filteredSessions)) this.filteredSessions = [];
       if (!Array.isArray(this.paginatedSessions)) this.paginatedSessions = [];
-      
+
       const startIndex = Math.max(0, (this.currentPage - 1) * this.rowsPerPage);
       const endIndex = Math.min(startIndex + this.rowsPerPage, this.totalSessions);
-      
+
       // Use filteredSessions if it has items, otherwise use sessions
       const sourceArray = this.filteredSessions.length > 0 ? this.filteredSessions : this.sessions;
-      
+
       // Ensure we don't exceed array bounds
       if (startIndex < sourceArray.length) {
         this.paginatedSessions = sourceArray.slice(startIndex, endIndex);
       } else {
         this.paginatedSessions = [];
       }
-      
+
       this.totalPages = Math.max(1, Math.ceil(this.totalSessions / this.rowsPerPage));
-      
+
     } catch (error) {
       console.error('Error in updatePagination:', error);
       this.paginatedSessions = [];
@@ -700,7 +699,7 @@ export class PassesComponent implements OnInit {
   }
 
   @ViewChild('rangeCalendar') rangeCalendar: any;
- 
+
   // Method to handle "Select All" checkbox change
   selectAll(event: any): void {
     const checked = event?.target?.checked;
@@ -843,7 +842,7 @@ export class PassesComponent implements OnInit {
       }
 
       const [_, _day, date, month, year, hours, minutes, ampm] = parts;
-      
+
       const monthMap: { [key: string]: number } = {
         'Jan': 0, 'Feb': 1, 'Mar': 2, 'Apr': 3, 'May': 4, 'Jun': 5,
         'Jul': 6, 'Aug': 7, 'Sep': 8, 'Oct': 9, 'Nov': 10, 'Dec': 11
@@ -894,12 +893,12 @@ export class PassesComponent implements OnInit {
         startDate = yesterday.toISOString().split('T')[0];
         endDate = yesterday.toISOString().split('T')[0];
         break;
-      
+
       case 'thisMonth':
         startDate = new Date(today.getFullYear(), today.getMonth(), 1).toISOString().split('T')[0];
         endDate = today.toISOString().split('T')[0];
         break;
-      
+
       case 'custom':
         if (this.shareModalRange?.startDate && this.shareModalRange?.endDate) {
           startDate = this.shareModalRange.startDate.toISOString().split('T')[0];
@@ -962,15 +961,15 @@ export class PassesComponent implements OnInit {
     const start = new Date(startDate);
     const end = new Date(endDate);
     const today = new Date();
-    
+
     // Set all dates to midnight for accurate day calculation
     start.setHours(0, 0, 0, 0);
     end.setHours(0, 0, 0, 0);
     today.setHours(0, 0, 0, 0);
-    
+
     // Calculate remaining days from today to end date
     const remainingDays = Math.ceil((end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
-    
+
     // Return remaining days, but not less than 0
     return Math.max(0, remainingDays);
   }
@@ -1011,7 +1010,7 @@ export class PassesComponent implements OnInit {
 
   sharePassDetails() {
     if (!this.selectedPass) return;
-    
+
     const subject = 'Your Parking Sistem Pass Details';
     const validFor = this.selectedPass.parking.name;
     const vehicleNumber = this.selectedPass.vehicle.regNumber;
@@ -1028,10 +1027,10 @@ export class PassesComponent implements OnInit {
   <div style="text-align: center; margin-bottom: 20px;">
     <img src="https://sistem.app/assets/images/logo.svg" alt="Sistem Logo" style="max-width: 150px; height: auto;">
   </div>
-  
+
   <div style="background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
     <h2 style="color: #333; margin-bottom: 20px; text-align: center;">Parking Pass Details</h2>
-    
+
     <div style="margin-bottom: 20px;">
       <h3 style="color: #666; margin-bottom: 10px;">Pass Information</h3>
       <table style="width: 100%; border-collapse: collapse;">

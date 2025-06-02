@@ -7,28 +7,17 @@
       </div>
       <div class="desktop-logo dark">
         <img src="../../../assets/logo/sale.svg" alt="Logo" />
-        <img
-          src="../../../assets/logo/white-logo.svg"
-          alt="Logo"
-          class="ml-10"
-        />
+        <img src="../../../assets/logo/white-logo.svg" alt="Logo" class="ml-10" />
       </div>
     </div>
 
     <div class="ui-col-6">
-      <ui-search
-      #searchComponent
-      isCategory="isCategory"
-      [contacts]="contactData"
-      [categories]="categories"
-      (categoryChange)="onCategoryChange($event)"
-      [initialValue]="selectedCategory"
-      [categoriesId]="categoriesId"
-      (listClick)="onListClick($event)"
-    />
+      <ui-search #searchComponent isCategory="isCategory" [contacts]="contactData" [categories]="categories"
+        (categoryChange)="onCategoryChange($event)" [initialValue]="selectedCategory" [categoriesId]="categoriesId"
+        (listClick)="onListClick($event,'parking')" />
 
-<!-- Rest of your existing header template remains exactly the same -->
-    </div> 
+      <!-- Rest of your existing header template remains exactly the same -->
+    </div>
 
     <div class="ui-col-3 justify-end flex flex-align-items">
       <!-- avatar icon -->
@@ -81,13 +70,8 @@
         icon="question-mark-circle"
       /> -->
 
-      <ui-avatar
-        class="mr-10"
-        size="md"
-        shape="round"
-        avatarIcon="../../../assets/images/icons/avatar-2.svg"
-        (click)="toggleUserDropdown()"
-      />
+      <ui-avatar class="mr-10" size="md" shape="round" avatarIcon="../../../assets/images/icons/avatar-2.svg"
+        (click)="toggleUserDropdown()" />
 
       <div class="user-dropdown" *ngIf="isUserDropdownOpen">
         <div class="user-info">
@@ -95,32 +79,33 @@
             <img src="../../../assets/images/icons/avatar-2.svg" alt="User Avatar" />
           </div>
           <div class="user-details">
-            <div class="user-name"><h6>{{userName}}</h6></div>
-            <div class="user-email small-p">{{userEmail}}</div>
+            <div class="user-name">
+              <h6>{{userName}}</h6>
+            </div>
+            <div class="user-email small-p mt-2">{{userEmail}}</div>
+            <div class="mt-5"><ui-button label="Sistem Account" size="xsmall" shape="ovel" variant="primary" /></div>
           </div>
         </div>
         <div class="dropdown-divider"></div>
         <div class="dropdown-item" (click)="logout()">
-      <ui-button label="Logout" size="xsmall" shape="ovel" variant="text"/>
+          <p class="small-p mb-12 mt-9">This account is managed by Sistem Apps</p>
+          <div class="mb-10">
+
+            <ui-button label="Manage this parking" size="xsmall" shape="ovel" variant="text"
+              (click)="$event.stopPropagation()" [routerLink]="['/setting/profile', parkingId]"
+              routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"></ui-button>
+
+          </div>
+          <div> <ui-button label="Logout" size="xsmall" shape="ovel" variant="text" /></div>
         </div>
       </div>
 
       <ui-toggle (toggleChange)="toggleTheme($event)" />
 
       <div class="humberger" (click)="toggleMobileMenu()">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-          class="size-6"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
-          />
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+          class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25" />
         </svg>
       </div>
 

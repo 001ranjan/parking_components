@@ -1,5 +1,5 @@
 <div class="notification-container">
-  <div class="icon-container" [ngClass]="[size, shape, variant]">
+  <div class="icon-container {{bgColor}}" [ngClass]="[size, shape, variant, sameIcon]">
     <ng-container *ngIf="isSvgPath(icon || defaultIcon); else svgIcon">
       <img [src]="icon || defaultIcon" alt="notification icon" />
     </ng-container>

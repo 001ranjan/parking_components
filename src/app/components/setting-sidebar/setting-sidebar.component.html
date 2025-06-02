@@ -1,0 +1,62 @@
+<nav id="sidebar" [class.close]="isSidebarClosed">
+  <ul>
+    <!-- <li>
+      <button id="toggle-btn" [class.rotate]="isSidebarClosed" (click)="toggleSidebar()">
+        <div class="icon"><ui-icon icon="menu"></ui-icon></div>
+      </button>
+    </li> -->
+
+    <li class="setting-p">
+      <a>
+        <p class="medium-p">Account Settings</p>
+      </a>
+    </li>
+
+    <li [routerLink]="['/setting/profile', parkingId]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <a>
+        <div class="icon">
+          <ui-icon icon="profile" appTooltip="Dashboard" placement="right"></ui-icon>
+        </div>
+        <span>Profile</span>
+      </a>
+    </li>
+
+    <li [routerLink]="['/setting/parking-rate', parkingId]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <a>
+        <div class="icon">
+          <ui-icon icon="u1" appTooltip="Dashboard" placement="right"></ui-icon>
+        </div>
+        <span>Parking Rate</span>
+      </a>
+    </li>
+    <li [routerLink]="['/setting/passes', parkingId]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <a>
+        <div class="icon">
+          <ui-icon icon="pass" appTooltip="Dashboard" placement="right"></ui-icon>
+        </div>
+        <span>Passes</span>
+      </a>
+    </li>
+    <li [routerLink]="['/setting/facilities', parkingId]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <a>
+        <div class="icon">
+          <ui-icon icon="profile" appTooltip="Dashboard" placement="right"></ui-icon>
+        </div>
+        <span>Facilities</span>
+      </a>
+    </li>
+    <li [routerLink]="['/setting/team', parkingId]" routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: true }">
+      <a>
+        <div class="icon">
+          <ui-icon icon="profile" appTooltip="Dashboard" placement="right"></ui-icon>
+        </div>
+        <span>Team</span>
+      </a>
+    </li>
+  </ul>
+</nav>

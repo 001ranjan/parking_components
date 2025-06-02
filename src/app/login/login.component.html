@@ -1,28 +1,3 @@
-<!-- <form (ngSubmit)="userLogin()">
-  <div>
-    <label for="loginId">Email</label>
-    <input
-      type="email"
-      id="loginId"
-      [(ngModel)]="loginData.loginId"
-      name="loginId"
-      required
-    />
-  </div>
-  <div>
-    <label for="password">Password</label>
-    <input
-      type="password"
-      id="password"
-      [(ngModel)]="loginData.password"
-      name="password"
-      required
-    />
-  </div>
-  <button type="submit">Login</button>
-</form> -->
-
-
 <div class="login-container">
   <div class="login-box">
     <div class="login-header">
@@ -36,31 +11,15 @@
 
     <form (ngSubmit)="userLogin()" class="login-form">
       <div class="form-group">
-        <ui-text-field
-          label="Email"
-          variant="primary"
-          id="loginId"
-          [(ngModel)]="loginData.loginId"
-          name="loginId"
-          placeholder=""
-          type="email"
-          required
-        >
+        <ui-text-field label="Email" variant="primary" id="loginId" [(ngModel)]="loginData.loginId" name="loginId"
+          placeholder="" type="email" required>
           <ui-icon icon="mail" slot="prefix"></ui-icon>
         </ui-text-field>
       </div>
 
       <div class="form-group">
-        <ui-text-field
-          label="Password"
-          variant="primary"
-          id="password"
-          [(ngModel)]="loginData.password"
-          name="password"
-          placeholder=""
-          type="password"
-          required
-        >
+        <ui-text-field label="Password" variant="primary" id="password" [(ngModel)]="loginData.password" name="password"
+          placeholder="" type="password" required>
           <ui-icon icon="lock-closed" slot="prefix"></ui-icon>
         </ui-text-field>
       </div>
@@ -71,10 +30,6 @@
     </form>
   </div>
 
-  <ui-toast
-    [isShown]="showToast"
-    [toast]="toastType"
-    [message]="toastMessage"
-    [heading]="toastType === 'error' ? 'Error' : 'Success'"
-  />
+  <ui-toast [isShown]="showToast" [toast]="toastType" [message]="toastMessage"
+    [heading]="toastType === 'error' ? 'Error' : 'Success'" />
 </div>

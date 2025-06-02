@@ -1,5 +1,6 @@
 <div class="notification-container">
-  <div class="icon-container" [class]="size + ' ' + shape + ' ' + vehicle">
+  <div class="icon-container" [class]="size + ' ' + shape + ' ' + vehicle + ' ' + customclass + ' ' + sameIcon"
+    [style.background-color]="background">
     <img [src]="vehicleIcon || defaultIcon" alt="notification icon" />
   </div>
 </div>
