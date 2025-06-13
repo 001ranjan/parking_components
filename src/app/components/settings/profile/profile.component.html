@@ -11,7 +11,7 @@
         </div>
         <div class="parking-name">
           <div class="details">
-            <h2 class="mb-9">Welcome, Test Godowlia Multilevel Parking</h2>
+            <h2 class="mb-9">Welcome, {{parkingName}}</h2>
             <p class="medium-p">Manage your info, team, privacy, and security to make Sistem Apps work better <br>for
               you and everyone associated.</p>
           </div>
@@ -31,22 +31,22 @@
                 <!-- vendor name -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Vendor</p>
-                  <p class="regular-p"><b>Test Vendor</b></p>
+                  <p class="regular-p"><b>{{vendorName}}</b></p>
                 </div>
                 <!-- vendor since -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Since</p>
-                  <p class="regular-p"><b>Tue 31 Jan 23 09:54AM</b></p>
+                  <p class="regular-p"><b>{{vendorCreatedDate}}</b></p>
                 </div>
                 <!-- vendor email -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Email</p>
-                  <p class="regular-p"><b>test.v.com</b></p>
+                  <p class="regular-p"><b>{{vendorEmail}}</b></p>
                 </div>
                 <!-- vendor phone -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Phone</p>
-                  <p class="regular-p"><b>908345109 </b></p>
+                  <p class="regular-p"><b>{{vendorPhone}}</b></p>
                 </div>
               </div>
 
@@ -86,43 +86,33 @@
           <div class="vendor-container">
             <div class="pb-20 pl-30 pr-30 pt-30">
               <h5 class="mb-15">About Parking</h5>
-              <p class="regular-p">Godowlia Multi Level Two-Wheeler Parking is a dedicated two-wheeler parking located
-                at
-                Godowlia Crossing, On the way to Shree Kashi Vishwanath Temple, Varanasi. It has a capacity of 375
-                two-wheelers and has a G+4 steel structure with Police booth and Pumping Station on the ground floor.
-              </p>
+              <p class="regular-p">{{aboutParking}}</p>
               <div class="vendor-containers mt-20">
                 <!-- vendor name -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Parking Name</p>
-                  <p class="regular-p"><b>Test Godowlia Multilevel Parking</b></p>
+                  <p class="regular-p"><b>{{parkingName}}</b></p>
                 </div>
                 <!-- vendor since -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Address</p>
-                  <p class="regular-p"><b>
-                      Godowlia Crossing, Varanasi
-                    </b></p>
+                  <p class="regular-p"><b>{{parkingAddress}}</b></p>
                 </div>
                 <!-- vendor email -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Phone</p>
-                  <p class="regular-p"><b>test.v.com</b></p>
+                  <p class="regular-p"><b>--</b></p>
                 </div>
                 <!-- vendor phone -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Location</p>
-                  <p class="regular-p"><b>
-                      lat 83.01 lng 25.31
-                    </b></p>
+                  <p class="regular-p"><b>{{parkingLocation}}</b></p>
                 </div>
 
                 <!-- vendor Operation -->
                 <div class="vendor-inner flex flex-align-items">
                   <p class="regular-p">Operation</p>
-                  <p class="regular-p"><b>
-                      Always Open
-                    </b></p>
+                  <p class="regular-p"><b>{{parkingOperation}}</b></p>
                 </div>
 
                 <!-- Facilities -->

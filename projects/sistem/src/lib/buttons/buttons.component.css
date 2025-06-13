@@ -100,8 +100,8 @@ button.splitBorder.medium .icon-left {
 }
 
 button.splitBorder.small .icon-right {
-  width: 26px;
-  height: 26px;
+  width: 15px;
+  height: 28px;
   background: var(--primary);
   border-radius: 50%;
   padding: 0 6.5px;
@@ -109,8 +109,8 @@ button.splitBorder.small .icon-right {
 }
 
 button.splitBorder.small .icon-left {
-  width: 26px;
-  height: 26px;
+  width: 15px;
+  height: 28px;
   background: var(--primary);
   border-radius: 50%;
   padding: 0 6.5px;
@@ -118,8 +118,8 @@ button.splitBorder.small .icon-left {
 }
 
 button.splitBorder.xsmall .icon-right {
-  width: 18px;
-  height: 18px;
+  width: 13.5px;
+  height: 21.5px;
   background: var(--primary);
   border-radius: 50%;
   padding: 0 4px;
@@ -127,16 +127,20 @@ button.splitBorder.xsmall .icon-right {
 }
 
 button.splitBorder.xsmall .icon-left {
-  width: 18px;
-  height: 18px;
+  width: 13.5px;
+  height: 21.5px;
   background: var(--primary);
   border-radius: 50%;
   padding: 0 4px;
   margin: 2.5px -4.5px;
 }
 
+button.splitBorder.xsmall {
+  padding: revert;
+}
+
 button.large {
-  width: auto;
+  width: fit-content;
   height: 52px;
 }
 
@@ -165,12 +169,12 @@ button.small .icon-right {
 
 button.xsmall .icon-left,
 button.xsmall .icon-right {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
 }
 
 button.medium {
-  width: auto;
+  width: fit-content;
   height: 44px;
 }
 
@@ -180,9 +184,10 @@ button.medium img {
 }
 
 button.small {
-  width: auto;
+  width: fit-content;
   height: 36px;
 }
+
 
 button.small img {
   width: 21.5px;
@@ -190,8 +195,13 @@ button.small img {
 }
 
 button.xsmall {
-  width: auto;
+  width: fit-content;
   height: 28px;
+  padding: 6px 12px;
+
+  span {
+    line-height: normal;
+  }
 }
 
 button.xsmall img {
@@ -199,9 +209,9 @@ button.xsmall img {
   height: 20px;
 }
 
-button:not(.round):not(.corner, .text) .btn-lable {
+/* button:not(.round):not(.corner, .text) .btn-lable {
   margin: 0 8px;
-}
+} */
 
 .loading .icon-left,
 .loading .icon-right {
@@ -250,7 +260,7 @@ button.small.round.outlined {
 }
 
 button.xsmall.round.outlined {
-  padding: 2px;
+  padding: 6px;
 }
 
 button.medium.round {
@@ -262,7 +272,8 @@ button.small.round {
 }
 
 button.xsmall.round {
-  padding: 4px;
+  padding: 6px;
+  width: 28px;
 }
 
 button.corner {
@@ -303,11 +314,11 @@ button.outlined.small.corner {
 }
 
 button.xsmall.corner {
-  padding: 4px;
+  padding: 6px;
 }
 
 button.outlined.xsmall.corner {
-  padding: 2px;
+  padding: 4px;
 }
 
 .loading.round .icon-left,
@@ -406,20 +417,20 @@ button.split.small .icon-left {
 }
 
 button.split.xsmall .icon-right {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
   background: var(--primary);
   border-radius: 50%;
-  padding: 7.5px;
+  padding: 3.5px;
   margin: 3.5px -3.5px;
 }
 
 button.split.xsmall .icon-left {
-  width: 18px;
-  height: 18px;
+  width: 13px;
+  height: 13px;
   background: var(--primary);
   border-radius: 50%;
-  padding: 7.5px;
+  padding: 3.5px;
   margin: 3.5px -3.5px;
 }
 
@@ -437,6 +448,7 @@ button.splitBorder.disabled .icon-right,
 button.splitBorder.disabled .icon-left {
   background-color: var(--bg-split);
 }
+
 
 button.splitBorder.disabled {
   background-color: var(--loading-animation);

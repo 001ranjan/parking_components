@@ -16,7 +16,7 @@ li {
   transition: width 0.3s;
   box-sizing: border-box;
   height: calc(100vh - 54px);
-  padding: 5px 0.5em;
+  /* padding: 5px 0.5em; */
   /* background-color: red; */
   border-right: 1px solid var(--border);
   align-self: start;
@@ -35,7 +35,7 @@ main {
 }
 
 .container-main.sidebar-closed main {
-  margin-left: 60px;
+  margin-left: 40px;
 }
 
 #sidebar ul {
@@ -43,14 +43,16 @@ main {
 }
 
 #sidebar ul li {
-  margin: 2px 0;
+  height: 39px;
+  overflow: hidden;
   position: relative;
+  border-bottom: 1px solid var(--border);
 }
 
 #sidebar>ul>li:first-child {
   /* display: flex;
     justify-content: flex-end; */
-  margin-bottom: 16px;
+  /* margin-bottom: 16px; */
 
   .logo {
     font-weight: 600;
@@ -59,7 +61,7 @@ main {
 
 #sidebar ul li.active a {
   color: var(--heading);
-  background-color: var(--selected-menu);
+  /* background-color: var(--selected-menu); */
 
   svg {
     fill: var(--heading);
@@ -69,19 +71,18 @@ main {
 #sidebar ul li.active::after {
   content: "";
   position: absolute;
-  top: 0;
+  top: 1.6px;
   width: 3px;
   height: 36px;
   background-color: var(--bar-line);
   border-radius: 2px 0 0 2px;
-  right: -0.5em;
+  right: 0em;
 }
 
 #sidebar a,
 #sidebar .dropdown-btn,
 #sidebar .logo {
-  /* border-radius: 10em; */
-  padding: 0.4em 1.5em;
+  padding: 8px 20px;
   text-decoration: none;
   color: var(--heading);
   display: flex;
@@ -451,6 +452,7 @@ table thead th:nth-child(1) {
 
 .close .icon {
   margin-left: 8px;
+    margin-top: 3px;
 }
 
 .number {
@@ -661,11 +663,7 @@ th>div .sort {
 }
 
 .setting-p {
-  margin-bottom: 10px !important;
-  padding-bottom: 8px;
-  border-bottom: 1px solid var(--border);
   cursor: auto;
-  background-color: var(--dark-bg);
 }
 
 :host-context #sidebar .setting-p a:hover {

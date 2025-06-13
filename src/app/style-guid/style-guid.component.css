@@ -11,6 +11,7 @@
   height: 80vh;
   overflow: scroll;
 }
+
 :host ::ng-deep .tab-content::-webkit-scrollbar {
   display: none;
 }
@@ -22,9 +23,12 @@
   /* Firefox */
 }
 
+#sidebar {
+  position: relative !important;
+}
 
 :host ::ng-deep p {
-  color: var(--heading) ;
+  color: var(--heading);
 }
 
 :host ::ng-deep input[type="radio"] {
@@ -37,7 +41,7 @@
   margin: 0 10px 0 0;
 }
 
-:host ::ng-deep .hover input[type="radio"]{
+:host ::ng-deep .hover input[type="radio"] {
   box-shadow: 0 0 0 1px var(--border), 0 0 0 6px var(--secondary);
 }
 
@@ -51,7 +55,7 @@
   height: 14px;
   border-radius: 50%;
   background-color: var(--fill-bg);
- }
+}
 
 
 
@@ -65,7 +69,7 @@
   margin: 0 10px 0 0;
 }
 
-:host ::ng-deep .hover input[type="checkbox"]{
+:host ::ng-deep .hover input[type="checkbox"] {
   box-shadow: 0 0 0 1px var(--border), 0 0 0 6px var(--secondary);
 }
 
@@ -79,7 +83,49 @@
   height: 10px;
   background: var(--check-icon-url) no-repeat center center;
   background-size: contain;
- }
+}
+.continer .ui-grid{
+  gap: 0;
+}
+.company-details .ui-col-6{
+  border-right: 1px solid var(--border);
+}
+.company-details .ui-col-6:last-child{
+  border-right: none;
+}
+.reginiol-details .ui-col-6{
+  border-right: 1px solid var(--border);
+}
+.reginiol-details .ui-col-6:last-child{
+  border-right: none;
+}
 
+.line {
+  position: relative;
+}
 
+.line::after {
+  content: "";
+  position: absolute;
+  top: 115px;
+  bottom: 0px;
+  left: 49.9%;
+  width: 1px;
+  background-color: var(--border);
+  transform: translateX(-50%);
+  height: 42px;
+}
 
+ul{
+  margin-left: 1.5rem;
+  li{
+    font-size: 14px;
+  }
+}
+.form-field p{
+  color:#566881;
+}
+:host ::ng-deep .tab-headers {
+  border-bottom: 1px solid;
+  border-color: var(--border);
+}

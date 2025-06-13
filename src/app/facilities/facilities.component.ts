@@ -6,6 +6,8 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';
+import { SidebarService } from '../services/sidebar.service';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import {
   BreadcrumbsComponent,
   ButtonsComponent,
@@ -24,10 +26,12 @@ import {
   StagesComponent,
   RadioButtonComponent,
   ToastComponent,
+  SearchBarComponent,
 } from 'sistem';
 import { TrimTextPipe } from '../trim-text.pipe';
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
 import { FiltersComponent } from '../components/filters/filters.component';
+import { TextDropdownComponent } from '../../../projects/sistem/src/lib/text-dropdown/text-dropdown.component';
 
 interface SessionData {
   id?: string;
@@ -140,7 +144,10 @@ interface ShareRequest {
     RadioButtonComponent,
     ToastComponent,
     SidebarComponent,
-    FiltersComponent
+    FiltersComponent,
+    NzDatePickerModule,
+    TextDropdownComponent,
+    SearchBarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './facilities.component.html',
@@ -148,6 +155,13 @@ interface ShareRequest {
 })
 
 export class FacilitiesComponent implements OnInit {
+  range: Date[] = [];
+  // error report
+  subjectError: boolean = false;
+  emailError: boolean = false;
+  attachmentError: boolean = false;
+  OperatorsError: boolean = false;
+
   subject: string = '';
   emails: string = '';
   baseUrl = environment.baseUrl;
@@ -192,7 +206,8 @@ export class FacilitiesComponent implements OnInit {
     private title: Title,
     private userService: UserService,
     private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private sidebarService: SidebarService
   ) { }
 
   selectedRange: { startDate: Date | null; endDate: Date | null } | null = null;
@@ -221,7 +236,7 @@ export class FacilitiesComponent implements OnInit {
 
   // Attachment related properties
   attachmentList: string[] = ['All', 'Excel', 'PDF'];
-  selectedAttachment: string = 'All';
+  selectedAttachment: string = '';
   allVehicles: any[] = [];
 
   isSkeletonVisible: boolean = true;
@@ -250,6 +265,11 @@ export class FacilitiesComponent implements OnInit {
       // Only start data fetching after we have the parking_id
       this.initializeData();
       this.getVehicleData();
+    });
+
+    this.isSidebarClosed = this.sidebarService.getSidebarState();
+    this.sidebarService.isSidebarClosed$.subscribe(value => {
+      this.isSidebarClosed = value;
     });
   }
 
@@ -936,16 +956,21 @@ export class FacilitiesComponent implements OnInit {
       return new Date().toISOString();
     }
   }
+  selectedOperators: string = '';
 
   onModalShareClick() {
-    // Validate required fields
-    if (!this.shareFormModel.subject) {
-      alert('Please enter a subject');
-      return;
-    }
+    this.emailError = !this.shareFormModel.emails || this.shareFormModel.emails.length === 0;
+    this.subjectError = !this.shareFormModel.subject || this.shareFormModel.subject.trim() === '';
+    this.attachmentError = !this.selectedAttachment || this.selectedAttachment.trim() === '' || this.selectedAttachment === 'All Parking';
+    this.OperatorsError = !this.selectedOperators || this.selectedOperators.trim() === '';
 
-    if (!this.shareFormModel.emails) {
-      alert('Please enter at least one email addresses');
+    if (this.emailError || this.subjectError || this.attachmentError || this.OperatorsError) {
+      console.log('Some error exists:', {
+        emailError: this.emailError,
+        subjectError: this.subjectError,
+        attachmentError: this.attachmentError,
+        OperatorsError: this.OperatorsError
+      });
       return;
     }
 

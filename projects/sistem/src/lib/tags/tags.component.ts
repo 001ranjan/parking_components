@@ -9,5 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TagsComponent {
   @Input() lable?: string;
-  @Input() variant: 'closed' | 'new' | 'canclled' | 'active' | 'expired' = 'closed';
+  @Input() size?: string;
+  @Input() variant: 'closed' | 'new' | 'canclled' | 'active' | 'expired' | 'error' | 'default' = 'closed';
 }

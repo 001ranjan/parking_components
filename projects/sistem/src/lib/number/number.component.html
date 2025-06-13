@@ -1,41 +1,64 @@
-     
+
 <div class="number-text-area">
   <label for="name" class="label-name">
     <div class="ui-flex">
       <div>
-        <span class="content-name">Title 
+        <span class="content-name">
           <span class="required">
+            {{label}}
             <img src="assets/images/icons/required.svg" alt="required">
           </span>
         </span>
       </div>
       <div class="counter">
-      <div class="word">
+      <!-- <div class="word">
        {{wordCount}} /10
-      </div>
+      </div> -->
       </div>
     </div>
   </label>
 
-  <div class="input-group" [ngClass]="{'focused': isFocused}">
+  <div class="input-group" [ngClass]="{'focused': isFocused, 'error': error}" (blur)="onBlur()" autocomplete="off">
     <div class="country-code-selector">
-      <input 
-        type="text" 
-        class="country_code" 
-        autocomplete="off" 
-        [placeholder]="countryCode" 
-        required 
-        (focus)="onFocus()" 
-        (blur)="onBlur()" value="+91">
+      <div class="icon-flex" (click)="toggleDropdown()">
+        <input
+        type="text"
+        class="country_code"
+        [value]="searchTerm || countryCode"
+        (focus)="onFocusDrop()"
+        (blur)="onBlurDrop()"
+        (input)="onSearch($event)"
+        [style.width]="getCountryCodeWidth()"
+      />
+      <span class="dropdown-icon">
+      <ui-icon icon="chevron-down"/>
+      </span>
+      </div>
+
+      <div class="country-dropdown-list" *ngIf="showDropdown">
+        <div class="inner-list"
+          class="country-list"
+          *ngFor="let item of filteredCountryCodes"
+          (mousedown)="selectCountryCode(item.code)"
+        >
+          <div class="-code">{{ item.code }}</div>
+          <div class="country-name">{{ item.name }}</div>
+        </div>
+      </div>
+
     </div>
-  
+
+
     <input type="text" class="number_field"
-           autocomplete="off" placeholder="input Text" 
+           autocomplete="off" placeholder="{{placeholder}}"
            required [(ngModel)]="number" (focus)="onFocus()" (blur)="onBlur()"  (input)="filterInput($event)" maxlength="10">
-    <img src="assets/images/icons/dark.svg" alt="icon" class="icon-img">
+           <img *ngIf="icon" [src]="icon" alt="icon" class="icon-img">
   </div>
-  <div class="error-msg mt-1">
- {{errorMessage}}
+  <div class="error-msg mt-4" *ngIf="inputErrorMessage || error">
+    {{ inputErrorMessage || errorMessage }}
   </div>
+
+
+
 
 </div>

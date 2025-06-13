@@ -13,6 +13,7 @@ import { ParkingRateComponent } from './components/settings/parking-rate/parking
 import { FacilitiesRateComponent } from './components/settings/facilities-rate/facilities-rate.component';
 import { TeamComponent } from './components/settings/team/team.component';
 import { AuthGuard } from './auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 // export const routes: Routes = [
 //   { path: '', component: LoginComponent },
@@ -33,6 +34,7 @@ import { AuthGuard } from './auth.guard';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'session', component: SessionComponent, canActivate: [AuthGuard] },
   { path: 'style-guid', component: StyleGuidComponent },
   { path: 'parking/:id', component: SidenavComponent, canActivate: [AuthGuard] },

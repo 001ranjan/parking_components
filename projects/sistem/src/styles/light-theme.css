@@ -31,6 +31,10 @@
   --canclled-tag: #b9c1cc33;
   --closed-text: #4cd964;
   --new-text: #ff9500;
+  --error-tag: #DE11351A;
+  --error-tag-text: #DE1135;
+  --default-tag: #007AFF1A;
+  --default-tag-text: #007AFF;
   --canclled-text: #566881;
   --stage-green: #30d158;
   --stage-complete: #4cd964;
@@ -64,4 +68,5 @@
   --loading-animation-sec: rgb(230, 236, 242);
   --bg-split: rgba(248, 249, 250, 1);
   --split-text: rgba(185, 193, 204, 1);
+  --other: #ff9500
 }

@@ -1,11 +1,14 @@
+import { TextDropdownComponent } from './../../../projects/sistem/src/lib/text-dropdown/text-dropdown.component';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Component, OnInit, ChangeDetectorRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, CUSTOM_ELEMENTS_SCHEMA, EventEmitter, Output } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { environment } from '../../environments/environment';
 import { UserService } from '../services/user.service';
+import { SidebarService } from '../services/sidebar.service';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import {
   BreadcrumbsComponent,
   ButtonsComponent,
@@ -24,7 +27,8 @@ import {
   StagesComponent,
   RadioButtonComponent,
   ToastComponent,
-  TagsComponent
+  TagsComponent,
+  SearchBarComponent
 } from 'sistem';
 import { SidebarComponent } from "../components/sidebar/sidebar.component";
 
@@ -134,7 +138,10 @@ interface ShareRequest {
     RadioButtonComponent,
     ToastComponent,
     SidebarComponent,
-    TagsComponent
+    TagsComponent,
+    NzDatePickerModule,
+    TextDropdownComponent,
+    SearchBarComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './passes.component.html',
@@ -142,6 +149,13 @@ interface ShareRequest {
 })
 
 export class PassesComponent implements OnInit {
+  // error report
+  subjectError: boolean = false;
+  emailError: boolean = false;
+  attachmentError: boolean = false;
+  OperatorsError: boolean = false;
+
+  range: Date[] = [];
   @ViewChild('modal') modal!: ModalComponent;
   @ViewChild('modalShare') modalShare: any;
   @ViewChild('modalSuspend') modalSuspend!: any;
@@ -158,13 +172,17 @@ export class PassesComponent implements OnInit {
   subMenusState: Record<number, boolean> = {};
   resetCalendarTrigger: boolean = false;
   // topTag: { label: string; url: string }[] = [];
+  @Output() sidebarToggled = new EventEmitter<boolean>();
 
   toggleSidebar(): void {
     this.isSidebarClosed = !this.isSidebarClosed;
     if (this.isSidebarClosed) {
       this.closeAllSubMenus();
     }
+    localStorage.setItem('sidebarClosed', String(this.isSidebarClosed));
+    this.sidebarToggled.emit(this.isSidebarClosed);
   }
+
 
   toggleSubMenu(index: number): void {
     if (this.subMenusState[index]) {
@@ -189,7 +207,8 @@ export class PassesComponent implements OnInit {
     private title: Title,
     private userService: UserService,
     private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private sidebarService: SidebarService
   ) { }
 
   selectedRange: { startDate: Date | null; endDate: Date | null } | null = null;
@@ -217,7 +236,7 @@ export class PassesComponent implements OnInit {
 
   // Attachment related properties
   attachmentList: string[] = ['All', 'Excel', 'PDF'];
-  selectedAttachment: string = 'All';
+  selectedAttachment: string = '';
 
   isSkeletonVisible: boolean = true;
   isToastInfo = false;
@@ -266,6 +285,10 @@ export class PassesComponent implements OnInit {
       this.parking_id = params['id'] || '';
       this.fetchOperators();
       this.fetchPassesData();
+    });
+    this.isSidebarClosed = this.sidebarService.getSidebarState();
+    this.sidebarService.isSidebarClosed$.subscribe(value => {
+      this.isSidebarClosed = value;
     });
   }
 
@@ -518,9 +541,24 @@ export class PassesComponent implements OnInit {
     this.tempSelectedOperator = value;
   }
 
-  onStatusSelectionChange(value: string): void {
-    this.tempSelectedStatus = value;
+  // onStatusSelectionChange(value: string): void {
+  //   this.tempSelectedStatus = value;
+  // }
+
+  selectedOperators: string = '';
+  allVehicles: any[] = [];
+
+  // onStatusSelectionChange(category: string): void {
+  //   this.selectedAttachment = category;
+  //   this.selectedOperators = category;
+  // }
+
+  onStatusSelectionChange(category: any): void {
+    console.log('Dropdown change:', category);
   }
+
+
+
 
   onDateRangeSelected(range: { startDate: Date | null; endDate: Date | null }): void {
     this.tempSelectedRange = range;
@@ -872,13 +910,18 @@ export class PassesComponent implements OnInit {
   }
 
   onModalShareClick() {
-    if (!this.shareFormModel.subject) {
-      alert('Please enter a subject');
-      return;
-    }
+    this.emailError = !this.shareFormModel.emails || this.shareFormModel.emails.length === 0;
+    this.subjectError = !this.shareFormModel.subject || this.shareFormModel.subject.trim() === '';
+    this.attachmentError = !this.selectedAttachment || this.selectedAttachment.trim() === '' || this.selectedAttachment === 'All Parking';
+    this.OperatorsError = !this.selectedOperators || this.selectedOperators.trim() === '';
 
-    if (!this.shareFormModel.emails) {
-      alert('Please enter at least one email address');
+    if (this.emailError || this.subjectError || this.attachmentError || this.OperatorsError) {
+      console.log('Some error exists:', {
+        emailError: this.emailError,
+        subjectError: this.subjectError,
+        attachmentError: this.attachmentError,
+        OperatorsError: this.OperatorsError
+      });
       return;
     }
 
@@ -886,7 +929,7 @@ export class PassesComponent implements OnInit {
     let endDate: string = '';
     const today = new Date();
 
-    switch (this.shareFormModel.dateOption) {
+    switch (this.selectedDateOption) {
       case 'yesterday':
         const yesterday = new Date(today);
         yesterday.setDate(today.getDate() - 1);
@@ -900,13 +943,16 @@ export class PassesComponent implements OnInit {
         break;
 
       case 'custom':
-        if (this.shareModalRange?.startDate && this.shareModalRange?.endDate) {
+        if (this.shareModalRange && this.shareModalRange.startDate && this.shareModalRange.endDate) {
           startDate = this.shareModalRange.startDate.toISOString().split('T')[0];
           endDate = this.shareModalRange.endDate.toISOString().split('T')[0];
+          console.log('Start Date:', startDate);
+          console.log('End Date:', endDate);
         }
         break;
     }
 
+    // Format emails as array and remove any empty strings
     const emailList = this.shareFormModel.emails
       .split(',')
       .map(email => email.trim())
@@ -919,23 +965,47 @@ export class PassesComponent implements OnInit {
       toDate: endDate,
       parkingId: this.parking_id,
       operators: {},
-      sessions: this.paginatedPasses,
+      sessions: [], // Add empty sessions array as it's required by the type
       attachments: ''
     };
 
-    // Call API to share passes data
+    // Call the API to generate and share Excel
     this.userService.shareVehicleData(this.parking_id, shareRequest).subscribe({
       next: (response: any) => {
-        this.showSuccessToast();
+        console.log('Success Response:', response);
+        // Assuming the response contains the Excel file URL
+        const excelUrl = response.url || response.fileUrl;
+        if (excelUrl) {
+          this.showSuccessToast();
+          this.isToastInfo = true;
+          this.toastType = 'success';
+          this.toastMessage = 'Excel sheet has been shared successfully. Recipients will receive the download link.';
+          this.toastHeading = 'Success';
+          // alert('Excel sheet has been shared successfully. Recipients will receive the download link.');
+        } else {
+          this.showExcelToast();
+          this.isToastInfo = true;
+          this.toastType = 'success';
+          this.toastMessage = 'Excel sheet shared successfully.';
+          this.toastHeading = 'Success';
+          // alert('Excel sheet has been generated and shared successfully.');
+        }
         this.modal.closeModal();
+        // Reset form
         this.shareFormModel.subject = '';
         this.shareFormModel.emails = '';
         this.shareModalRange = null;
-        this.shareFormModel.dateOption = 'yesterday';
+        this.selectedDateOption = 'yesterday';
       },
       error: (error: any) => {
-        console.error('Error sharing passes:', error);
-        alert(`Error sharing passes: ${error.error?.message || 'Unknown error occurred'}`);
+        console.error('Error Response:', error);
+        console.error('Error Status:', error.status);
+        console.error('Error Message:', error.message);
+        if (error.error) {
+          console.error('API Error Details:', error.error);
+          const errorMessage = error.error.message || 'Unknown error occurred';
+          alert(`Error sharing Excel sheet: ${errorMessage}`);
+        }
       }
     });
   }

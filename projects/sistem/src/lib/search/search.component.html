@@ -1,8 +1,4 @@
-<div
-  class="search_field"
-  [class]="isCategory + ' ' + size"
-  [ngClass]="{ focused: isFocused }"
->
+<div class="search_field" [class]="isCategory + ' ' + size" [ngClass]="{ focused: isFocused }">
   <div class="search">
     <!-- Dropdown menu for categories -->
     <div class="search-category">
@@ -17,40 +13,29 @@
         <!-- <li *ngFor="let category of categories" (mousedown)="selectCategory(category)"  id="{{ categoriesId }}" >
           {{ category }}
         </li> -->
-       <!-- Template -->
-        <li *ngFor="let category of categories; let i = index" 
-        (mousedown)="selectCategory(category, categoriesId[i])"
-        [id]="categoriesId[i]">
-        {{ category }}
+        <!-- Template -->
+        <li *ngFor="let category of categories; let i = index" (mousedown)="selectCategory(category, categoriesId[i])"
+          [id]="categoriesId[i]">
+          {{ category }}
         </li>
       </ul>
     </div>
 
     <!-- Prefix Icon -->
-    <img
-      *ngIf="icons === 'prefix'"
-      src="../../assets/images/icons/search.svg"
-      alt="Search Icon"
-      class="prefix_search_icon"
-    />
+    <img *ngIf="icons === 'prefix'" src="../../assets/images/icons/search.svg" alt="Search Icon"
+      class="prefix_search_icon" />
 
     <!-- Search input field -->
-    <input
-      type="search"
-      placeholder="Search Sistem"
-      [(ngModel)]="searchTerm"
-      (blur)="hideDropdown()"
-      (input)="typing = true; filterContacts()"
-      [ngClass]="{ typing: typing }"
-    />
+    <input type="search" placeholder="Search Sistem" [(ngModel)]="searchTerm" (blur)="hideDropdown()"
+      (input)="typing = true; filterContacts()" [ngClass]="{ typing: typing }" />
 
     <!-- Suffix Icon -->
-    <img
-      *ngIf="icons === 'suffix'"
-      src="../../assets/images/icons/search.svg"
-      alt="Search Icon"
-      class="suffix_search_icon"
-    />
+    <div class="icon-container">
+      <ui-notification [size]="size === 'large' ? 'xl' : size === 'small' ? 'sm' : 'md'" icon="magnifying-glass"
+        shape="circle" />
+      <div class="cross"> <ui-notification [size]="size === 'large' ? 'xl' : size === 'small' ? 'sm' : 'md'"
+          icon="x-mark" shape="circle" *ngIf="isFocused && searchTerm" (click)="clear()" /></div>
+    </div>
 
     <!-- Display filtered contacts -->
     <div class="filter_data" *ngIf="filteredContacts.length > 0 && (searchTerm || searchTerms)">
@@ -70,10 +55,7 @@
     </div>
 
     <!-- Show this message only while typing if no contacts match -->
-    <div
-      *ngIf="filteredContacts.length === 0 && (searchTerm || searchTerms) && typing"
-      class="no-results"
-    >
+    <div *ngIf="filteredContacts.length === 0 && (searchTerm || searchTerms) && typing" class="no-results">
       No matching data found.
     </div>
   </div>

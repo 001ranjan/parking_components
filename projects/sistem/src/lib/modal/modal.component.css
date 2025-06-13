@@ -1,6 +1,7 @@
 .d-none {
   display: none;
 }
+
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -15,7 +16,7 @@
 }
 
 .modal {
-  max-width: 500px;
+  max-width: 572px;
   max-height: 80%;
   width: 90%;
   background-color: var(--secondary);
@@ -26,12 +27,19 @@
   overflow: hidden;
 }
 
+:host ::ng-deep .icon-left svg {
+  stroke: var(--heading) !important;
+}
+
+
+
 .modal-header {
   flex-shrink: 0;
   padding: 20px;
   border-bottom: 1px solid var(--border);
   background-color: var(--secondary);
 }
+
 .modal-header .header,
 .footer,
 .right {
@@ -56,10 +64,10 @@
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 24px;
 }
 
-.left > span {
+.left>span {
   font-size: 14px;
   font-weight: 500;
   color: var(--heading);
@@ -102,11 +110,13 @@ button.primary {
   color: var(--white);
   border-radius: 40px;
 }
+
 button.secondary {
   background: var(--secondary);
   color: var(--primary);
   border-radius: 40px;
 }
+
 button.outlined {
   background: transparent;
   color: var(--heading);
@@ -121,6 +131,7 @@ button.text {
   border: 0px solid var(--disable-text);
   color: var(--primary);
 }
+
 button.text:hover {
   color: var(--primary);
 }
@@ -246,6 +257,7 @@ button.corner {
 button.corner img {
   margin: 0;
 }
+
 button.corner .icon-left,
 .icon-right {
   margin: 0;
@@ -276,15 +288,16 @@ button.xsmall.corner {
 .loading.corner .icon-right {
   display: none;
 }
+
 /* for disable */
 button.disabled {
   background-color: var(--disable);
   cursor: not-allowed;
   color: var(--disable-text);
 }
+
 button.disabled img {
-  filter: invert(74%) sepia(9%) saturate(180%) hue-rotate(171deg)
-    brightness(96%) contrast(87%);
+  filter: invert(74%) sepia(9%) saturate(180%) hue-rotate(171deg) brightness(96%) contrast(87%);
   mix-blend-mode: multiply;
 }
 
@@ -292,10 +305,12 @@ button.disabled img {
 .loader-icon {
   animation: rotateScale 3s infinite ease-in-out;
 }
+
 @keyframes rotateScale {
   0% {
     transform: rotate(0deg) scale(1);
   }
+
   100% {
     transform: rotate(3600deg) scale(1);
   }
@@ -303,13 +318,11 @@ button.disabled img {
 
 /* Secoundary buttons */
 button.secondary .loader-icon {
-  filter: invert(29%) sepia(100%) saturate(6197%) hue-rotate(344deg)
-    brightness(100%) contrast(101%);
+  filter: invert(29%) sepia(100%) saturate(6197%) hue-rotate(344deg) brightness(100%) contrast(101%);
 }
 
 button.outlined .loader-icon {
-  filter: invert(29%) sepia(100%) saturate(6197%) hue-rotate(344deg)
-    brightness(100%) contrast(101%);
+  filter: invert(29%) sepia(100%) saturate(6197%) hue-rotate(344deg) brightness(100%) contrast(101%);
 }
 
 /* Form styles */
@@ -356,7 +369,7 @@ button.outlined .loader-icon {
     width: 95%;
     margin: 10px;
   }
-  
+
   .radio-group {
     flex-direction: column;
     gap: 8px;

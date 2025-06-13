@@ -35,7 +35,7 @@ main {
 }
 
 .container-main.sidebar-closed main {
-  margin-left: 60px;
+  margin-left: 40px;
 }
 
 #sidebar ul {
@@ -50,12 +50,18 @@ main {
 #sidebar>ul>li:first-child {
   /* display: flex;
     justify-content: flex-end; */
-  margin-bottom: 16px;
+  margin-bottom: 15px;
 
   .logo {
     font-weight: 600;
   }
 }
+
+:host-context .icon span {
+  display: none;
+}
+
+
 
 #sidebar ul li.active a {
   color: var(--heading);
@@ -76,6 +82,11 @@ main {
   border-radius: 2px 0 0 2px;
   right: -0.5em;
 }
+
+#sidebar.close ul li.active::after {
+  right: -1.13em;
+}
+
 
 #sidebar a,
 #sidebar .dropdown-btn,
@@ -143,22 +154,22 @@ main {
 
 #toggle-btn {
   margin-left: auto;
-  padding: 0.7em 0.6em;
+  /* padding: 0.7em 0.6em; */
   border: none;
   border-radius: 10em;
   background: none;
   cursor: pointer;
-  width: 36px;
-  height: 36px;
+  /* width: 36px;
+  height: 36px; */
 
   /* .icon {
     transition: rotate 150ms ease;
   } */
 }
 
-.rotate {
+/* .rotate {
   padding: 0.7em 0em !important;
-}
+} */
 
 #toggle-btn:hover {
   background-color: var(--secondary);
@@ -286,6 +297,11 @@ ul li span {
   height: 36px;
 }
 
+#sidebar.close li {
+  width: 36px;
+  height: 36px;
+}
+
 /* list-header */
 .list-header {
   display: grid;
@@ -361,6 +377,17 @@ ul li span {
 
 :host ::ng-deep .active {
   color: var(--text) !important;
+}
+
+
+
+.close-text {
+  opacity: 0;
+  transition: transform 0.5s ease-in;
+}
+
+#toggle-btn:hover .close-text {
+  opacity: 1;
 }
 
 table {
@@ -451,6 +478,7 @@ table thead th:nth-child(1) {
 
 .close .icon {
   margin-left: 8px;
+  margin-top: 3px;
 }
 
 .number {

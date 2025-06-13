@@ -1,6 +1,7 @@
 <div class="container-main" [ngClass]="{'sidebar-closed': isSidebarClosed}">
   <!-- sidebar -->
-  <ui-sidebar (sidebarToggled)="onSidebarToggled($event)"></ui-sidebar>
+  <ui-sidebar #sidebar (sidebarToggled)="onSidebarToggled($event)"></ui-sidebar>
+
 
   <main>
     <!-- top Heading -->
@@ -13,17 +14,85 @@
       </div>
 
       <div class="right">
-        <!-- <ui-button variant="primary" size="small" shape="round" class="mr-10" iconLeft="plus" />
-        <ui-button variant="primary" size="small" label="Text" class="mr-10" />
-        <ui-button variant="outlined" size="small" label="Text" class="mr-10" iconLeft="user" iconRight="user" />
-        <ui-button variant="secondary" size="small" label="Text" class="mr-10" iconLeft="user" iconRight="user" />
-        <ui-button variant="split" size="small" label="Text" class="mr-10" iconRight="arrow-right" /> -->
-
         <!-- share modal -->
         <ui-modal footerText="" title="Session Sharing" size="small" submitText="Share" #modal
           (submit)="onModalShareClick()">
           <ng-template #modalShare>
-            <div class="sharing-modal">
+            <div class="form-field">
+              <!-- <p class="medium-p mb-20 light">Invite vendor who operates your parking lots and give them the power of
+                automation on there finger tips.</p> -->
+              <div class="company-details">
+                <!-- <p class="small-p bold">COMPANY DETAILS</p> -->
+                <div class="continer">
+                  <!-- Subject field -->
+                  <div class="ui-grid">
+                    <div class="ui-col-12 line">
+                      <ui-text-field hide="hide_line" variant="primary" type="text" label="Subject" placeholder=""
+                        count="false" [(ngModel)]="subject" [error]="subjectError" [hasIcon]="subjectError"
+                        errorMessage="Enter Email subject." [(ngModel)]="shareFormModel.subject" />
+                    </div>
+                  </div>
+                  <!-- operator selection field -->
+                  <div class="ui-grid">
+                    <div class="ui-col-6 h pt-18">
+                      <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown"
+                        [dropdownList]="attachmentList" (selectionChange)="onStatusSelectionChange($event)"
+                        text="Attachments" label="Attachments" [error]="attachmentError"
+                        errorMessage="Please select an attachment!" />
+
+                    </div>
+                    <div class="ui-col-6 h pt-18">
+                      <ui-text-dropdown class="mr-5" lab size="large" isDropdown="isDropdown"
+                        [dropdownList]="operatorList" (selectionChange)="onStatusSelectionChange($event)"
+                        text="Operators" label="Operators" [error]="OperatorsError"
+                        errorMessage="Please select an attachment!" />
+                    </div>
+                  </div>
+
+                  <!-- add Email id people field -->
+                  <div class="ui-grid">
+                    <div class="ui-col-12">
+                      <ui-text-field hide="hide_line" variant="primary" type="text" label="Add ID of People"
+                        placeholder="" count="false" [(ngModel)]="emails" [error]="emailError" [hasIcon]="emailError"
+                        errorMessage="Enter at list one Email."
+                        help="Add multiple email IDs separated with comma. Ex: xyz@xyz.com, abc@xyz.com" link=""
+                        [(ngModel)]="shareFormModel.emails" />
+                    </div>
+                  </div>
+
+
+
+                  <div class="form-group mt-20">
+                    <label>Choose date</label>
+                    <div class="ui-grid mt-15">
+                      <div class="ui-col-4">
+                        <ui-radio-button name="dateGroup" label="Yesterday" value="yesterday"
+                          (change)="onDateOptionChange('yesterday')" />
+                      </div>
+                      <div class="ui-col-4">
+                        <ui-radio-button name="dateGroup" label="This Month" value="thisMonth"
+                          (change)="onDateOptionChange('thisMonth')" />
+                      </div>
+                      <div class="ui-col-4">
+                        <ui-radio-button name="dateGroup" label="Choose Range" value="custom"
+                          (change)="onDateOptionChange('custom')" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="bottom mt-25">
+                <div class="flex gap-5">
+                  <p class="medium-p">Sharing as</p>
+                  <p class="bold medium-p"> Test Vendor</p>
+                </div>
+                <p class="small-p">You should be aware of the privacy policy of sharing from Sistem Apps. The client
+                  might have restricted policy around it. Please refer to the Client Privacy Policy and Sistem Apps
+                  Sharing Policy.</p>
+              </div>
+            </div>
+            <!-- <div class="sharing-modal">
               <div class="form-group mb-20">
                 <ui-text-field label="Subject" variant="primary" [(ngModel)]="shareFormModel.subject" name="subject"
                   placeholder="" type="text" required />
@@ -78,21 +147,21 @@
                   <a href="#" class="text-red">Sistem Apps Sharing Policy</a>.
                 </p>
               </div>
-            </div>
+            </div> -->
           </ng-template>
         </ui-modal>
 
-        <ui-button variant="secondary" shape="round" iconLeft="share" size="small"
-          (click)="modal.openModal(modalShare)" />
+        <ui-button variant="secondary" shape="round" iconLeft="share" size="small" (click)="modal.openModal(modalShare)"
+          class="color_none" />
       </div>
     </div>
+
     <!-- filter list -->
     <div class="filter-list pl-20">
       <div class="left">
         <div class="small-heading mr-3">Filters</div>
         <!-- <ui-search size="small" class="mr-3" style="max-width: 190px" [(ngModel)]="searchQuery" (ngModelChange)="onSearch($event)" [contacts]="searchData" /> -->
-        <ui-search #searchInput size="small" class="mr-3" style="max-width: 190px" [contacts]="searchData"
-          (searchTermChange)="onSearch($event)" />
+        <ui-search-bar #searchInput size="small" class="mr-3" style="max-width: 190px" />
         <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="sessionTypes"
           [selectedValue]="tempSelectedType" (selectionChange)="onTypeSelectionChange($event)" />
 
@@ -100,9 +169,17 @@
           [selectedValue]="tempSelectedOperator" (selectionChange)="onOperatorSelectionChange($event)" />
         <ui-dropdown class="mr-3" isDropdown="isDropdown" size="medium" [dropdownList]="statusList"
           [selectedValue]="tempSelectedStatus" (selectionChange)="onStatusSelectionChange($event)" />
-        <ui-range-calendar #rangeCalendar class="mr-3" [startDate]="tempSelectedRange.startDate"
+        <!-- <ui-range-calendar #rangeCalendar class="mr-3" [startDate]="tempSelectedRange.startDate"
           [endDate]="tempSelectedRange.endDate" [reset]="resetCalendarTrigger"
-          (dateRangeSelected)="onDateRangeSelected($event)" />
+          (dateRangeSelected)="onDateRangeSelected($event)" /> -->
+
+        <div class="filter-item datepicker mr-4 ml-1"
+          [ngClass]="{ active: range.length === 2 && range[0] && range[1] }">
+          <nz-range-picker [(ngModel)]="range" nzFormat="dd-MM-yyyy"></nz-range-picker>
+        </div>
+
+
+
         <ui-button variant="primary" size="small" label="Apply" (click)="applyFilter()" time="1000" />
         <div class="small-heading filter ml-10" (click)="clearFilters()">
           Clear

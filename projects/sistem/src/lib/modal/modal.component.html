@@ -1,25 +1,11 @@
 <div>
   <!-- Button to open the modal -->
-  <button
-    (click)="openModal(modalContent)"
-    [class]="variant + ' ' + size + ' ' + shape"
-    [ngClass]="{ disabled: disabled, loading: isLoading }"
-    [disabled]="disabled"
-    class="d-none"
-  >
+  <button (click)="openModal(modalContent)" [class]="variant + ' ' + size + ' ' + shape"
+    [ngClass]="{ disabled: disabled, loading: isLoading }" [disabled]="disabled" class="d-none">
     <!-- Left icon if provided -->
     <ng-container *ngIf="iconLeft">
-      <img
-        *ngIf="isSvgPath(iconLeft)"
-        class="icon-left"
-        [src]="iconLeft"
-        alt="Left Icon"
-      />
-      <span
-        *ngIf="!isSvgPath(iconLeft)"
-        class="icon-left"
-        [innerHTML]="getIconSvg(iconLeft)"
-      ></span>
+      <img *ngIf="isSvgPath(iconLeft)" class="icon-left" [src]="iconLeft" alt="Left Icon" />
+      <span *ngIf="!isSvgPath(iconLeft)" class="icon-left" [innerHTML]="getIconSvg(iconLeft)"></span>
     </ng-container>
     <!-- Button label -->
     <span class="btn-lable">{{ label }}</span>
@@ -29,17 +15,8 @@
     </ng-container>
     <!-- Right icon if provided -->
     <ng-container *ngIf="iconRight">
-      <img
-        class="icon-right"
-        *ngIf="isSvgPath(iconRight)"
-        [src]="iconRight"
-        alt="Right Icon"
-      />
-      <span
-        *ngIf="!isSvgPath(iconRight)"
-        class="icon-right"
-        [innerHTML]="getIconSvg(iconRight)"
-      ></span>
+      <img class="icon-right" *ngIf="isSvgPath(iconRight)" [src]="iconRight" alt="Right Icon" />
+      <span *ngIf="!isSvgPath(iconRight)" class="icon-right" [innerHTML]="getIconSvg(iconRight)"></span>
     </ng-container>
   </button>
 </div>
@@ -51,12 +28,7 @@
     <div class="modal-header">
       <div class="header">
         <h2>{{ title }}</h2>
-        <ui-notification
-          icon="x-mark"
-          shape="circle"
-          size="md"
-          (click)="closeModal()"
-        />
+        <ui-notification icon="x-mark" shape="circle" size="md" (click)="closeModal()" />
       </div>
     </div>
 
@@ -72,21 +44,10 @@
           <span>{{ footerText }}</span>
         </div>
         <div class="right">
-          <ui-button
-            variant="primary"
-            label="{{ submitText }}"
-            [size]="size"
-            class="mr-3"
-            (click)="submit.emit()"
-          />
+          <ui-button type="submit" variant="primary" label="{{ submitText }}" [size]="size" class="mr-3"
+            (click)="submit.emit()" />
 
-          <ui-button
-            variant="secondary"
-            label="{{ cancelText }}"
-            size="medium"
-            (click)="onCancel()"
-            class="ml-3"
-          />
+          <ui-button variant="secondary" label="{{ cancelText }}" size="medium" (click)="onCancel()" class="ml-3" />
         </div>
       </div>
     </div>

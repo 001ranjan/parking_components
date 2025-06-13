@@ -1,9 +1,10 @@
 <nav class="header fixed">
   <div class="ui-xl-container ui-grid space-between pl-12 pr-12">
-    <div class="ui-col-3">
-      <div class="desktop-logo light">
-        <img src="../../../assets/logo/sale.svg" alt="Logo" />
-        <img src="../../../assets/logo/logo2.svg" alt="Logo" class="ml-10" />
+    <div class="ui-col-1">
+      <div class="desktop-logo light" [routerLink]="['/dashboard']" routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <img src="../../../assets/logo/parking_icon.png" alt="Logo" style="width: 50px;" />
+        <img src="../../../assets/logo/parking_logo.svg" alt="Logo" class="ml-10" />
       </div>
       <div class="desktop-logo dark">
         <img src="../../../assets/logo/sale.svg" alt="Logo" />
@@ -11,15 +12,17 @@
       </div>
     </div>
 
-    <div class="ui-col-6">
-      <ui-search #searchComponent isCategory="isCategory" [contacts]="contactData" [categories]="categories"
-        (categoryChange)="onCategoryChange($event)" [initialValue]="selectedCategory" [categoriesId]="categoriesId"
+    <div class="ui-col-1 ml-10">
+      <ui-dropdown isDropdown="isDropdown" size="medium" [dropdownList]="categories"
         (listClick)="onListClick($event,'parking')" />
-
-      <!-- Rest of your existing header template remains exactly the same -->
     </div>
 
-    <div class="ui-col-3 justify-end flex flex-align-items">
+    <div class="ui-col-6">
+      <ui-search #searchComponent [contacts]="contactData" [categories]="categories"
+        (categoryChange)="onCategoryChange($event)" [initialValue]="selectedCategory" [categoriesId]="categoriesId"
+        (listClick)="onListClick($event,'parking')" />
+    </div>
+    <div class="ui-col-2 justify-end flex flex-align-items">
       <!-- avatar icon -->
       <!-- <ui-notification
         size="md"
@@ -70,37 +73,42 @@
         icon="question-mark-circle"
       /> -->
 
-      <ui-avatar class="mr-10" size="md" shape="round" avatarIcon="../../../assets/images/icons/avatar-2.svg"
-        (click)="toggleUserDropdown()" />
+      <!-- <ui-avatar class="mr-10" size="md" shape="round" avatarIcon="../../../assets/images/icons/avatar-2.svg"
+        (click)="toggleUserDropdown()" /> -->
+
+      <ui-avatar size="xl" shape="round" label="TV" (click)="toggleUserDropdown()" />
 
       <div class="user-dropdown" *ngIf="isUserDropdownOpen">
         <div class="user-info">
           <div class="user-avatar">
-            <img src="../../../assets/images/icons/avatar-2.svg" alt="User Avatar" />
+            <!-- <img src="../../../assets/images/icons/avatar-2.svg" alt="User Avatar" /> -->
+            <ui-avatar size="xxl" shape="round" label="TV" />
           </div>
           <div class="user-details">
             <div class="user-name">
               <h6>{{userName}}</h6>
             </div>
-            <div class="user-email small-p mt-2">{{userEmail}}</div>
-            <div class="mt-5"><ui-button label="Sistem Account" size="xsmall" shape="ovel" variant="primary" /></div>
+            <div class="user-email small-p mt-5">{{userEmail}}</div>
+            <div class="mt-7"><ui-button label="Sistem Account" size="xsmall" shape="ovel" variant="primary" /></div>
           </div>
         </div>
-        <div class="dropdown-divider"></div>
-        <div class="dropdown-item" (click)="logout()">
-          <p class="small-p mb-12 mt-9">This account is managed by Sistem Apps</p>
-          <div class="mb-10">
-
-            <ui-button label="Manage this parking" size="xsmall" shape="ovel" variant="text"
-              (click)="$event.stopPropagation()" [routerLink]="['/setting/profile', parkingId]"
-              routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"></ui-button>
-
+        <!-- <div class="dropdown-divider"></div> -->
+        <div class="dropdown-item">
+          <div class="list">
+            <div class="small-p min-h-40 other pl-16 pr-16">This account is managed by Sistem Apps</div>
+            <div class="min-h pl-16 pr-16">
+              <ui-button label="Manage this parking" size="xsmall" shape="ovel" variant="text"
+                (click)="$event.stopPropagation()" [routerLink]="['/setting/profile', parkingId]"
+                routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" />
+            </div>
+            <div class="min-h pl-16 pr-16"> <ui-button label="Logout" size="xsmall" shape="ovel" variant="text"
+                (click)="logout()" />
+            </div>
           </div>
-          <div> <ui-button label="Logout" size="xsmall" shape="ovel" variant="text" /></div>
         </div>
       </div>
 
-      <ui-toggle (toggleChange)="toggleTheme($event)" />
+      <!-- <ui-toggle (toggleChange)="toggleTheme($event)" /> -->
 
       <div class="humberger" (click)="toggleMobileMenu()">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

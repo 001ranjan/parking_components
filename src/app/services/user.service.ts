@@ -221,7 +221,6 @@ export class UserService {
     return this.http.get(url, { headers });
   }
 
-
   // new team add post api
   registerTeamMember(member: any) {
     const url = `${this.baseUrl}/auth/register`;
@@ -259,6 +258,19 @@ export class UserService {
     });
 
     return this.http.delete<void>(url, { headers });
+  }
+
+  // get parking rate api
+  getParkingRate(userId: string): Observable<any> {
+    const url = `${this.baseUrl}/parking/${userId}`;
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    });
+
+    return this.http.get(url, { headers });
   }
 
 

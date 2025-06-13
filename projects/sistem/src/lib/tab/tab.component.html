@@ -1,7 +1,7 @@
-<div class="tab-container">
+<div class="tab-container" [class]="size">
   <!-- Tab Headers -->
-  <div class="tab-headers">
-    <div 
+  <div class="tab-headers ml-20">
+    <div
       *ngFor="let tab of tabs; index as i"
       (click)="selectTab(tab.id, i)"
       [ngClass]="{'active-tab': activeTab === tab.id}"

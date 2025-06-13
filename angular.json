@@ -26,7 +26,7 @@
               }
             ],
             "styles": [
-              // "src/styles.css",
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
               "projects/sistem/src/styles/sistem-styles.css",
               "projects/sistem/src/styles/dark-theme.css",
               "projects/sistem/src/styles/light-theme.css"
@@ -90,7 +90,10 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/styles.css"],
+            "styles": [
+              "./node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "src/styles.css"
+            ],
             "scripts": []
           }
         }

@@ -28,6 +28,10 @@
   --stage-complete: #30d158;
   --stage-green: #4cd964;
   --stage-active: #64d2ff;
+  --error-tag: #DE11351A;
+  --error-tag-text: #DE1135;
+  --default-tag: #007AFF1A;
+  --default-tag-text: #007AFF;
   --stage-blue: #5ac8fa;
   --stage-pending: #171e27;
   --stage-gry: #18273c;

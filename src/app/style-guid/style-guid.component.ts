@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {
   ButtonsComponent,
   TabComponent,
@@ -22,7 +23,11 @@ import {
   TooltipDirective,
   StagesComponent,
   ModalComponent,
+
 } from 'sistem';
+import { SidebarComponent } from '../components/sidebar/sidebar.component';
+import { SettingSidebarComponent } from '../components/setting-sidebar/setting-sidebar.component';
+import { TextDropdownComponent } from '../../../projects/sistem/src/lib/text-dropdown/text-dropdown.component';
 
 @Component({
   selector: 'app-style-guid',
@@ -49,14 +54,18 @@ import {
     TooltipDirective,
     StagesComponent,
     ModalComponent,
+    SidebarComponent,
+    SettingSidebarComponent,
+    TextDropdownComponent,
+    FormsModule
   ],
   templateUrl: './style-guid.component.html',
   styleUrl: './style-guid.component.css',
 })
 export class StyleGuidComponent {
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef) { }
 
-  statusList = ['Dropdown list', 'in vehicle', 'out vehicle', 'booking'];
+  statusList = ['Default', 'in vehicle', 'out vehicle', 'booking'];
 
   onStatusSelectionChange(category: string): void {
     console.log('Selected category:', category);
@@ -141,10 +150,10 @@ export class StyleGuidComponent {
   ];
 
   menuItems = [
-    { route: '/style-guid', label: 'Session', icon: 'bell' },
+    { route: '/', label: 'Session', icon: 'bell' },
     { route: '/radio-button', label: 'Radio btn', icon: 'home' },
     {
-      route: '/style-guid',
+      route: '',
       label: 'Checkbox',
       icon: 'chat-bubble-bottom-center',
     },
@@ -395,4 +404,104 @@ export class StyleGuidComponent {
       this.isDisabledSec26 = isChecked;
     }
   }
+
+  location = ['India', 'USA', 'Dubai'];
+  state  = [
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'West Bengal'
+  ];
+  currency =['INR - Indian Rupee', 'USD - USA'];
+  language =['Hindi', 'English', 'Tamil'];
+  timeZones: string[] = [
+    '(GMT 5:30) India Standard Time (Asia/Calcutta)',
+    'Etc/GMT',
+    'America/New_York',
+    'America/Chicago',
+    'America/Denver',
+    'America/Los_Angeles',
+    'Europe/Paris',
+    'Europe/London',
+    'Asia/Tokyo',
+    'Asia/Singapore',
+    'Asia/Dubai',
+    'Pacific/Auckland'
+  ];
+
+
+  // Fields
+companyName: string = '';
+adminName: string = '';
+email: string = '';
+password: string = '';
+address: string = '';
+phoneNumber: string = '';
+
+
+// Error flags
+companyNameError: boolean = false;
+adminNameError: boolean = false;
+emailError: boolean = false;
+passwordError: boolean = false;
+addressError: boolean = false;
+phoneNumberError: boolean = false;
+
+onPhoneNumberChange(value: string) {
+  this.phoneNumber = value;
+  this.phoneNumberError = !(this.phoneNumber && this.phoneNumber.trim().length >= 10);
+}
+
+
+onSubmit() {
+  this.companyNameError = this.companyName.trim() === '';
+  this.adminNameError = this.adminName.trim() === '';
+  this.emailError = this.email.trim() === '';
+  this.passwordError = this.password.trim() === '';
+  this.addressError = this.address.trim() === '';
+
+  // Phone number validation
+  if (!this.phoneNumber || this.phoneNumber.trim().length < 10) {
+    this.phoneNumberError = true;
+  } else {
+    this.phoneNumberError = false;
+  }
+
+  if (
+    this.companyNameError || this.adminNameError || this.emailError ||
+    this.passwordError || this.addressError || this.phoneNumberError
+  ) {
+    return;
+  }
+
+alert("Company name add successfully!")
+}
+
+
+
+
 }

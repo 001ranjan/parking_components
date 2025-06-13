@@ -1,11 +1,15 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, INJECTOR, Input, forwardRef } from '@angular/core';
 import { FormsModule, NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { icons } from '../icons';
+import { ButtonsComponent } from '../buttons/buttons.component';
+
 
 @Component({
   selector: 'ui-text-field',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule,ButtonsComponent],
   templateUrl: './text-field.component.html',
   styleUrls: ['./text-field.component.css'],
   providers: [
@@ -17,21 +21,29 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class TextFieldComponent implements ControlValueAccessor {
+  constructor(private sanitizer: DomSanitizer) { }
   title: string = '';
   wordCount: number = 0;
   isFocused: boolean = false;
-  errorMessage: string = 'Please enter only numbers.';
+
   showPassword: boolean = false;
 
   @Input() variant: 'primary' | 'secondary' = 'secondary';
-  @Input() shape?: 'round' | 'corner' | 'default' = 'round';
+  @Input() shape?: 'round' | 'corner' | 'default' = 'corner';
   @Input() hasError: boolean = false;
   @Input() error: boolean = false;
   @Input() disable: boolean = false;
   @Input() label: string = 'Text';
   @Input() placeholder: string = 'Enter your text';
   @Input() type: string = 'text';
-
+  @Input() icon?: string;
+  defaultIcon: string = "assets/images/icons/dark.svg";
+  @Input() count: 'true' | 'false' = 'true';
+  @Input() help?: string;
+  @Input() link?:string="#"
+  @Input() hide?:string='';
+  @Input() hasIcon: boolean = false;
+  @Input() errorMessage?: string= 'Enter Error massage!'
   onChange: any = () => { };
   onTouched: any = () => { };
 
@@ -62,12 +74,25 @@ export class TextFieldComponent implements ControlValueAccessor {
     return this.type;
   }
 
-  filterInput(event: Event): void {
+  filterInput(event: Event, field: string): void {
     const input = event.target as HTMLInputElement;
     this.title = input.value;
     this.onChange(this.title);
     this.onTouched();
     this.wordCountFun();
+    if (this.error) {
+      this.error = false;
+      this.errorMessage = '';
+    }
+    // if(this.hasIcon){
+    //   this.hasIcon=false;
+    // }
+    if (this.hasIcon && field !== 'password') {
+      this.hasIcon = false;
+    }
+    if (field == 'password') {
+      this.hasIcon = true;
+    }
   }
 
   wordCountFun(): void {
@@ -81,4 +106,14 @@ export class TextFieldComponent implements ControlValueAccessor {
   handleBlur(): void {
     this.isFocused = false;
   }
+  isSvgPath(icon: string): boolean {
+    return icon?.endsWith('.svg') || icon?.startsWith('http');
+  }
+
+  // Retrieve SVG icon from icons library if not a path
+  getIconSvg(iconName: string | undefined): SafeHtml {
+    const iconSvg = iconName ? icons[iconName] || '' : '';
+    return this.sanitizer.bypassSecurityTrustHtml(iconSvg);
+  }
+
 }

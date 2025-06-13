@@ -1,54 +1,57 @@
 <nav id="sidebar" [class.close]="isSidebarClosed">
   <ul>
-    <li>
-      <button id="toggle-btn" [class.rotate]="isSidebarClosed" (click)="toggleSidebar()">
-        <div class="icon"><ui-icon icon="menu"></ui-icon></div>
-      </button>
+    <li id="toggle-btn" [class.rotate]="isSidebarClosed" (click)="toggleSidebar()"
+      [attr.label]="isSidebarClosed ? 'Open Panel' : 'Close Panel'" [appTooltip]="isSidebarClosed ? 'Open Panel' : ''"
+      placement="right">
+      <a>
+        <div class="icon invert">
+          <ui-icon [icon]="isSidebarClosed ? 'side-toggle-open' : 'side-toggle-close'">
+          </ui-icon>
+        </div>
+        <span class="close-text">{{ isSidebarClosed ? 'Open Panel' : 'Close Panel' }}</span>
+      </a>
     </li>
-    <li [routerLink]="['/dashboard', parkingId]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+    <li [routerLink]="['/dashboard']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      [appTooltip]="isSidebarClosed ? 'Dashboard' : ''" placement="right">
       <a>
         <div class="icon">
-          <ui-icon icon="dashboard" appTooltip="Dashboard" placement="right"></ui-icon>
+          <ui-icon icon="dashboard"></ui-icon>
         </div>
         <span>Dashboard</span>
       </a>
     </li>
-    <li [routerLink]="['/parking', parkingId]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+
+
+    <li [routerLink]="['/parking', parkingId]" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+      [appTooltip]="isSidebarClosed ? 'Sessions' : ''" placement="right">
       <a>
         <div class="icon">
-          <ui-icon icon="sessions" appTooltip="Sessions" placement="right"></ui-icon>
+          <ui-icon icon="sessions"></ui-icon>
         </div>
         <span>Sessions</span>
       </a>
     </li>
     <li [routerLink]="['/parking/passes', parkingId]" routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }">
+      [routerLinkActiveOptions]="{ exact: true }" [appTooltip]="isSidebarClosed ? 'Passes' : ''" placement="right">
       <a>
         <div class="icon">
-          <ui-icon icon="pass" appTooltip="Passes" placement="right"></ui-icon>
+          <ui-icon icon="pass"></ui-icon>
         </div>
         <span>Passes</span>
       </a>
     </li>
 
     <li [routerLink]="['/parking/facilities', parkingId]" routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }">
+      [routerLinkActiveOptions]="{ exact: true }" [appTooltip]="isSidebarClosed ? 'Facilities' : ''" placement="right">
       <a>
         <div class="icon">
-          <ui-icon icon="tickets" appTooltip="Passes" placement="right"></ui-icon>
+          <ui-icon icon="tickets"></ui-icon>
         </div>
         <span>Facilities</span>
       </a>
     </li>
-    <li [routerLink]="['/setting/profile', parkingId]" routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }">
-      <a>
-        <div class="icon">
-          <ui-icon icon="profile" appTooltip="Dashboard" placement="right"></ui-icon>
-        </div>
-        <span>Settings</span>
-      </a>
-    </li>
+
     <!-- <li [routerLink]="'/style-guid'" routerLinkActive="active">
         <a>
           <div class="icon"><ui-icon icon="lifebuoy"></ui-icon></div>

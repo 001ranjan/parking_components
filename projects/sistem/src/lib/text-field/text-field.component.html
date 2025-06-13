@@ -1,42 +1,46 @@
-<div class="form" [class]="variant + ' ' + shape" [ngClass]="{'error': error, 'disable': disable}">
-  <input 
-    [type]="inputType"
-    [(ngModel)]="title"
-    (input)="filterInput($event)"
-    (focus)="handleFocus()"
-    (blur)="handleBlur()"
-    autocomplete="off"
-    [disabled]="disable"
-    [placeholder]="placeholder"
-    required>
+<div class="form" [class]="variant + ' ' + shape" [ngClass]="{'error': error, 'disable': disable,'has-icon': hasIcon}">
+  <input [type]="inputType" [(ngModel)]="title" (input)="filterInput($event, inputType)" (focus)="handleFocus()"
+    (blur)="handleBlur()" autocomplete="off" [disabled]="disable" [placeholder]="placeholder" required>
   <label for="name" class="label-name">
-    <div class="ui-flex">
+    <div class="ui-flex positon">
       <div>
-        <span class="content-name">{{ label }} 
+        <span class="content-name">
           <span class="required">
+            {{ label }}
             <img src="assets/images/icons/required.svg" alt="required">
           </span>
         </span>
       </div>
-      <div class="counter"> 
-        <div class="word" [ngClass]="{'focused': isFocused}">
+      <div class="counter">
+        <div class="word" [ngClass]="{ 'focused': isFocused }" [ngStyle]="{ opacity: count === 'true' ? '1' : '0' }"
+          *ngIf="count">
           {{ wordCount }}/200
         </div>
         <ng-container *ngIf="type === 'password'">
-          <img 
-            [src]="showPassword ? '../../../assets/images/icons/eye-off.png' : '../../../assets/images/icons/eye.png'" 
-            alt="toggle password" 
-            class="icon-img password-toggle"
-            (click)="togglePasswordVisibility()"
-          >
+          <img
+            [src]="showPassword ? '../../../assets/images/icons/eye-off.svg' : '../../../assets/images/icons/eye.svg'"
+            alt="toggle password" class="icon-img password-toggle" (click)="togglePasswordVisibility()">
         </ng-container>
-        <img src="assets/images/icons/dark.svg" alt="icon" class="icon-img" *ngIf="type !== 'password'">
+
+        <ng-container *ngIf="icon">
+          <ng-container *ngIf="isSvgPath(icon); else svgIcon">
+            <img [src]="icon" alt="icon" class="icon-img" *ngIf="type !== 'password'">
+          </ng-container>
+        </ng-container>
+
+        <ng-template #svgIcon>
+          <span class="icon" style="width: 16px; height: 16px;" [innerHTML]="getIconSvg(icon)" *ngIf="!error"></span>
+        </ng-template>
         <img src="assets/images/icons/Subtract.svg" alt="icon" class="error-icon" *ngIf="error">
       </div>
     </div>
   </label>
 </div>
 
-<div class="error-msg" *ngIf="error">
+<div class="error-msg pt-4" *ngIf="error">
   {{ errorMessage }}
+</div>
+<div class="help pt-4" *ngIf="help" [class]="hide">
+  <div class="help-text">{{ help }}</div>
+  <a [href]="link" *ngIf="link">Help</a>
 </div>

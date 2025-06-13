@@ -7,11 +7,16 @@ input[type="search"] {
   outline: none;
   width: 100%;
   background-color: transparent;
-  padding: 0 10px;
   font-size: 16px;
   line-height: 24px;
   color: var(--heading);
 }
+
+::placeholder {
+  font-size: 16px;
+  font-family: 400;
+}
+
 .large input[type="search"] {
   height: 52px;
 }
@@ -30,10 +35,11 @@ input[type="search"] {
   justify-content: center;
   align-items: center;
   background-color: var(--secondary);
-  padding: 0 20px;
+  padding: 0 6px 0 16px;
   border-radius: 40px;
   position: relative;
-  box-sizing: border-box; /* Includes padding and border in width */
+  box-sizing: border-box;
+  /* Includes padding and border in width */
   transition: border-radius 0.3s ease, background-color 0.3s ease,
     box-shadow 0.3s ease;
 }
@@ -51,14 +57,14 @@ input[type="search"] {
 .category {
   min-width: 130px;
   max-width: 130px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 40px;
-    padding: 0 20px;
-    border: 2px solid var(--border);
-    cursor: pointer;
-    overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 40px;
+  padding: 0 20px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .large .category {
@@ -131,8 +137,8 @@ ul li {
 }
 
 /* width */
-  .filter_data::-webkit-scrollbar,
-  .no-results::-webkit-scrollbar {
+.filter_data::-webkit-scrollbar,
+.no-results::-webkit-scrollbar {
   width: 5px;
   border-radius: 10px;
   background: var(--secondary);
@@ -143,21 +149,21 @@ ul li {
 /* Track */
 .filter_data::-webkit-scrollbar-track,
 .no-results::-webkit-scrollbar-track {
-  background:var(--secondary);
+  background: var(--secondary);
   border-radius: 10px;
 }
- 
+
 /* Handle */
 .filter_data::-webkit-scrollbar-thumb,
 .no-results::-webkit-scrollbar-thumb {
-  background: var(--border); 
+  background: var(--border);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 .filter_data::-webkit-scrollbar-thumb:hover,
 .no-results::-webkit-scrollbar-thumb:hover {
-  background: var(--border); 
+  background: var(--border);
   border-radius: 10px;
 }
 
@@ -222,4 +228,19 @@ ul li {
 
 .no-results {
   color: var(--heading);
+}
+
+.icon-container {
+  position: relative;
+
+  .cross {
+    position: absolute;
+    top: 0;
+  }
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
 }

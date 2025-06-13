@@ -16,7 +16,7 @@
   width: 100px;
   text-align: center;
   color: var(--heading);
-  min-height: 36px;
+  min-height: 28px;
 }
 
 .apply-button,
@@ -46,9 +46,11 @@
   font-weight: bold;
   margin-bottom: 8px;
 }
+
 .weekdays span {
   padding: 0 8px;
 }
+
 .weekdays {
   padding: 15px 0;
 }
@@ -91,12 +93,15 @@
 .in-range {
   background-color: var(--canclled-tag);
 }
+
 .selected {
   background-color: var(--canclled-tag);
 }
+
 .in-range:hover {
   background-color: var(--disable);
 }
+
 .selected:hover {
   background-color: var(--disable);
 }
@@ -110,6 +115,7 @@
 .days div.disabled {
   color: var(--disable-text);
 }
+
 .days div.in-range.disabled {
   background-color: transparent;
 }
@@ -119,6 +125,7 @@
   font-size: 12px;
   line-height: 14.32px;
 }
+
 .left-date,
 .right-date {
   display: flex;
@@ -133,6 +140,7 @@
   border-radius: 20px 0px 0px 20px;
   outline: none;
 }
+
 .end-date {
   border-radius: 0px 20px 20px 0px;
   outline: none;

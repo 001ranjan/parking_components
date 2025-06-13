@@ -17,8 +17,9 @@ ui-sidebar.close {
   width: 60px;
 }
 
+
 main {
-  margin-left: 210px;
+  margin-left: 190px;
   padding-top: 54px;
   transition: margin-left 0.3s;
 }
@@ -28,7 +29,7 @@ main {
 }
 
 .container-main.sidebar-closed main {
-  margin-left: 60px;
+  margin-left: 40px;
 }
 
 #sidebar {
@@ -376,6 +377,11 @@ ul li span {
   color: var(--text) !important;
 }
 
+:host ::ng-deep .color_none .icon-left svg {
+  stroke: var(--heading) !important;
+}
+
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -464,6 +470,7 @@ table thead th:nth-child(1) {
 
 .close .icon {
   margin-left: 8px;
+  margin-top: 3px;
 }
 
 .number {
@@ -692,4 +699,73 @@ th>div .sort {
 .highlight {
   background-color: var(--secondary);
   border: .5px solid var(--border);
+}
+
+
+.ui-grid {
+  gap: 0;
+}
+
+.company-details .ui-col-6 {
+  border-right: 1px solid var(--border);
+}
+
+.company-details .ui-col-6:last-child {
+  border: none;
+}
+
+.reginiol-details .ui-col-6 {
+  border-right: 1px solid var(--border);
+}
+
+.reginiol-details .ui-col-6:last-child {
+  border: none;
+}
+
+.line {
+  position: relative;
+}
+
+.line::after {
+  content: "";
+  position: absolute;
+  top: 59px;
+  bottom: 0px;
+  left: 49.9%;
+  width: 1px;
+  background-color: var(--border);
+  transform: translateX(-50%);
+  height: 42px;
+}
+
+
+::ng-deep nz-range-picker.ant-picker {
+  border-radius: 40px;
+  border: none;
+  background-color: var(--secondary);
+  height: 36px;
+  width: 244px;
+  padding: 0 16px;
+}
+
+.filter-item.active {
+  ::ng-deep nz-range-picker.ant-picker {
+    background-color: var(--error-tag);
+  }
+}
+
+
+::ng-deep nz-range-picker input::placeholder {
+  color: var(--heading) !important;
+  opacity: 1;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+}
+
+::ng-deep nz-range-picker.ant-picker:hover {
+  border-color: var(--secondary);
+}
+
+::ng-deep nz-range-picker.ant-picker-focused {
+  box-shadow: none;
 }

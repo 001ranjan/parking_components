@@ -1,65 +1,38 @@
 <section class="style-guid mt-40">
-  <div class="ui-xl-container pl-12 pr-12">
+  <div class="ui-xl-container">
     <ng-template #tabContent1>
       <!-- button Kind -->
-      <div class="btn-kind">
+      <div class="btn-kind container-main">
         <h3>Primary</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
             <h6 class="pb-15">Large</h6>
-            <ui-button
-              label="Text"
-              variant="primary"
-              size="large"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabled"
-            />
+            <ui-button label="Text" variant="primary" size="large" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabled" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalled($event)"
-                label="Disable"
-              ></ui-checkbox>
+              <ui-checkbox (change)="disableCalled($event)" label="Disable"></ui-checkbox>
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Medium</h6>
-            <ui-button
-              label="Text"
-              variant="primary"
-              size="medium"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabled_2"
-            />
+            <ui-button label="Text" variant="primary" size="medium" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabled_2" />
             <div class="ui-col-1 mt-15 ml-5">
               <ui-checkbox (change)="disableCalled_2($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Small</h6>
-            <ui-button
-              label="Text"
-              variant="primary"
-              size="small"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabled_3"
-            />
+            <ui-button label="Text" variant="primary" size="small" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabled_3" />
             <div class="ui-col-1 mt-15 ml-5">
               <ui-checkbox (change)="disableCalled_3($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">XSmall</h6>
-            <ui-button
-              label="Text"
-              variant="primary"
-              size="xsmall"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabled_4"
-            />
+            <ui-button label="Text" variant="primary" size="xsmall" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabled_4" />
             <div class="ui-col-1 mt-15 ml-5">
               <ui-checkbox (change)="disableCalled_4($event)" label="Disable" />
             </div>
@@ -68,832 +41,408 @@
       </div>
 
       <!-- button sizes -->
-      <div class="btn-size mt-40">
+      <div class="btn-size mt-40 container-main">
         <h3>Circular Icon Button</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="primary"
-              size="large"
-              [disabled]="isDisabledRound1"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="primary" size="large" [disabled]="isDisabledRound1" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledRound1($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledRound1($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="primary"
-              size="medium"
-              [disabled]="isDisabledRound2"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="primary" size="medium" [disabled]="isDisabledRound2" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledRound2($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledRound2($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="primary"
-              size="small"
-              [disabled]="isDisabledRound3"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="primary" size="small" [disabled]="isDisabledRound3" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledRound3($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledRound3($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="primary"
-              size="xsmall"
-              [disabled]="isDisabledRound4"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="primary" size="xsmall" [disabled]="isDisabledRound4" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledRound4($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledRound4($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button with icon -->
-      <div class="btn-size mt-40">
+      <div class="btn-size mt-40 container-main">
         <h3>Square Icon Button</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              variant="primary"
-              size="large"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSquare1"
-            />
+            <ui-button variant="primary" size="large" shape="corner" iconLeft="user" [disabled]="isDisabledSquare1" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSquare1($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSquare1($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="primary"
-              size="medium"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSquare2"
-            />
+            <ui-button variant="primary" size="medium" shape="corner" iconLeft="user" [disabled]="isDisabledSquare2" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSquare2($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSquare2($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="primary"
-              size="small"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSquare3"
-            />
+            <ui-button variant="primary" size="small" shape="corner" iconLeft="user" [disabled]="isDisabledSquare3" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSquare3($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSquare3($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="primary"
-              size="xsmall"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSquare4"
-            />
+            <ui-button variant="primary" size="xsmall" shape="corner" iconLeft="user" [disabled]="isDisabledSquare4" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSquare4($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSquare4($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button secondary -->
-      <div class="btn-kind mt-50">
+      <div class="btn-kind mt-50 container-main">
         <h3>Secondary</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
             <h6 class="pb-15">Large</h6>
-            <ui-button
-              label="Text"
-              variant="secondary"
-              size="large"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec1"
-            />
+            <ui-button label="Text" variant="secondary" size="large" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec1" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec1($event)"
-                label="Disable"
-              ></ui-checkbox>
+              <ui-checkbox (change)="disableCalledSec1($event)" label="Disable"></ui-checkbox>
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Medium</h6>
-            <ui-button
-              label="Text"
-              variant="secondary"
-              size="medium"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec2"
-            />
+            <ui-button label="Text" variant="secondary" size="medium" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec2" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec2($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec2($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Small</h6>
-            <ui-button
-              label="Text"
-              variant="secondary"
-              size="small"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec4"
-            />
+            <ui-button label="Text" variant="secondary" size="small" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec4" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec4($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec4($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">XSmall</h6>
-            <ui-button
-              label="Text"
-              variant="secondary"
-              size="xsmall"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec6"
-            />
+            <ui-button label="Text" variant="secondary" size="xsmall" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec6" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec6($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec6($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button sizes -->
-      <div class="btn-size mt-40">
+      <div class="btn-size mt-40 container-main">
         <h3>Circular Icon Button</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="secondary"
-              size="large"
-              [disabled]="isDisabledSec7"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="secondary" size="large" [disabled]="isDisabledSec7" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec7($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec7($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="secondary"
-              size="medium"
-              [disabled]="isDisabledSec8"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="secondary" size="medium" [disabled]="isDisabledSec8" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec8($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec8($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="secondary"
-              size="small"
-              [disabled]="isDisabledSec9"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="secondary" size="small" [disabled]="isDisabledSec9" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec9($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec9($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="secondary"
-              size="xsmall"
-              [disabled]="isDisabledSec10"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="secondary" size="xsmall" [disabled]="isDisabledSec10" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec10($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec10($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button with icon -->
-      <div class="btn-size mt-40">
+      <div class="btn-size mt-40 container-main">
         <h3>Square Icon Button</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              variant="secondary"
-              size="large"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec11"
-            />
+            <ui-button variant="secondary" size="large" shape="corner" iconLeft="user" [disabled]="isDisabledSec11" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec11($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec11($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="secondary"
-              size="medium"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec12"
-            />
+            <ui-button variant="secondary" size="medium" shape="corner" iconLeft="user" [disabled]="isDisabledSec12" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec12($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec12($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="secondary"
-              size="small"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec13"
-            />
+            <ui-button variant="secondary" size="small" shape="corner" iconLeft="user" [disabled]="isDisabledSec13" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec13($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec13($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="secondary"
-              size="xsmall"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec14"
-            />
+            <ui-button variant="secondary" size="xsmall" shape="corner" iconLeft="user" [disabled]="isDisabledSec14" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec14($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec14($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button outlined -->
-      <div class="btn-kind mt-50">
+      <div class="btn-kind mt-50 container-main">
         <h3>Tertiary</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
             <h6 class="pb-15">Large</h6>
-            <ui-button
-              label="Text"
-              variant="outlined"
-              size="large"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec1"
-            />
+            <ui-button label="Text" variant="outlined" size="large" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec1" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec1($event)"
-                label="Disable"
-              ></ui-checkbox>
+              <ui-checkbox (change)="disableCalledSec1($event)" label="Disable"></ui-checkbox>
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Medium</h6>
-            <ui-button
-              label="Text"
-              variant="outlined"
-              size="medium"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec2"
-            />
+            <ui-button label="Text" variant="outlined" size="medium" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec2" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec2($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec2($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Small</h6>
-            <ui-button
-              label="Text"
-              variant="outlined"
-              size="small"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec4"
-            />
+            <ui-button label="Text" variant="outlined" size="small" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec4" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec4($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec4($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">XSmall</h6>
-            <ui-button
-              label="Text"
-              variant="outlined"
-              size="xsmall"
-              iconLeft="briefcase"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec6"
-            />
+            <ui-button label="Text" variant="outlined" size="xsmall" iconLeft="briefcase" iconRight="briefcase"
+              [disabled]="isDisabledSec6" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec6($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec6($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button sizes -->
-      <div class="btn-size mt-40">
+      <div class="btn-size mt-40 container-main">
         <h3>Circular Icon Button</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="outlined"
-              size="large"
-              [disabled]="isDisabledSec7"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="outlined" size="large" [disabled]="isDisabledSec7" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec7($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec7($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="outlined"
-              size="medium"
-              [disabled]="isDisabledSec8"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="outlined" size="medium" [disabled]="isDisabledSec8" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec8($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec8($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="outlined"
-              size="small"
-              [disabled]="isDisabledSec9"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="outlined" size="small" [disabled]="isDisabledSec9" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec9($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec9($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              shape="round"
-              iconLeft="bell"
-              variant="outlined"
-              size="xsmall"
-              [disabled]="isDisabledSec10"
-            />
+            <ui-button shape="round" iconLeft="bell" variant="outlined" size="xsmall" [disabled]="isDisabledSec10" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec10($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec10($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button with icon -->
-      <div class="btn-size mt-40">
+      <div class="btn-size mt-40 container-main">
         <h3>Square Icon Button</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              variant="outlined"
-              size="large"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec11"
-            />
+            <ui-button variant="outlined" size="large" shape="corner" iconLeft="user" [disabled]="isDisabledSec11" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec11($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec11($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="outlined"
-              size="medium"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec12"
-            />
+            <ui-button variant="outlined" size="medium" shape="corner" iconLeft="user" [disabled]="isDisabledSec12" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec12($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec12($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="outlined"
-              size="small"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec13"
-            />
+            <ui-button variant="outlined" size="small" shape="corner" iconLeft="user" [disabled]="isDisabledSec13" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec13($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec13($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              variant="outlined"
-              size="xsmall"
-              shape="corner"
-              iconLeft="user"
-              [disabled]="isDisabledSec14"
-            />
+            <ui-button variant="outlined" size="xsmall" shape="corner" iconLeft="user" [disabled]="isDisabledSec14" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec14($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec14($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button splitBorder -->
-      <div class="btn-kind mt-50">
+      <div class="btn-kind mt-50 container-main">
         <h2>Split</h2>
         <h5 class="mt-15">Without Border</h5>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
             <h6 class="pb-15">Large</h6>
-            <ui-button
-              label="Text"
-              variant="split"
-              size="large"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec15"
-            />
+            <ui-button label="Text" variant="split" size="large" iconLeft="briefcase" [disabled]="isDisabledSec15" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec15($event)"
-                label="Disable"
-              ></ui-checkbox>
+              <ui-checkbox (change)="disableCalledSec15($event)" label="Disable"></ui-checkbox>
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Medium</h6>
-            <ui-button
-              label="Text"
-              variant="split"
-              size="medium"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec16"
-            />
+            <ui-button label="Text" variant="split" size="medium" iconLeft="briefcase" [disabled]="isDisabledSec16" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec16($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec16($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Small</h6>
-            <ui-button
-              label="Text"
-              variant="split"
-              size="small"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec17"
-            />
+            <ui-button label="Text" variant="split" size="small" iconLeft="briefcase" [disabled]="isDisabledSec17" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec17($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec17($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">XSmall</h6>
-            <ui-button
-              label="Text"
-              variant="split"
-              size="xsmall"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec18"
-            />
+            <ui-button label="Text" variant="split" size="xsmall" iconLeft="briefcase" [disabled]="isDisabledSec18" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec18($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec18($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="btn-kind mt-50">
+      <div class="btn-kind mt-50 container-main">
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="split"
-              size="large"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec19"
-            />
+            <ui-button label="Text" variant="split" size="large" iconRight="briefcase" [disabled]="isDisabledSec19" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec19($event)"
-                label="Disable"
-              ></ui-checkbox>
+              <ui-checkbox (change)="disableCalledSec19($event)" label="Disable"></ui-checkbox>
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="split"
-              size="medium"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec20"
-            />
+            <ui-button label="Text" variant="split" size="medium" iconRight="briefcase" [disabled]="isDisabledSec20" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec20($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec20($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="split"
-              size="small"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec21"
-            />
+            <ui-button label="Text" variant="split" size="small" iconRight="briefcase" [disabled]="isDisabledSec21" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec21($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec21($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="split"
-              size="xsmall"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec22"
-            />
+            <ui-button label="Text" variant="split" size="xsmall" iconRight="briefcase" [disabled]="isDisabledSec22" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec22($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec22($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
       <!-- button split -->
-      <div class="btn-kind mt-50">
+      <div class="btn-kind mt-50 container-main">
         <h2>Split</h2>
         <h5 class="mt-15">With Border</h5>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
             <h6 class="pb-15">Large</h6>
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="large"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec23"
-            />
+            <ui-button label="Text" variant="splitBorder" size="large" iconLeft="briefcase"
+              [disabled]="isDisabledSec23" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec23($event)"
-                label="Disable"
-              ></ui-checkbox>
+              <ui-checkbox (change)="disableCalledSec23($event)" label="Disable"></ui-checkbox>
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Medium</h6>
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="medium"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec24"
-            />
+            <ui-button label="Text" variant="splitBorder" size="medium" iconLeft="briefcase"
+              [disabled]="isDisabledSec24" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec24($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec24($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">Small</h6>
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="small"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec25"
-            />
+            <ui-button label="Text" variant="splitBorder" size="small" iconLeft="briefcase"
+              [disabled]="isDisabledSec25" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec25($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec25($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
             <h6 class="pb-15">XSmall</h6>
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="xsmall"
-              iconLeft="briefcase"
-              [disabled]="isDisabledSec26"
-            />
+            <ui-button label="Text" variant="splitBorder" size="xsmall" iconLeft="briefcase"
+              [disabled]="isDisabledSec26" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec26($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec26($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="btn-kind mt-50">
+      <div class="btn-kind mt-50 container-main">
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="large"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec7"
-            />
+            <ui-button label="Text" variant="splitBorder" size="large" iconRight="briefcase"
+              [disabled]="isDisabledSec7" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec7($event)"
-                label="Disable"
-              ></ui-checkbox>
+              <ui-checkbox (change)="disableCalledSec7($event)" label="Disable"></ui-checkbox>
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="medium"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec8"
-            />
+            <ui-button label="Text" variant="splitBorder" size="medium" iconRight="briefcase"
+              [disabled]="isDisabledSec8" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec8($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec8($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="small"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec9"
-            />
+            <ui-button label="Text" variant="splitBorder" size="small" iconRight="briefcase"
+              [disabled]="isDisabledSec9" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec9($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec9($event)" label="Disable" />
             </div>
           </div>
           <div class="ui-col-3">
-            <ui-button
-              label="Text"
-              variant="splitBorder"
-              size="xsmall"
-              iconRight="briefcase"
-              [disabled]="isDisabledSec10"
-            />
+            <ui-button label="Text" variant="splitBorder" size="xsmall" iconRight="briefcase"
+              [disabled]="isDisabledSec10" />
             <div class="ui-col-1 mt-15 ml-5">
-              <ui-checkbox
-                (change)="disableCalledSec10($event)"
-                label="Disable"
-              />
+              <ui-checkbox (change)="disableCalledSec10($event)" label="Disable" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="btn-kind mb-100">
+      <div class="btn-kind mb-100 container-main">
         <h3>Text Button</h3>
         <div class="ui-grid mt-20">
           <div class="ui-col-3">
@@ -911,7 +460,7 @@
 
     <ng-template #tabContent2>
       <!-- button Icons -->
-      <div class="btn-kind">
+      <div class="btn-kind container-main">
         <h3>Icons (Hero - Outline)</h3>
         <div class="ui-grid mt-30">
           <div class="ui-col-1">
@@ -981,30 +530,134 @@
 
     <ng-template #tabContent3>
       <!-- Text Area -->
-      <div class="text-area">
-        <h3 class="mb-20">Text Area</h3>
+      <div class="text-area container-main">
+        <h3 class="mb-10 gap-20">Text Area With Iocn</h3>
         <div class="ui-grid">
-          <div class="ui-col-3">
-            <ui-text-field variant="primary" />
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="primary" placeholder="" count="false" icon="user" [hasIcon]="true" />
           </div>
-          <div class="ui-col-1"></div>
-          <div class="ui-col-3">
-            <ui-text-field variant="primary" [error]="true" />
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="primary" placeholder="" count="false" [error]="true" errorMessage="Enter User Name."
+              [hasIcon]="true" />
           </div>
-          <div class="ui-col-1"></div>
-          <div class="ui-col-3">
-            <ui-text-field variant="primary" [disable]="true" />
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="primary" placeholder="" count="false" icon="user" [hasIcon]="true"
+              help="Enter admin user name." />
           </div>
         </div>
 
-        <div class="ui-grid p-5">
-          <ui-range-calendar class="mr-5" />
+        <h3 class="mb-10 mt-32">Text Area Without Iocn</h3>
+        <div class="ui-grid ">
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="primary" placeholder="" count="false" [hasIcon]="false" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="primary" placeholder="" count="false" [error]="true" errorMessage="Enter User Name."
+              [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="primary" placeholder="" count="false" help="Enter admin user name." />
+          </div>
         </div>
+
+
+
+        <h3 class="mb-10 mt-32">Secondary Text Area With Iocn</h3>
+        <div class="ui-grid gap-60">
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="corner" placeholder="Input Field Text" count="false" icon="user"
+              [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="corner" placeholder="Input Field Text" count="false" icon="user"
+              [error]="true" [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="corner" placeholder="Input Field Text" count="false" icon="user"
+              [hasIcon]="true" help="Enter Input Field Text." />
+          </div>
+        </div>
+
+        <h3 class="mb-10 mt-32">Secondary Text Area Without Iocn</h3>
+        <div class="ui-grid gap-60">
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="corner" placeholder="Input Field Text" count="false"
+              [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="corner" placeholder="Input Field Text" count="false"
+              [error]="true" [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="corner" placeholder="Input Field Text" count="false"
+              [hasIcon]="true" help="Enter Input Field Text." />
+          </div>
+        </div>
+
+
+
+        <h3 class="mb-10 mt-32">Secondary Round Text Area With Iocn</h3>
+        <div class="ui-grid gap-60">
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="round" placeholder="Input Field Text" count="false" icon="user"
+              [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="round" placeholder="Input Field Text" count="false" icon="user"
+              [error]="true" [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="round" placeholder="Input Field Text" count="false" icon="user"
+              [hasIcon]="true" help="Enter Input Field Text." />
+          </div>
+        </div>
+
+        <h3 class="mb-10 mt-32">Secondary Round Text Area Without Iocn</h3>
+        <div class="ui-grid gap-60">
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="round" placeholder="Input Field Text" count="false"
+              [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="round" placeholder="Input Field Text" count="false" [error]="true"
+              [hasIcon]="true" />
+          </div>
+          <div class="ui-col-3 mt-10">
+            <ui-text-field variant="secondary" shape="round" placeholder="Input Field Text" count="false"
+              [hasIcon]="true" help="Enter Input Field Text." />
+          </div>
+        </div>
+
+
+
+        <!-- <div class="ui-grid p-5 mt-32">
+          <ui-range-calendar class="mr-5" />
+        </div> -->
+
+        <h3 class="mt-10 mb-32">Dropdown</h3>
+        <div class="ui-grid">
+          <div class="ui-col-3">
+            <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="statusList"
+              (selectionChange)="onStatusSelectionChange($event)" />
+          </div>
+          <div class="ui-col-3">
+            <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="statusList"
+              (selectionChange)="onStatusSelectionChange($event)" [error]="true" errorMessage="Select dropdown." />
+          </div>
+          <div class="ui-col-3">
+            <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="statusList"
+              (selectionChange)="onStatusSelectionChange($event)" help="Select Dropdown from list." link="#" />
+          </div>
+        </div>
+
 
         <h3 class="mt-30">Number</h3>
         <div class="ui-grid mt-20">
-          <div class="ui-col-12">
+          <div class="ui-col-3">
             <ui-number />
+          </div>
+          <div class="ui-col-3">
+            <ui-number [error]="true" errorMessage="Enter your number." />
           </div>
         </div>
       </div>
@@ -1012,43 +665,53 @@
 
     <ng-template #tabContent4>
       <div class="ui-grid">
-        <div class="ui-col-5 mr-20">
-          <ui-dropdown
-            class="mr-5"
-            size="small"
-            isDropdown="isDropdown"
-            [dropdownList]="statusList"
-            (selectionChange)="onStatusSelectionChange($event)"
-          />
-        </div>
-      </div>
+        <div class="ui-col-4">
+          <div class="ui-grid container-main">
+            <div class="ui-col-6">
+              <ui-dropdown class="mr-5" size="small" isDropdown="isDropdown" [dropdownList]="statusList"
+                (selectionChange)="onStatusSelectionChange($event)" />
+            </div>
+          </div>
 
-      <div class="ui-grid">
-        <div class="ui-col-6 mr-20">
-          <ui-dropdown
-            class="mr-5"
-            size="medium"
-            isDropdown="isDropdown"
-            [dropdownList]="statusList"
-            (selectionChange)="onStatusSelectionChange($event)"
-          />
+          <div class="ui-grid container-main">
+            <div class="ui-col-6">
+              <ui-dropdown class="mr-5" size="medium" isDropdown="isDropdown" [dropdownList]="statusList"
+                (selectionChange)="onStatusSelectionChange($event)" />
+            </div>
+          </div>
+          <div class="ui-grid container-main">
+            <div class="ui-col-6">
+              <ui-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="statusList"
+                (selectionChange)="onStatusSelectionChange($event)" />
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="ui-grid">
-        <div class="ui-col-7 mr-20">
-          <ui-dropdown
-            class="mr-5"
-            size="large"
-            isDropdown="isDropdown"
-            [dropdownList]="statusList"
-            (selectionChange)="onStatusSelectionChange($event)"
-          />
+        <div class="ui-col-4">
+          <!-- <div class="ui-grid container-main">
+            <div class="ui-col-5 mr-20">
+              <ui-text-dropdown class="mr-5" size="small" isDropdown="isDropdown" [dropdownList]="statusList"
+                (selectionChange)="onStatusSelectionChange($event)" />
+            </div>
+          </div> -->
+
+          <!-- <div class="ui-grid container-main">
+            <div class="ui-col-6 mr-20">
+              <ui-text-dropdown class="mr-5" size="medium" isDropdown="isDropdown" [dropdownList]="statusList"
+                (selectionChange)="onStatusSelectionChange($event)" />
+            </div>
+          </div> -->
+          <!-- <div class="ui-grid container-main">
+            <div class="ui-col-7 mr-20">
+              <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="statusList"
+                (selectionChange)="onStatusSelectionChange($event)" />
+            </div>
+          </div> -->
         </div>
       </div>
     </ng-template>
 
     <ng-template #tabContent5>
-      <div class="ui-grid mb-30 mt-30">
+      <div class="ui-grid mb-30 mt-30 container-main">
         <div class="ui-col-5">
           <h6>Click the Button to open Info Toaster</h6>
         </div>
@@ -1057,7 +720,7 @@
         </div>
       </div>
 
-      <div class="ui-grid mb-30">
+      <div class="ui-grid mb-30 container-main">
         <div class="ui-col-5">
           <h6>Click the Button to open Info warning</h6>
         </div>
@@ -1066,7 +729,7 @@
         </div>
       </div>
 
-      <div class="ui-grid mb-30">
+      <div class="ui-grid mb-30 container-main">
         <div class="ui-col-5">
           <h6>Click the Button to open Info success</h6>
         </div>
@@ -1075,7 +738,7 @@
         </div>
       </div>
 
-      <div class="ui-grid mb-30">
+      <div class="ui-grid mb-30 container-main">
         <div class="ui-col-5">
           <h6>Click the Button to open Info Error</h6>
         </div>
@@ -1086,376 +749,692 @@
     </ng-template>
 
     <ng-template #tabContent6>
-      <h3 class="mt-20 mb-30">Tabs</h3>
-      <ng-template #tab1>
-        <p>This is content for Tab 1</p>
-      </ng-template>
+      <div class="container-main">
+        <h3 class="mt-20 mb-30">Tabs</h3>
+        <ng-template #tab1>
+          <p>This is content for Tab 1</p>
+        </ng-template>
 
-      <ng-template #tab2>
-        <p>This is content for Tab 2</p>
-      </ng-template>
-      <ng-template #tab3>
-        <p>This is content for Tab 3</p>
-      </ng-template>
+        <ng-template #tab2>
+          <p>This is content for Tab 2</p>
+        </ng-template>
+        <ng-template #tab3>
+          <p>This is content for Tab 3</p>
+        </ng-template>
 
-      <ui-tab
-        [tabs]="[
+        <ui-tab size="small" [tabs]="[
           { id: 1, title: 'Button', content: tab1 },
           { id: 2, title: 'Icons', content: tab2 },
-          { id: 3, title: 'Icons', content: tab3 }
-        ]"
-      />
+          { id: 3, title: 'Avatar', content: tab3 }
+        ]" />
+      </div>
+
     </ng-template>
 
     <ng-template #tabContent7>
-      <h3 class="mb-30 mt-20">Avatar (size)</h3>
-      <div class="ui-grid mt-20 mb-20">
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xsm"
-          />
+      <div class="container-main">
+        <h3 class="mb-30 mt-20">Square Avatar</h3>
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u2.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u3.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u4.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u5.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="xxl" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="sm"
-          />
-        </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="md"
-          />
-        </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xl"
-          />
-        </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xxl"
-          />
-        </div>
-      </div>
 
-      <h3 class="mb-30 mt-20">Avatar (shape)</h3>
-      <div class="ui-grid mt-20 mb-20">
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xsm"
-            shape="round"
-          />
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u2.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u3.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u4.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u5.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="xl" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="sm"
-            shape="round"
-          />
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u2.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u3.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u4.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u5.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="md" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="md"
-            shape="round"
-          />
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u2.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u3.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u4.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u5.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="sm" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xl"
-            shape="round"
-          />
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u2.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u3.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u4.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/u5.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-user.svg" size="xsm" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xxl"
-            shape="round"
-          />
-        </div>
-      </div>
 
-      <div class="ui-grid mt-20 mb-20">
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xsm"
-          />
+
+
+
+        <h3 class="mb-30 mt-20">Circular Avatar</h3>
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar shape="round" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" shape="round" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u2.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u3.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u4.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u5.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="xxl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="xxl" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="sm"
-          />
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar shape="round" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" shape="round" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u2.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u3.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u4.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u5.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="xl" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="xl" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="md"
-          />
+
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar shape="round" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" shape="round" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u2.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u3.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u4.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u5.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="md" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="md" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xl"
-          />
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar shape="round" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" shape="round" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u2.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u3.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u4.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u5.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="sm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="sm" label="AB" />
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-avatar
-            avatarIcon="../../assets/images/icons/avatar-2.svg"
-            size="xxl"
-          />
+        <div class="ui-grid mt-20 mb-20">
+          <div class="ui-col-1">
+            <ui-avatar shape="round" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar avatarIcon="../../assets/images/icons/avatar-2.svg" shape="round" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u2.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u3.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u4.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/u5.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="xsm" />
+          </div>
+          <div class="ui-col-1">
+            <ui-avatar shape="round" avatarIcon="../../assets/images/icons/avatar-user.svg" size="xsm" label="AB" />
+          </div>
         </div>
+
+
       </div>
     </ng-template>
 
     <ng-template #tabContent8>
-      <ui-typography />
+      <div class="container-main">
+        <ui-typography />
+      </div>
     </ng-template>
 
     <ng-template #tabContent9>
-      <div class="ui-grid">
-        <div class="ui-col-4 pr-20">
-          <h2 class="mb-20">Suffix Icon</h2>
-          <ui-search icons="suffix" />
+      <div class="container-main">
+        <div class="ui-grid">
+          <div class="ui-col-4 pr-20">
+            <h2 class="mb-20">Suffix Icon</h2>
+            <ui-search icons="suffix" />
+          </div>
+
+          <div class="ui-col-4 pr-20">
+            <h2 class="mb-20">Prefix Icon</h2>
+            <ui-search icons="prefix" />
+          </div>
+
+          <div class="ui-col-4">
+            <h2 class="mb-20">Suffix with Button</h2>
+            <ui-search icons="suffix" isCategory="isCategory" />
+          </div>
         </div>
 
-        <div class="ui-col-4 pr-20">
-          <h2 class="mb-20">Prefix Icon</h2>
-          <ui-search icons="prefix" />
+        <h2 class="mt-30 mb-20">Search Bar (size)</h2>
+        <div class="ui-grid">
+          <div class="ui-col-4 pr-20">
+            <ui-search icons="suffix" [contacts]="contactData" size="small" />
+          </div>
+          <div class="ui-col-4 pr-20">
+            <ui-search icons="suffix" [contacts]="contactData" size="medium" />
+          </div>
+          <div class="ui-col-4 pr-20">
+            <ui-search icons="suffix" [contacts]="contactData" size="large" />
+          </div>
         </div>
 
-        <div class="ui-col-4">
-          <h2 class="mb-20">Suffix with Button</h2>
-          <ui-search icons="suffix" isCategory="isCategory" />
-        </div>
-      </div>
+        <h2 class="mt-30">Active Search Bar</h2>
+        <div class="ui-grid p-5">
+          <div class="ui-col-4 pr-20">
+            <h5 class="mt-20 mb-20">Suffix with Button</h5>
+            <ui-search icons="suffix" [contacts]="contactData" searchTerms="a" />
+          </div>
 
-      <h2 class="mt-30 mb-20">Search Bar (size)</h2>
-      <div class="ui-grid">
-        <div class="ui-col-4 pr-20">
-          <ui-search icons="suffix" [contacts]="contactData" size="small" />
-        </div>
-        <div class="ui-col-4 pr-20">
-          <ui-search icons="suffix" [contacts]="contactData" size="medium" />
-        </div>
-        <div class="ui-col-4 pr-20">
-          <ui-search icons="suffix" [contacts]="contactData" size="large" />
-        </div>
-      </div>
+          <div class="ui-col-4 pr-20">
+            <h5 class="mt-20 mb-20">Prefix with Button</h5>
+            <ui-search icons="prefix" [contacts]="contactData" searchTerms="sudesh" />
+          </div>
 
-      <h2 class="mt-30">Active Search Bar</h2>
-      <div class="ui-grid p-5">
-        <div class="ui-col-4 pr-20">
-          <h5 class="mt-20 mb-20">Suffix with Button</h5>
-          <ui-search icons="suffix" [contacts]="contactData" searchTerms="a" />
-        </div>
-
-        <div class="ui-col-4 pr-20">
-          <h5 class="mt-20 mb-20">Prefix with Button</h5>
-          <ui-search
-            icons="prefix"
-            [contacts]="contactData"
-            searchTerms="sudesh"
-          />
-        </div>
-
-        <div class="ui-col-4 pr-20">
-          <h5 class="mt-20 mb-20">Suffix with Button</h5>
-          <ui-search
-            icons="suffix"
-            isCategory="isCategory"
-            [contacts]="contactData"
-            [categories]="[
+          <div class="ui-col-4 pr-20">
+            <h5 class="mt-20 mb-20">Suffix with Button</h5>
+            <ui-search icons="suffix" isCategory="isCategory" [contacts]="contactData" [categories]="[
               'Select parking',
               'Sales',
               'eCommerce',
               'Parking',
               'Sistem'
-            ]"
-            searchTerms="a"
-          />
+            ]" searchTerms="a" />
+          </div>
         </div>
       </div>
     </ng-template>
 
     <ng-template #tabContent10>
-      <h2 class="mt-20">Controls</h2>
+      <div class="container-main">
+        <h2 class="mt-20">Controls</h2>
 
-      <h3 class="mt-20 mb-10">Radio Button</h3>
-      <h5 class="mt-10 mb-10">Radio Button (size)</h5>
-      <div class="ui-grid p-7">
-        <div class="ui-col-1"><ui-radio-button size="small" /></div>
-        <div class="ui-col-1"><ui-radio-button size="large" /></div>
-      </div>
+        <h3 class="mt-20 mb-10">Radio Button</h3>
+        <h5 class="mt-10 mb-10">Radio Button (size)</h5>
+        <div class="ui-grid p-7">
+          <div class="ui-col-1"><ui-radio-button size="small" /></div>
+          <div class="ui-col-1"><ui-radio-button size="large" /></div>
+        </div>
 
-      <h5 class="mt-10 mb-10">Radio Button (state)</h5>
-      <div class="ui-grid p-7">
-        <div class="ui-col-1">
-          <ui-radio-button size="large" />
-          <p class="xsmall-p mt-6">Radio-Default</p>
+        <h5 class="mt-10 mb-10">Radio Button (state)</h5>
+        <div class="ui-grid p-7">
+          <div class="ui-col-1">
+            <ui-radio-button size="large" />
+            <p class="xsmall-p mt-6">Radio-Default</p>
+          </div>
+          <div class="ui-col-1">
+            <ui-radio-button size="large" class="hover" />
+            <p class="xsmall-p mt-6">Radio-Hover</p>
+          </div>
+          <div class="ui-col-1">
+            <ui-radio-button size="large" class="select" />
+            <p class="xsmall-p mt-6">Radio-Selected</p>
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-radio-button size="large" class="hover" />
-          <p class="xsmall-p mt-6">Radio-Hover</p>
-        </div>
-        <div class="ui-col-1">
-          <ui-radio-button size="large" class="select" />
-          <p class="xsmall-p mt-6">Radio-Selected</p>
-        </div>
-      </div>
 
-      <h3 class="mt-20 mb-10">Check Button</h3>
-      <h5 class="mt-10 mb-10">Check Button (size)</h5>
-      <div class="ui-grid p-7">
-        <div class="ui-col-1"><ui-checkbox size="small" /></div>
-        <div class="ui-col-1"><ui-checkbox size="large" /></div>
-      </div>
+        <h3 class="mt-20 mb-10">Check Button</h3>
+        <h5 class="mt-10 mb-10">Check Button (size)</h5>
+        <div class="ui-grid p-7">
+          <div class="ui-col-1"><ui-checkbox size="small" /></div>
+          <div class="ui-col-1"><ui-checkbox size="large" /></div>
+        </div>
 
-      <h5 class="mt-10 mb-10">Check Button (state)</h5>
-      <div class="ui-grid p-7">
-        <div class="ui-col-1">
-          <ui-checkbox size="large" />
-          <p class="xsmall-p mt-6">Check-Default</p>
+        <h5 class="mt-10 mb-10">Check Button (state)</h5>
+        <div class="ui-grid p-7">
+          <div class="ui-col-1">
+            <ui-checkbox size="large" />
+            <p class="xsmall-p mt-6">Check-Default</p>
+          </div>
+          <div class="ui-col-1">
+            <ui-checkbox size="large" class="hover" />
+            <p class="xsmall-p mt-6">Check-Hover</p>
+          </div>
+          <div class="ui-col-1">
+            <ui-checkbox size="large" class="select" />
+            <p class="xsmall-p mt-6">Check-Selected</p>
+          </div>
         </div>
-        <div class="ui-col-1">
-          <ui-checkbox size="large" class="hover" />
-          <p class="xsmall-p mt-6">Check-Hover</p>
-        </div>
-        <div class="ui-col-1">
-          <ui-checkbox size="large" class="select" />
-          <p class="xsmall-p mt-6">Check-Selected</p>
-        </div>
-      </div>
 
-      <h3 class="mt-20 mb-10">Switch</h3>
-      <div class="ui-grid p-7">
-        <div class="ui-col-1"><ui-toggle /></div>
+        <h3 class="mt-20 mb-10">Switch</h3>
+        <div class="ui-grid p-7">
+          <div class="ui-col-1"><ui-toggle /></div>
+        </div>
       </div>
     </ng-template>
 
     <ng-template #tabContent11>
-      <div class="ui-grid">
-        <div class="ui-col-2">
-          <ui-tags variant="canclled" lable="Canclled" />
+      <div class="container-main">
+        <h3>Regular Tags</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-2">
+            <ui-tags variant="canclled" lable="Canclled" />
+          </div>
+          <div class="ui-col-2"><ui-tags variant="closed" lable="Closed" /></div>
+          <div class="ui-col-2"><ui-tags variant="new" lable="New" /></div>
+          <div class="ui-col-2"><ui-tags variant="error" lable="Error" /></div>
+          <div class="ui-col-2"><ui-tags variant="default" lable="Default" /></div>
         </div>
-        <div class="ui-col-2"><ui-tags variant="closed" lable="Closed" /></div>
-        <div class="ui-col-2"><ui-tags variant="new" lable="New" /></div>
+
+        <div class="mt-20"></div>
+        <h3>Small Tags</h3>
+        <div class="ui-grid mt-20">
+          <div class="ui-col-2">
+            <ui-tags variant="canclled" size="small" lable="Canclled" />
+          </div>
+          <div class="ui-col-2"><ui-tags variant="closed" size="small" lable="Closed" /></div>
+          <div class="ui-col-2"><ui-tags variant="new" size="small" lable="New" /></div>
+          <div class="ui-col-2"><ui-tags variant="error" size="small" lable="Error" /></div>
+          <div class="ui-col-2"><ui-tags variant="default" size="small" lable="Default" /></div>
+        </div>
       </div>
     </ng-template>
 
     <ng-template #tabContent12>
-      <ui-breadcrumbs [breadcrumbs]="breadcrumbs" />
+      <div class="container-main">
+        <ui-breadcrumbs [breadcrumbs]="breadcrumbs" />
+      </div>
     </ng-template>
 
     <ng-template #tabContent13>
-      <div class="ui-grid">
-        <div class="ui-col-3">
-          <ui-navigation [menuItems]="menuItems" variant="primary" />
-        </div>
-        <div class="ui-col-1"></div>
-        <div class="ui-col-3">
-          <ui-navigation [menuItems]="menuItems" variant="secondary" />
+      <div class="container-main">
+        <div class="ui-grid">
+          <div class="ui-col-3 mt-50">
+            <!-- <ui-navigation [menuItems]="menuItems" variant="primary" /> -->
+            <ui-sidebar></ui-sidebar>
+          </div>
+          <div class="ui-col-1"></div>
+          <div class="ui-col-3">
+            <!-- <ui-navigation [menuItems]="menuItems" variant="secondary" /> -->
+            <ui-settingSidebar></ui-settingSidebar>
+          </div>
         </div>
       </div>
     </ng-template>
 
     <ng-template #tabContent14>
-      <div class="ui-grid">
-        <div class="ui-col">
-          <h5 class="mb-20">Tooltip Bottom</h5>
-          <ui-button
-            variant="primary"
-            size="medium"
-            label="Tooltip Bottom"
-            appTooltip="Tooltip Text"
-          />
-        </div>
-        <div class="ui-col">
-          <h5 class="mb-20">Tooltip Top</h5>
-          <ui-button
-            variant="primary"
-            size="medium"
-            label="Tooltip Top"
-            appTooltip="Tooltip Text"
-            placement="top"
-          />
-        </div>
-        <div class="ui-col">
-          <h5 class="mb-20">Tooltip Left</h5>
-          <ui-button
-            variant="primary"
-            size="medium"
-            label="Tooltip Left"
-            appTooltip="Tooltip Text"
-            placement="left"
-          />
-        </div>
-        <div class="ui-col">
-          <h5 class="mb-20">Tooltip Right</h5>
-          <ui-button
-            variant="primary"
-            size="medium"
-            label="Tooltip Right"
-            appTooltip="Tooltip Text"
-            placement="right"
-          />
+      <div class="container-main">
+        <div class="ui-grid">
+          <div class="ui-col">
+            <h5 class="mb-20">Tooltip Bottom</h5>
+            <ui-button variant="primary" size="medium" label="Tooltip Bottom" appTooltip="Tooltip Text" />
+          </div>
+          <div class="ui-col">
+            <h5 class="mb-20">Tooltip Top</h5>
+            <ui-button variant="primary" size="medium" label="Tooltip Top" appTooltip="Tooltip Text" placement="top" />
+          </div>
+          <div class="ui-col">
+            <h5 class="mb-20">Tooltip Left</h5>
+            <ui-button variant="primary" size="medium" label="Tooltip Left" appTooltip="Tooltip Text"
+              placement="left" />
+          </div>
+          <div class="ui-col">
+            <h5 class="mb-20">Tooltip Right</h5>
+            <ui-button variant="primary" size="medium" label="Tooltip Right" appTooltip="Tooltip Text"
+              placement="right" />
+          </div>
         </div>
       </div>
     </ng-template>
 
     <ng-template #tabContent15>
-      <div class="ui-grid">
-        <div class="ui-col-2">
-          <h3 class="mb-20">Complete</h3>
-          <ui-stages stage="complete" />
-        </div>
-        <div class="ui-col-2">
-          <h3 class="mb-20">Active</h3>
-          <ui-stages stage="active" />
-        </div>
-        <div class="ui-col-2">
-          <h3 class="mb-20">Pending</h3>
-          <ui-stages stage="pending" />
-        </div>
+      <div class="container-main">
+        <div class="ui-grid">
+          <div class="ui-col-2">
+            <h3 class="mb-20">Complete</h3>
+            <ui-stages stage="complete" />
+          </div>
+          <div class="ui-col-2">
+            <h3 class="mb-20">Active</h3>
+            <ui-stages stage="active" />
+          </div>
+          <div class="ui-col-2">
+            <h3 class="mb-20">Pending</h3>
+            <ui-stages stage="pending" />
+          </div>
 
-        <div class="ui-col-2">
-          <h3 class="mb-20">Lead Completed</h3>
-          <ui-stages stage="lead" />
+          <div class="ui-col-2">
+            <h3 class="mb-20">Lead Completed</h3>
+            <ui-stages stage="lead" />
+          </div>
         </div>
       </div>
     </ng-template>
 
     <ng-template #tabContent16>
-      <ui-modal footerText="Demo Text" cancelText="Cancel" size="small" />
-      <ui-button
-        variant="primary"
-        label="Modal"
-        iconLeft="share"
-        (click)="modal.openModal(modalContentOne)"
-      />
+      <div class="container-main">
+        <ui-modal footerText="" title="Add Company" cancelText="Cancel" size="small" (submit)="onSubmit()" />
+        <ui-button variant="primary" label="Modal" iconLeft="share" (click)="modal.openModal(modalContentOne)" />
 
-      <ng-template #modalContentOne>
-        <h5>Modal Text</h5>
-        <P
-          >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate,
-          molestias.</P
-        >
-      </ng-template>
+        <ng-template #modalContentOne>
+          <div class="form-field">
+            <p class="medium-p mb-20 light">Invite vendor who operates your parking lots and give them the power of
+              automation on there finger tips.</p>
+            <div class="company-details mt-20">
+              <p class="small-p bold">COMPANY DETAILS</p>
+              <div class="continer">
+                <div class="ui-grid">
+                  <div class="ui-col-12 line">
+                    <ui-text-field hide="hide_line" variant="primary" type="text" label="Company Name" placeholder=""
+                      count="false" [(ngModel)]="companyName" [error]="companyNameError" [hasIcon]="companyNameError"
+                      errorMessage="Enter your company name." />
+                  </div>
+                </div>
+                <div class="ui-grid">
+                  <div class="ui-col-6">
+                    <ui-text-field hide="hide_line" variant="primary" label="Admin Name" placeholder="" count="false"
+                      [(ngModel)]="adminName" [error]="adminNameError" [hasIcon]="adminNameError"
+                      errorMessage="Enter your admin name." />
+                  </div>
+                  <div class="ui-col-6">
+                    <ui-number label="Phone number" countryCode="true" [error]="phoneNumberError"
+                      [(ngModel)]="phoneNumber" errorMessage="Enter your number."
+                      (ngModelChange)="onPhoneNumberChange($event)" />
+                  </div>
+                </div>
+                <div class="ui-grid">
+                  <div class="ui-col-6">
+                    <ui-text-field hide="hide_line" variant="primary" type="eamil" label="Email" placeholder=""
+                      count="false" help="This will be a default email address." link="" [(ngModel)]="email"
+                      [error]="emailError" [hasIcon]="emailError" errorMessage="Enter your email." />
+                  </div>
+                  <div class="ui-col-6">
+                    <ui-text-field hide="hide_line" variant="primary" type="password" label="Password" placeholder=""
+                      count="false" iconChangedManually="true" [hasIcon]="true" [(ngModel)]="password"
+                      [error]="passwordError" errorMessage="Enter password" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="reginiol-details mt-32">
+              <p class="small-p bold">REGIONAL SETTINGS</p>
+              <div class="continer mt-10">
+                <div class="ui-grid">
+                  <div class="ui-col-6 h pt-15">
+                    <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="location"
+                      (selectionChange)="onStatusSelectionChange($event)" text="Company Location" icon="user" />
+                  </div>
+                  <div class="ui-col-6 h pt-15">
+                    <ui-text-dropdown class="mr-5" lab size="large" isDropdown="isDropdown" [dropdownList]="state"
+                      (selectionChange)="onStatusSelectionChange($event)" text="State" />
+                  </div>
+                </div>
+                <div class="ui-grid">
+                  <div class="ui-col-12">
+                    <ui-text-field hide="hide_line" variant="primary" type="text" label="Address" placeholder=""
+                      count="false" [hasIcon]="true" [(ngModel)]="address" [error]="addressError"
+                      [hasIcon]="addressError" errorMessage="Enter your address." />
+                  </div>
+                </div>
+                <div class="ui-grid">
+                  <div class="ui-col-6 h pt-17">
+                    <!-- <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="currency"
+                  (selectionChange)="onStatusSelectionChange($event)" text="Currency" /> -->
+                    <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" text="Currency"
+                      [dropdownList]="statusList" (selectionChange)="onStatusSelectionChange($event)" />
+                  </div>
+                  <div class="ui-col-6 h pt-17">
+                    <ui-text-dropdown class="mr-5" size="large" isDropdown="isDropdown" [dropdownList]="language"
+                      (selectionChange)="onStatusSelectionChange($event)" text="Language" />
+                  </div>
+                </div>
+                <div class="ui-grid pt-17">
+                  <div class="ui-col-12">
+                    <ui-text-dropdown class="mr-5" lab size="large" isDropdown="isDropdown" [dropdownList]="timeZones"
+                      (selectionChange)="onStatusSelectionChange($event)" text="Time Zone" />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bottom mt-12">
+              <p class="small-p bold ">NOTE</p>
+              <ul class="mt-12">
+                <li class="small-p light">Admin can update some of these preferences from Settings anytime.</li>
+                <li class="small-p light"> The language you select on this page will be the default language user can
+                  also change the language later.</li>
+              </ul>
+            </div>
+          </div>
+
+        </ng-template>
+      </div>
     </ng-template>
 
-    <ui-tab
-      [tabs]="[
+    <ng-template #tabContent17>
+      <div class="container-main mt-6">
+        <br>
+        <h2>Normal</h2>
+        <br>
+        <div class="ui-grid">
+          <div class="ui-col-1 color">1</div>
+          <div class="ui-col-1 color">2</div>
+          <div class="ui-col-1 color">3</div>
+          <div class="ui-col-1 color">4</div>
+          <div class="ui-col-1 color">5</div>
+          <div class="ui-col-1 color">6</div>
+          <div class="ui-col-1 color">7</div>
+          <div class="ui-col-1 color">8</div>
+          <div class="ui-col-1 color">9</div>
+          <div class="ui-col-1 color">10</div>
+          <div class="ui-col-1 color">11</div>
+          <div class="ui-col-1 color">12</div>
+        </div>
+      </div>
+
+
+      <div class="expand flex">
+        <div class="expand-container">
+          expand
+        </div>
+        <div class="ui-grid mr-20 ml-20">
+
+          <div class="ui-col-1 color">1</div>
+          <div class="ui-col-1 color">2</div>
+          <div class="ui-col-1 color">3</div>
+          <div class="ui-col-1 color">4</div>
+          <div class="ui-col-1 color">5</div>
+          <div class="ui-col-1 color">6</div>
+          <div class="ui-col-1 color">7</div>
+          <div class="ui-col-1 color">8</div>
+          <div class="ui-col-1 color">9</div>
+          <div class="ui-col-1 color">10</div>
+          <div class="ui-col-1 color">11</div>
+          <div class="ui-col-1 color">12</div>
+        </div>
+      </div>
+      <br><br><br><br>
+      <div class="collapsed flex">
+        <div class="collapsed-container">
+          Collapsed
+        </div>
+        <div class="ui-grid mr-20 ml-20">
+          <div class="ui-col-1 color">1</div>
+          <div class="ui-col-1 color">2</div>
+          <div class="ui-col-1 color">3</div>
+          <div class="ui-col-1 color">4</div>
+          <div class="ui-col-1 color">5</div>
+          <div class="ui-col-1 color">6</div>
+          <div class="ui-col-1 color">7</div>
+          <div class="ui-col-1 color">8</div>
+          <div class="ui-col-1 color">9</div>
+          <div class="ui-col-1 color">10</div>
+          <div class="ui-col-1 color">11</div>
+          <div class="ui-col-1 color">12</div>
+        </div>
+      </div>
+    </ng-template>
+
+    <div class="tab-line">
+      <ui-tab [tabs]="[
+         { id: 17, title: 'Grid', content: tabContent17 },
         { id: 1, title: 'Button', content: tabContent1 },
         { id: 2, title: 'Icons', content: tabContent2 },
         { id: 3, title: 'Input', content: tabContent3 },
-        { id: 4, title: 'Dropdown', content: tabContent4 },
+        { id: 4, title: 'Filter', content: tabContent4 },
         { id: 5, title: 'Toaster', content: tabContent5 },
         { id: 6, title: 'Tabs', content: tabContent6 },
         { id: 7, title: 'Avatar', content: tabContent7 },
@@ -1467,36 +1446,16 @@
         { id: 13, title: 'Side navigation', content: tabContent13 },
         { id: 14, title: 'Tooltip', content: tabContent14 },
         { id: 15, title: 'Stages', content: tabContent15 },
-        { id: 16, title: 'Modal', content: tabContent16 }
-      ]"
-    />
+        { id: 16, title: 'Modal', content: tabContent16 },
+      ]" />
+    </div>
   </div>
 
-  <ui-toast
-    [toast]="'info'"
-    [message]="'This is an info toast!'"
-    [heading]="'Info'"
-    [isShown]="isToastInfo"
-  />
+  <ui-toast [toast]="'info'" [message]="'This is an info toast!'" [heading]="'Info'" [isShown]="isToastInfo" />
 
-  <ui-toast
-    [toast]="'warning'"
-    [message]="'This is an warning toast!'"
-    [heading]="'Info'"
-    [isShown]="isToastWarning"
-  />
+  <ui-toast [toast]="'warning'" [message]="'This is an warning toast!'" [heading]="'Info'" [isShown]="isToastWarning" />
 
-  <ui-toast
-    [toast]="'success'"
-    [message]="'This is an success toast!'"
-    [heading]="'Info'"
-    [isShown]="isToastSuccess"
-  />
+  <ui-toast [toast]="'success'" [message]="'This is an success toast!'" [heading]="'Info'" [isShown]="isToastSuccess" />
 
-  <ui-toast
-    [toast]="'error'"
-    [message]="'This is an error toast!'"
-    [heading]="'Info'"
-    [isShown]="isToastError"
-  />
+  <ui-toast [toast]="'error'" [message]="'This is an error toast!'" [heading]="'Info'" [isShown]="isToastError" />
 </section>

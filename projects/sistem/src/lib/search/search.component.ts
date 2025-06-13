@@ -1,3 +1,4 @@
+import { NotificationComponent } from './../notification/notification.component';
 import {
   Component,
   Input,
@@ -7,7 +8,7 @@ import {
   HostListener,
   ElementRef,
   Output,
-  EventEmitter
+  EventEmitter,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'ui-search',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, NotificationComponent],
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
@@ -60,7 +61,7 @@ export class SearchComponent implements OnInit, OnChanges {
     description: string;
   }[] = [];
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef) { }
 
   public clear(): void {
     this.searchTerm = '';
@@ -91,13 +92,13 @@ export class SearchComponent implements OnInit, OnChanges {
     }
   }
 
-  getCategoryId(category: string | {id: string, name: string}): string {
-    console.log("category",category);
-    console.log("category.id",typeof category === 'object' ? category.id : category);
+  getCategoryId(category: string | { id: string, name: string }): string {
+    console.log("category", category);
+    console.log("category.id", typeof category === 'object' ? category.id : category);
     return typeof category === 'object' ? category.id : category;
   }
-  
-  getCategoryName(category: string | {id: string, name: string}): string {
+
+  getCategoryName(category: string | { id: string, name: string }): string {
     return typeof category === 'object' ? category.name : category;
   }
 

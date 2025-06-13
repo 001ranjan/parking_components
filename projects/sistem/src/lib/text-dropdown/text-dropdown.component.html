@@ -1,0 +1,59 @@
+<div class="search_field"
+     [class]="isDropdown + ' ' + size"
+     [ngClass]="{ 'focused': isFocused, 'error': error,}">
+  <div class="text-search" [ngClass]="{ 'highlighted': selectedCategory !== dropdownList[0] }">
+    <!-- Dropdown menu for categories -->
+    <div class="search-category">
+      <div class="category" (click)="toggleDropdown()">
+       <div class="content">
+        <span class="required" [ngClass]="{ 'active': userSelected }">
+          <span>{{text}}</span>
+          <img src="assets/images/icons/required.svg" alt="required" style="position: relative; top: -5px;" />
+        </span>
+        <span class="text">
+          {{ selectedCategory }}
+        </span>
+       </div>
+
+        <div>
+          <div class="icon"> <ui-icon icon="chevron-down" *ngIf="!error"/>
+            <img src="assets/images/icons/Subtract.svg" alt="icon" class="error-icon" *ngIf="error" style="width: 16px; height: 16px;">
+          </div>
+        </div>
+      </div>
+<ul *ngIf="showDropdown" class="list-item">
+        <li class="list-f none-select"><div>{{label}}</div> <div>
+
+        <ng-container *ngIf="isSvgPath(icon || defaultIcon); else svgIcon">
+          <img [src]="icon || defaultIcon" alt="icon" class="icon-img"/>
+        </ng-container>
+        <ng-template #svgIcon>
+          <span class="icon" style="width: 16px; height: 16px;" [innerHTML]="getIconSvg(icon)"></span>
+        </ng-template>
+
+        </div></li>
+        <li class="list-f" *ngFor="let category of dropdownList"
+            (mousedown)="selectCategory(category)">
+          <div>{{ category }}</div> <div>
+        <ng-container *ngIf="isSvgPath(icon || defaultIcon); else svgIcon">
+          <img [src]="icon || defaultIcon" alt="icon" class="icon-img"/>
+        </ng-container>
+        <ng-template #svgIcon>
+          <span class="icon" style="width: 16px; height: 16px;" [innerHTML]="getIconSvg(icon)"></span>
+        </ng-template>
+          </div>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+</div>
+
+<div class="error-msg pt-4" *ngIf="error">
+  {{ errorMessage }}
+</div>
+<div class="help pt-4" *ngIf="help" [class]="hide">
+  <div class="help-text">{{ help }}</div>
+  <a [href]="link" *ngIf="link">Help</a>
+</div>

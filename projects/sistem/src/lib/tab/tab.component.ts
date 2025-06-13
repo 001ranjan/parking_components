@@ -11,14 +11,15 @@ import { CommonModule } from '@angular/common';
 export class TabComponent implements OnInit {
 
   private _tabs: { id: number; title: string; content: TemplateRef<any> }[] = [];
-  
-  @Input() 
+  @Input() size?:string='';
+  @Input()
   set tabs(value: { id: number; title: string; content: TemplateRef<any> }[]) {
     this._tabs = value;
     if (this._tabs.length) {
       this.activeTab = this._tabs[0].id;
     }
   }
+
 
   get tabs(): { id: number; title: string; content: TemplateRef<any> }[] {
     return this._tabs;

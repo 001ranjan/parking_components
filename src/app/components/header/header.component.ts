@@ -16,6 +16,7 @@ import {
   SideNavigationComponent,
   IconComponent,
   SearchComponent,
+  DropdownComponent,
 } from 'sistem';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationStart } from '@angular/router';
@@ -34,6 +35,7 @@ import { ButtonsComponent } from "../../../../projects/sistem/src/lib/buttons/bu
     CommonModule,
     ButtonsComponent,
     RouterModule,
+    DropdownComponent
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],

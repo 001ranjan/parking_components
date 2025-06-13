@@ -12,14 +12,14 @@
     <form (ngSubmit)="userLogin()" class="login-form">
       <div class="form-group">
         <ui-text-field label="Email" variant="primary" id="loginId" [(ngModel)]="loginData.loginId" name="loginId"
-          placeholder="" type="email" required>
+          placeholder="" type="email"  count="false">
           <ui-icon icon="mail" slot="prefix"></ui-icon>
         </ui-text-field>
       </div>
 
       <div class="form-group">
         <ui-text-field label="Password" variant="primary" id="password" [(ngModel)]="loginData.password" name="password"
-          placeholder="" type="password" required>
+          placeholder="" type="password" [hasIcon]="true" count="false">
           <ui-icon icon="lock-closed" slot="prefix"></ui-icon>
         </ui-text-field>
       </div>

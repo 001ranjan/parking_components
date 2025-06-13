@@ -34,12 +34,12 @@
                   size="xl" sameIcon="invert" />
                 <div>
                   <b>Car Rates</b>
-                  <p class="small-p">2 items</p>
+                  <p class="small-p">{{carItems}} items</p>
                 </div>
               </div>
               <!-- modal button -->
               <ui-button variant="primary" shape="round" iconLeft="plus" size="medium"
-                (click)="modal.openModal(modalShareCar)" />
+                (click)="openCarRateModal(modal)" />
             </div>
 
             <!-- Parking ate list -->
@@ -101,7 +101,7 @@
                   size="xl" sameIcon="invert" />
                 <div>
                   <b>Cycle Rates</b>
-                  <p class="small-p">2 items</p>
+                  <p class="small-p">{{cycleItem}} items</p>
                 </div>
               </div>
               <!-- modal button -->
@@ -166,7 +166,7 @@
                   size="xl" sameIcon="invert" />
                 <div>
                   <b>Car Rates</b>
-                  <p class="small-p">2 items</p>
+                  <p class="small-p">{{carItems}} items</p>
                 </div>
               </div>
 

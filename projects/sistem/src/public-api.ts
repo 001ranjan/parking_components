@@ -30,3 +30,4 @@ export * from './lib/snackbar/snackbar.component';
 export * from './lib/icons';
 export * from './tooltip.directive';
 export * from './lib/stages/stages.component';
+export * from './lib/search-bar/search-bar.component';

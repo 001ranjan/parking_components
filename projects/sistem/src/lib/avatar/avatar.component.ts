@@ -17,7 +17,7 @@ export class AvatarComponent {
   @Input() shape: 'default' | 'round' = 'default';
   @Input() avatarIcon?: string;
   @Input() label?: string;
-  defaultIcon: string = '../assets/images/icons/larg.svg';
+  defaultIcon: string = '../assets/images/icons/avaatar-default.png';
 
   // Determines if avatarIcon is an SVG or a URL to an image
   isSvgIcon(): boolean {

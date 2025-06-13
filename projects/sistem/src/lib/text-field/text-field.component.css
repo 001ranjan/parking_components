@@ -1,21 +1,28 @@
 .primary.form {
   /* width: 50%; */
-  height: 50px;
+  height: 60px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 10px;
+
 }
 
 .primary.form input {
   width: 100%;
   height: 100%;
   color: var(--heading);
-  padding-top: 8px;
+  padding-top: 13px;
   border: none;
   outline: none;
   font-size: 16px;
   line-height: 24px;
   background-color: transparent;
+  padding-left: 12px;
+  margin-top: 3px;
+}
+
+
+.primary.form .content-name {
+  left: 11px;
 }
 
 .primary.form label {
@@ -44,6 +51,14 @@
   transition: all 0.3s ease;
 }
 
+.positon {
+  position: relative;
+}
+
+span.required {
+  font-size: 16px !important;
+}
+
 .content-name {
   position: absolute;
   bottom: 5px;
@@ -51,34 +66,73 @@
   transition: all .3s ease;
 }
 
-.primary.form input:focus+.label-name .content-name,
-.primary.form input:valid+.label-name .content-name {
-  transform: translateY(-100%);
+.primary.form:not(.has-icon) .content-name {
+  bottom: -10px !important;
+}
+
+.primary.form.has-icon .content-name {
+  bottom: 0px !important;
+}
+
+.primary.form:has(.has-icon) .content-name {
+  bottom: 0px !important;
+}
+
+.form input:focus+.label-name .content-name,
+.form input:valid+.label-name .content-name {
   font-size: 12px;
   line-height: 14.52px;
   color: var(--input-text);
 }
+
+.primary.form input:focus+.label-name .content-name,
+.primary.form input:valid+.label-name .content-name {
+  transform: translateY(-100%);
+}
+
+.primary.form input:focus+.label-name .content-name span.required,
+.primary.form input:valid+.label-name .content-name span.required {
+  font-size: 12px !important;
+}
+
+.primary.form.has-icon input:focus+.label-name .content-name,
+.primary.form.has-icon input:valid+.label-name .content-name {
+  bottom: -3px;
+}
+
+.primary.form:not(.has-icon) input:focus+.label-name .content-name,
+.primary.form:not(.has-icon) input:valid+.label-name .content-name {
+  bottom: -13px;
+}
+
+
 
 .primary.form input:focus+.label-name::after,
 .primary.form input:valid+.label-name::after {
   transform: translateX(0%);
 }
 
-.required {
+
+/* .required {
   margin-top: -2px;
   position: absolute;
 }
+input:focus + .required {
+  margin-top: -6px;
+} */
 
-.ui-flex {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+.required {
   position: relative;
-  bottom: 0px;
+
+  img {
+    position: absolute;
+    top: 1px
+  }
 }
 
+
 .counter {
-  text-align: right;
+  text-align: center;
 }
 
 .counter img {
@@ -90,8 +144,8 @@
   font-size: 12px;
   line-height: 12.1px;
   color: var(--input-text);
-  margin-bottom: 3px;
   visibility: hidden;
+  margin-top: 15px;
 }
 
 .word.focused {
@@ -101,12 +155,43 @@
 
 .error label {
   color: var(--error);
+  padding-left: 8px;
+  padding-right: 12px;
+}
+
+.primary.error .content-name {
+  left: 3px !important;
+}
+
+.secondary.error .content-name {
+  left: -8px !important;
 }
 
 .primary.form.error .label-name .content-name {
   color: var(--error);
 }
 
+.error-msg {
+  padding-left: 8px;
+  padding-right: 12px;
+  padding-bottom: 4px;
+  padding-top: 5px;
+}
+
+.help {
+  position: relative;
+}
+
+.help.hide_line::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 0px;
+  height: 50px;
+  width: 1px;
+  background-color: var(--secondary);
+  height: 50px;
+}
 
 
 
@@ -116,12 +201,12 @@
   width: auto;
   position: relative;
   /* overflow: hidden; */
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 .secondary.form input {
-  width: 100%;
-  height: 48px;
+  width: calc(100% - 20px);
+  height: 46px;
   padding: 0 12px;
   color: var(--heading);
   border: 1px solid var(--border);
@@ -135,11 +220,16 @@
   border: 1px solid var(--heading);
 }
 
+.form.secondary.corner input {
+  border-radius: 8px;
+  margin-top: 13px;
+}
+
 .secondary.form label {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: -35px;
+  top: -13px;
   left: 0%;
   pointer-events: none;
   color: var(--heading);
@@ -154,26 +244,34 @@
   right: -12px;
 }
 
+.secondary .icon {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 10px;
+  right: 5px;
+}
+
+.secondary .content-name {
+  bottom: 6px;
+}
+
 
 .secondary.form .error-icon {
   position: absolute;
-  bottom: -35px;
-  right: -12px;
+  bottom: -28px;
+  right: 12px;
 }
 
 
 .content-name {
-  bottom: 5px;
+  bottom: 0px;
   left: 0px;
   transition: all .3s ease;
 }
 
 
 
-.required {
-  margin-top: -2px;
-  position: absolute;
-}
 
 .ui-flex {
   display: flex;
@@ -183,8 +281,14 @@
   bottom: 0px;
 }
 
+
 .counter {
-  text-align: right;
+  text-align: center;
+  padding-right: 12px;
+}
+
+.error .counter {
+  padding-right: 0;
 }
 
 .counter img {
@@ -192,13 +296,6 @@
   height: 16px;
 }
 
-.word {
-  font-size: 12px;
-  line-height: 12.1px;
-  color: var(--input-text);
-  margin-bottom: 3px;
-  visibility: hidden;
-}
 
 .word.focused {
   visibility: visible;
@@ -233,7 +330,9 @@
 }
 
 .secondary.form .word {
-  margin-right: -22px;
+  /* margin-right: -22px; */
+  position: absolute;
+  right: -22px;
 }
 
 
@@ -248,6 +347,7 @@
 
 .form.round input {
   border-radius: 40px;
+  margin-top: 13px;
 }
 
 .error .icon-img {
@@ -255,18 +355,64 @@
 }
 
 .disable label {
-  color: var(--disable)!important;
-  border-color: var(--disable)!important;
+  color: var(--disable) !important;
+  border-color: var(--disable) !important;
 }
 
 .password-toggle {
   cursor: pointer;
   width: 20px;
   height: 20px;
-  margin-right: 8px;
+  margin-right: -20px;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
 }
 
 .password-toggle:hover {
   opacity: 0.8;
 }
 
+
+.icon svg {
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.icon {
+  margin-left: 25px;
+}
+
+
+.help {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  padding-left: 8px;
+  padding-right: 12px;
+}
+
+.icon-left svg {
+  stroke: none !important;
+}
+
+input[type="password"] .content-name {
+  bottom: -2px !important;
+}
+
+.help {
+  position: relative;
+}
+
+.help.hide_line::after {
+  content: "";
+  position: absolute;
+  right: -1px;
+  top: 0px;
+  height: 50px;
+  width: 1px;
+  background-color: var(--secondary);
+  height: 50px;
+}

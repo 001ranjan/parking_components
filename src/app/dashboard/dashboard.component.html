@@ -1,0 +1,9 @@
+<div class="container-main" [ngClass]="{'sidebar-closed': isSidebarClosed}">
+  <!-- sidebar -->
+  <ui-sidebar #sidebar (sidebarToggled)="onSidebarToggled($event)"></ui-sidebar>
+  <main>
+<div class="dashboard">
+  <p>Comming Soon!</p>
+</div>
+  </main>
+</div>

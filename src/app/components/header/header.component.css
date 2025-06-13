@@ -399,49 +399,67 @@
 
 /* User Dropdown Styles */
 .user-dropdown {
-  position: absolute;
+  /* position: absolute;
   top: 60px;
   right: 20px;
   background-color: var(--list-bg);
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  min-width: 240px;
+  min-width: 244px;
   z-index: 1000;
-  border: 1px solid var(--border);
+  border: 1px solid var(--border); */
+  position: absolute;
+  top: 60px;
+  right: 20px;
+  background-color: var(--list-bg);
+  box-shadow: 0 3px 36px 0 var(--shadow);
+  border-radius: 8px;
+  z-index: 2;
+  min-width: 244px;
+  overflow: hidden;
 }
 
 .user-info {
   padding: 16px;
   display: flex;
-  align-items: center;
-  gap: 12px;
+  gap: 15px;
+  background: #f8f9fa;
+
+  h6 {
+    font-size: 13px;
+  }
 }
 
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  overflow: hidden;
+.other {
+  color: var(--other);
 }
 
-.user-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+
+
+:host ::ng-deep .dropdown-item button.text {
+  color: var(--heading) !important;
+}
+
+/* :host ::ng-deep .dropdown-item button.text:hover {
+  color: var(--primary) !important;
+} */
+
+.min-h-40 {
+  padding: 13px 0;
+}
+
+.min-h-40:hover {
+  background-color: var(--white) !important;
+}
+
+.min-h {
+  max-height: 37px;
+  padding: 10px 0;
 }
 
 .user-details {
   flex: 1;
 }
-
-/* .user-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-} */
-
-
 
 .dropdown-divider {
   height: 1px;
@@ -449,7 +467,7 @@
 }
 
 .dropdown-item {
-  padding: 12px 16px;
+  padding: 7px 0 16px 0;
   display: grid;
   align-items: center;
   cursor: pointer;
@@ -463,6 +481,10 @@
 
 .dropdown-item ui-icon {
   margin-right: 12px;
+}
+
+.list>div:hover {
+  background-color: var(--secondary);
 }
 
 /* Dark theme support */
